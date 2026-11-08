@@ -21,7 +21,6 @@ import {
   ShieldCheck,
   Eye,
   HelpCircle,
-  PenLine,
 } from "lucide-react";
 import { WaitlistNavbar } from "@/components/marketing/WaitlistNavbar";
 import { WaitlistFooter } from "@/components/marketing/WaitlistFooter";
@@ -45,6 +44,14 @@ const SHOWCASE_ROOMS = [
     narrative: "Vacant vaulted living room with a brick hearth fireplace and natural hardwood flooring transformed into an editorial contemporary lounge with an organic wood coffee table, low-profile seating, and woven lounge accents.",
     tags: ["Custom Low Seating", "Organic Oak Surfaces", "Fireplace Hearth Staged", "Natural Light Preservation"],
     hotspots: [
+      {
+        id: "lr-sofa",
+        x: 74,
+        y: 52,
+        storeName: "Pepperfry",
+        priceInr: "₹42,999",
+        storeUrl: "https://www.pepperfry.com/furniture-sofas.html",
+      },
       {
         id: "lr-table",
         x: 52,

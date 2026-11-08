@@ -215,7 +215,7 @@ export function ArchitecturalSlider({
                           : spot.x < 35
                           ? "left-0"
                           : "left-1/2 -translate-x-1/2",
-                        spot.y > 60
+                        spot.y > 50
                           ? "bottom-full mb-2"
                           : "top-full mt-2"
                       )}
