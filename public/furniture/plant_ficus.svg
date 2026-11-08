@@ -1,0 +1,28 @@
+<svg width="180" height="280" viewBox="0 0 180 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="plantShadow" x="0" y="0" width="180" height="280" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <g filter="url(#plantShadow)">
+    <!-- Wooden Stand & Planter -->
+    <!-- Stand legs -->
+    <line x1="60" y1="210" x2="52" y2="265" stroke="#9A7B5C" stroke-width="6" stroke-linecap="round"/>
+    <line x1="120" y1="210" x2="128" y2="265" stroke="#9A7B5C" stroke-width="6" stroke-linecap="round"/>
+    <rect x="52" y="235" width="76" height="5" fill="#806245"/>
+    
+    <!-- White Fluted Ceramic Pot -->
+    <path d="M60 190 L65 240 L115 240 L120 190 Z" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+    <!-- Pot Rim -->
+    <ellipse cx="90" cy="190" rx="30" ry="7" fill="#EDEFEA" stroke="#CBD5E1" stroke-width="1.5"/>
+    
+    <!-- Plant Stem -->
+    <path d="M90 190 C90 140, 85 90, 92 40" stroke="#3F5A36" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Broad Fiddle Leaves -->
+    <path d="M90 130 C60 120, 45 90, 70 80 C88 72, 92 110, 90 130 Z" fill="#2E4A28" stroke="#1F331A" stroke-width="1.5"/>
+    <path d="M90 115 C115 105, 140 80, 115 65 C95 55, 90 95, 90 115 Z" fill="#3D6134" stroke="#263D21" stroke-width="1.5"/>
+    <path d="M92 80 C65 65, 55 40, 75 30 C90 22, 95 60, 92 80 Z" fill="#4B7740" stroke="#2B4725" stroke-width="1.5"/>
+    <path d="M92 55 C110 45, 125 25, 110 15 C95 8, 92 40, 92 55 Z" fill="#588B4B" stroke="#32542A" stroke-width="1.5"/>
+  </g>
+</svg>

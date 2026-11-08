@@ -1,0 +1,23 @@
+<svg width="400" height="220" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="curvShadow" x="0" y="0" width="400" height="220" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#0F172A" flood-opacity="0.22"/>
+    </filter>
+    <linearGradient id="boucleGrad" x1="200" y1="40" x2="200" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCFBF9"/>
+      <stop offset="50%" stop-color="#EFECE6"/>
+      <stop offset="100%" stop-color="#DCD6CA"/>
+    </linearGradient>
+  </defs>
+  
+  <g filter="url(#curvShadow)">
+    <!-- Concealed Plinth -->
+    <ellipse cx="200" cy="165" rx="150" ry="12" fill="#2E2822" opacity="0.8"/>
+    <!-- Organic Asymmetrical Backrest -->
+    <path d="M50 145 C60 60, 140 35, 220 40 C310 45, 360 80, 350 145 C320 160, 80 160, 50 145 Z" fill="url(#boucleGrad)" stroke="#D0C9BC" stroke-width="2"/>
+    <!-- Deep Curved Seat Cushion -->
+    <path d="M65 140 C80 90, 160 85, 230 88 C300 90, 335 110, 335 145 C310 168, 90 165, 65 140 Z" fill="#F8F6F0" stroke="#CBC4B5" stroke-width="1.5"/>
+    <!-- Sculptural Round Pillow -->
+    <circle cx="120" cy="100" r="22" fill="#A89F91" opacity="0.85"/>
+  </g>
+</svg>

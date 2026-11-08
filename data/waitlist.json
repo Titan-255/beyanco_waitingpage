@@ -1,0 +1,117 @@
+[
+  {
+    "name": "Victoria Vance Updated",
+    "email": "agent_1794139936049@luxurymiami.com",
+    "professionalRole": "Real Estate Agency Owner",
+    "company": "Vance International Properties LLC",
+    "country": "United States",
+    "city": "Miami",
+    "marketingConsent": false,
+    "source": "verification_script",
+    "utm": {},
+    "id": "wl_1794139936066_67ke9",
+    "createdAt": "2026-11-08T12:12:16.066Z",
+    "updatedAt": "2026-11-08T12:12:16.071Z"
+  },
+  {
+    "name": "Victoria Vance Updated",
+    "email": "agent_1794138345940@luxurymiami.com",
+    "professionalRole": "Real Estate Agency Owner",
+    "company": "Vance International Properties LLC",
+    "country": "United States",
+    "city": "Miami",
+    "marketingConsent": false,
+    "source": "verification_script",
+    "utm": {},
+    "id": "wl_1794138345955_6s0ao",
+    "createdAt": "2026-11-08T11:45:45.955Z",
+    "updatedAt": "2026-11-08T11:45:45.962Z"
+  },
+  {
+    "name": "Rohan Mehta Updated",
+    "email": "test_1794123353623@brokerage.com",
+    "professionalRole": "Broker",
+    "company": "Mehta Realty Group",
+    "country": "India",
+    "marketingConsent": true,
+    "source": "waitlist_page",
+    "utm": {},
+    "id": "wl_1794123353623_p3287",
+    "createdAt": "2026-11-08T07:35:53.623Z",
+    "updatedAt": "2026-11-08T07:35:53.627Z"
+  },
+  {
+    "name": "Rohan Mehta Updated",
+    "email": "test_1794122909405@brokerage.com",
+    "professionalRole": "Broker",
+    "company": "Mehta Realty Group",
+    "country": "India",
+    "marketingConsent": true,
+    "source": "waitlist_page",
+    "utm": {},
+    "id": "wl_1794122909406_vtpnz",
+    "createdAt": "2026-11-08T07:28:29.406Z",
+    "updatedAt": "2026-11-08T07:28:29.411Z"
+  },
+  {
+    "name": "Rohan Mehta Updated",
+    "email": "test_1794122159389@brokerage.com",
+    "professionalRole": "Broker",
+    "company": "Mehta Realty Group",
+    "country": "India",
+    "marketingConsent": true,
+    "source": "waitlist_page",
+    "utm": {},
+    "id": "wl_1794122159390_wivaj",
+    "createdAt": "2026-11-08T07:15:59.390Z",
+    "updatedAt": "2026-11-08T07:15:59.396Z"
+  },
+  {
+    "id": "wl_seed_001",
+    "name": "Vikram Malhotra",
+    "email": "vikram@primeestates.in",
+    "professionalRole": "Real Estate Agent",
+    "company": "Prime Realty Consultants",
+    "country": "India",
+    "city": "Mumbai",
+    "marketingConsent": true,
+    "source": "waitlist_page",
+    "utm": {
+      "source": "linkedin",
+      "medium": "social",
+      "campaign": "prelaunch"
+    },
+    "createdAt": "2026-11-05T07:15:59.385Z"
+  },
+  {
+    "id": "wl_seed_002",
+    "name": "Ananya Deshmukh",
+    "email": "ananya.designs@gmail.com",
+    "professionalRole": "Interior Designer",
+    "company": "Studio Vayu Interior Architecture",
+    "country": "India",
+    "city": "Bengaluru",
+    "marketingConsent": true,
+    "source": "waitlist_page",
+    "utm": {
+      "source": "direct"
+    },
+    "createdAt": "2026-11-06T07:15:59.385Z"
+  },
+  {
+    "id": "wl_seed_003",
+    "name": "Marcus Sterling",
+    "email": "m.sterling@apertureprop.co.uk",
+    "professionalRole": "Property Photographer",
+    "company": "Aperture Architectural Media",
+    "country": "United Kingdom",
+    "city": "London",
+    "marketingConsent": false,
+    "source": "waitlist_page",
+    "utm": {
+      "source": "google",
+      "medium": "search"
+    },
+    "createdAt": "2026-11-07T07:15:59.385Z"
+  }
+]

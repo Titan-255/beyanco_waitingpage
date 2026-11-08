@@ -1,0 +1,17 @@
+<svg width="340" height="200" viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="rugShadow" x="0" y="0" width="340" height="200" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <g filter="url(#rugShadow)">
+    <!-- Woven Wool Base (Isometric ground plane projection) -->
+    <polygon points="40,30 300,30 325,170 15,170" fill="#F4F1EB" stroke="#DFD8CA" stroke-width="2"/>
+    <!-- Organic Bauhaus / Minimal Line Motif -->
+    <path d="M70 150 C120 70, 200 130, 260 50" stroke="#2B2927" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <circle cx="210" cy="90" r="28" fill="#D39E82" opacity="0.6"/>
+    <path d="M110 50 C140 110, 180 140, 240 150" stroke="#7A7571" stroke-width="2" stroke-dasharray="6 4" fill="none"/>
+    <!-- Textured Fringe -->
+    <line x1="12" y1="172" x2="328" y2="172" stroke="#E5DEC9" stroke-width="4" stroke-dasharray="2 2"/>
+  </g>
+</svg>

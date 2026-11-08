@@ -1,0 +1,32 @@
+<svg width="300" height="180" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="tableShadow" x="0" y="0" width="300" height="180" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.22"/>
+    </filter>
+    <linearGradient id="travertineTop" x1="150" y1="40" x2="150" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F2EDE4"/>
+      <stop offset="50%" stop-color="#E5DC handle"/>
+      <stop offset="100%" stop-color="#D7CCC0"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#tableShadow)">
+    <!-- Fluted Cylindrical Bases -->
+    <rect x="70" y="65" width="45" height="75" rx="6" fill="#D2C5B4"/>
+    <line x1="81" y1="65" x2="81" y2="140" stroke="#B8A894" stroke-width="2"/>
+    <line x1="93" y1="65" x2="93" y2="140" stroke="#B8A894" stroke-width="2"/>
+    <line x1="104" y1="65" x2="104" y2="140" stroke="#B8A894" stroke-width="2"/>
+    
+    <rect x="185" y="65" width="45" height="75" rx="6" fill="#D2C5B4"/>
+    <line x1="196" y1="65" x2="196" y2="140" stroke="#B8A894" stroke-width="2"/>
+    <line x1="208" y1="65" x2="208" y2="140" stroke="#B8A894" stroke-width="2"/>
+    <line x1="219" y1="65" x2="219" y2="140" stroke="#B8A894" stroke-width="2"/>
+    
+    <!-- Heavy Oval Travertine Slab -->
+    <ellipse cx="150" cy="58" rx="125" ry="32" fill="#EAE2D5" stroke="#C2B29E" stroke-width="2"/>
+    <ellipse cx="150" cy="54" rx="122" ry="30" fill="url(#travertineTop)"/>
+    
+    <!-- Decorative Ceramic Bowl & Art Book -->
+    <rect x="165" y="44" width="28" height="20" rx="3" fill="#3D3A37" transform="rotate(-8 165 44)"/>
+    <ellipse cx="120" cy="50" rx="14" ry="8" fill="#FBF9F5" stroke="#D5CBBF" stroke-width="1.5"/>
+  </g>
+</svg>

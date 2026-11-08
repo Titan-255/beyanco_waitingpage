@@ -1,0 +1,9 @@
+node_modules
+.next
+.venv
+Fabric_Classification
+*.log
+.DS_Store
+.env*.local
+
+tsconfig.tsbuildinfo

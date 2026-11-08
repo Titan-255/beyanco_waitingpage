@@ -1,0 +1,301 @@
+[
+  {
+    "waitlistId": "wl_1794139936066_67ke9",
+    "contactName": "Kavita Chawla",
+    "contactEmail": "kavita_1794139936075@atelieroak.in",
+    "contactPhone": "+91 98200 11223",
+    "role": "Interior Designer",
+    "country": "India",
+    "city": "Mumbai",
+    "company": "Atelier K",
+    "propertyVolume": "6–10",
+    "currentWorkflow": [
+      "Physical furniture staging",
+      "Professional interior designer"
+    ],
+    "painPoints": [
+      "Physical staging is expensive",
+      "I cannot control the furniture",
+      "Difficult to maintain a consistent design"
+    ],
+    "currentSpending": "₹50,000–₹1,50,000 / month",
+    "currency": "INR",
+    "featurePreferences": [
+      "AI Virtual Staging",
+      "Complete AI Interior Design",
+      "Furniture Customization",
+      "Material and Colour Selection",
+      "Multiple Rooms Under One Property"
+    ],
+    "topThreeFeatures": [
+      "Complete AI Interior Design",
+      "Furniture Customization",
+      "Multiple Rooms Under One Property"
+    ],
+    "wishlistFeature": "Exact material texture matching for Italian marble & bouclé",
+    "purchaseIntent": "Definitely would pay",
+    "preferredPricingModel": "Package per property",
+    "priceExpectationPerRoom": "₹500–₹999",
+    "comfortablePriceNotes": "Unlimited revisions during 48-hour client review window",
+    "earlyAccessInterest": "Yes, definitely",
+    "interviewInterest": "Yes",
+    "marketingConsent": true,
+    "utm": {},
+    "id": "fb_1794139936079_7sctw",
+    "createdAt": "2026-11-08T12:12:16.079Z"
+  },
+  {
+    "waitlistId": "wl_1794138345955_6s0ao",
+    "contactName": "Kavita Chawla",
+    "contactEmail": "kavita_1794138345966@atelieroak.in",
+    "contactPhone": "+91 98200 11223",
+    "role": "Interior Designer",
+    "country": "India",
+    "city": "Mumbai",
+    "company": "Atelier K",
+    "propertyVolume": "6–10",
+    "currentWorkflow": [
+      "Physical furniture staging",
+      "Professional interior designer"
+    ],
+    "painPoints": [
+      "Physical staging is expensive",
+      "I cannot control the furniture",
+      "Difficult to maintain a consistent design"
+    ],
+    "currentSpending": "₹50,000–₹1,50,000 / month",
+    "currency": "INR",
+    "featurePreferences": [
+      "AI Virtual Staging",
+      "Complete AI Interior Design",
+      "Furniture Customization",
+      "Material and Colour Selection",
+      "Multiple Rooms Under One Property"
+    ],
+    "topThreeFeatures": [
+      "Complete AI Interior Design",
+      "Furniture Customization",
+      "Multiple Rooms Under One Property"
+    ],
+    "wishlistFeature": "Exact material texture matching for Italian marble & bouclé",
+    "purchaseIntent": "Definitely would pay",
+    "preferredPricingModel": "Package per property",
+    "priceExpectationPerRoom": "₹500–₹999",
+    "comfortablePriceNotes": "Unlimited revisions during 48-hour client review window",
+    "earlyAccessInterest": "Yes, definitely",
+    "interviewInterest": "Yes",
+    "marketingConsent": true,
+    "utm": {},
+    "id": "fb_1794138345969_90l13",
+    "createdAt": "2026-11-08T11:45:45.969Z"
+  },
+  {
+    "waitlistId": "wl_1794123353623_p3287",
+    "contactEmail": "test_1794123353623@brokerage.com",
+    "role": "Real estate agent / broker",
+    "country": "India",
+    "city": "Delhi",
+    "company": "Mehta Realty Group",
+    "propertyVolume": "6–10",
+    "currentWorkflow": [
+      "Physical staging",
+      "Photoshop"
+    ],
+    "painPoints": [
+      "Physical staging is expensive",
+      "Empty rooms are difficult to present"
+    ],
+    "featurePreferences": [
+      "Realistic AI virtual staging",
+      "Multi-room property projects"
+    ],
+    "topFeatureRequest": "High resolution MLS compliance",
+    "usageFrequency": "Weekly",
+    "expectedMonthlyImages": "16–30",
+    "purchaseIntent": "definitely",
+    "preferredPricingModel": "Pay per property package",
+    "acceptablePricePerRoom": "₹250–₹499",
+    "currency": "INR",
+    "earlyAccessInterest": "yes",
+    "interviewInterest": "yes",
+    "utm": {},
+    "id": "fb_1794123353633_nrstk",
+    "createdAt": "2026-11-08T07:35:53.633Z"
+  },
+  {
+    "waitlistId": "wl_1794122909406_vtpnz",
+    "contactEmail": "test_1794122909405@brokerage.com",
+    "role": "Real estate agent / broker",
+    "country": "India",
+    "city": "Delhi",
+    "company": "Mehta Realty Group",
+    "propertyVolume": "6–10",
+    "currentWorkflow": [
+      "Physical staging",
+      "Photoshop"
+    ],
+    "painPoints": [
+      "Physical staging is expensive",
+      "Empty rooms are difficult to present"
+    ],
+    "featurePreferences": [
+      "Realistic AI virtual staging",
+      "Multi-room property projects"
+    ],
+    "topFeatureRequest": "High resolution MLS compliance",
+    "usageFrequency": "Weekly",
+    "expectedMonthlyImages": "16–30",
+    "purchaseIntent": "definitely",
+    "preferredPricingModel": "Pay per property package",
+    "acceptablePricePerRoom": "₹250–₹499",
+    "currency": "INR",
+    "earlyAccessInterest": "yes",
+    "interviewInterest": "yes",
+    "utm": {},
+    "id": "fb_1794122909417_uozso",
+    "createdAt": "2026-11-08T07:28:29.417Z"
+  },
+  {
+    "waitlistId": "wl_1794122159390_wivaj",
+    "contactEmail": "test_1794122159389@brokerage.com",
+    "role": "Real estate agent / broker",
+    "country": "India",
+    "city": "Delhi",
+    "company": "Mehta Realty Group",
+    "propertyVolume": "6–10",
+    "currentWorkflow": [
+      "Physical staging",
+      "Photoshop"
+    ],
+    "painPoints": [
+      "Physical staging is expensive",
+      "Empty rooms are difficult to present"
+    ],
+    "featurePreferences": [
+      "Realistic AI virtual staging",
+      "Multi-room property projects"
+    ],
+    "topFeatureRequest": "High resolution MLS compliance",
+    "usageFrequency": "Weekly",
+    "expectedMonthlyImages": "16–30",
+    "purchaseIntent": "definitely",
+    "preferredPricingModel": "Pay per property package",
+    "acceptablePricePerRoom": "₹250–₹499",
+    "currency": "INR",
+    "earlyAccessInterest": "yes",
+    "interviewInterest": "yes",
+    "utm": {},
+    "id": "fb_1794122159402_0gatb",
+    "createdAt": "2026-11-08T07:15:59.402Z"
+  },
+  {
+    "id": "fb_seed_001",
+    "waitlistId": "wl_seed_001",
+    "contactEmail": "vikram@primeestates.in",
+    "role": "Real estate agent / broker",
+    "country": "India",
+    "city": "Mumbai",
+    "company": "Prime Realty Consultants",
+    "propertyVolume": "6–10",
+    "currentWorkflow": [
+      "Photoshop or other editing tools",
+      "Properties are presented without staging"
+    ],
+    "painPoints": [
+      "Physical staging is expensive",
+      "Empty rooms are difficult to present",
+      "Existing AI staging looks unrealistic"
+    ],
+    "frustrationsComment": "Clients cannot imagine scale in empty flats, but physical staging costs ₹40,000+ per flat and takes a week.",
+    "featurePreferences": [
+      "Realistic AI virtual staging",
+      "Multiple interior design styles",
+      "Multi-room property projects"
+    ],
+    "topFeatureRequest": "High photorealism that doesn't look like video game 3D renderings.",
+    "usageFrequency": "Several times a week",
+    "expectedMonthlyImages": "16–30",
+    "purchaseIntent": "definitely",
+    "preferredPricingModel": "Pay per property package",
+    "acceptablePricePerRoom": "₹250–₹499",
+    "currency": "INR",
+    "currentMonthlySpend": "₹30,000 on photographers and photo touch-ups",
+    "worthPayingForComment": "If it looks indistinguishable from real furniture and takes under 3 minutes per room photograph.",
+    "earlyAccessInterest": "yes",
+    "interviewInterest": "yes",
+    "createdAt": "2026-11-05T07:15:59.385Z"
+  },
+  {
+    "id": "fb_seed_002",
+    "waitlistId": "wl_seed_002",
+    "contactEmail": "ananya.designs@gmail.com",
+    "role": "Interior designer",
+    "country": "India",
+    "city": "Bengaluru",
+    "company": "Studio Vayu",
+    "propertyVolume": "3–5",
+    "currentWorkflow": [
+      "Interior designer",
+      "Photoshop or other editing tools"
+    ],
+    "painPoints": [
+      "Arranging furniture takes too much time",
+      "I cannot control the generated interior",
+      "Existing tools are too complicated"
+    ],
+    "frustrationsComment": "Current AI platforms make hallucinated furniture that clients cannot buy or that doesn't respect the actual room perimeter.",
+    "featurePreferences": [
+      "Control over furniture selection",
+      "Furniture and material customization",
+      "Interactive furniture editor"
+    ],
+    "topFeatureRequest": "Ability to swap specific sofas and tables while keeping the generated room geometry intact.",
+    "usageFrequency": "Daily",
+    "expectedMonthlyImages": "31–50",
+    "purchaseIntent": "definitely",
+    "preferredPricingModel": "Monthly subscription",
+    "acceptablePricePerRoom": "₹500–₹999",
+    "currency": "INR",
+    "currentMonthlySpend": "₹25,000 on 3ds Max freelancers",
+    "worthPayingForComment": "Precise control over design styles (Japandi / Modern Luxury) and editable layers.",
+    "earlyAccessInterest": "yes",
+    "interviewInterest": "yes",
+    "createdAt": "2026-11-06T07:15:59.385Z"
+  },
+  {
+    "id": "fb_seed_003",
+    "waitlistId": "wl_seed_003",
+    "contactEmail": "m.sterling@apertureprop.co.uk",
+    "role": "Property photographer",
+    "country": "United Kingdom",
+    "city": "London",
+    "company": "Aperture Architectural Media",
+    "propertyVolume": "11–20",
+    "currentWorkflow": [
+      "Professional photography",
+      "Other AI virtual staging software"
+    ],
+    "painPoints": [
+      "Existing AI staging looks unrealistic",
+      "It is difficult to select suitable furniture"
+    ],
+    "frustrationsComment": "Most virtual staging tools add blurry or poorly lit objects that ruin the high-res 4K camera quality.",
+    "featurePreferences": [
+      "Realistic AI virtual staging",
+      "Before-and-after comparison",
+      "Batch staging"
+    ],
+    "topFeatureRequest": "Preserving 4K resolution with exact window exposures.",
+    "usageFrequency": "Weekly",
+    "expectedMonthlyImages": "50+",
+    "purchaseIntent": "probably",
+    "preferredPricingModel": "Pay per room image",
+    "acceptablePricePerRoom": "$10–$25",
+    "currency": "GBP",
+    "currentMonthlySpend": "£200/mo on staging credits",
+    "worthPayingForComment": "Consistent high resolution and realistic lighting alignment with natural window light.",
+    "earlyAccessInterest": "yes",
+    "interviewInterest": "yes",
+    "createdAt": "2026-11-07T07:15:59.385Z"
+  }
+]

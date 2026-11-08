@@ -1,0 +1,48 @@
+<svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="0" y="0" width="400" height="200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.25"/>
+    </filter>
+    <linearGradient id="cushionGrad" x1="200" y1="40" x2="200" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F1EFE9"/>
+      <stop offset="100%" stop-color="#D6CEBE"/>
+    </linearGradient>
+    <linearGradient id="baseWood" x1="40" y1="140" x2="360" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8C6E54"/>
+      <stop offset="100%" stop-color="#5C4533"/>
+    </linearGradient>
+  </defs>
+  
+  <g filter="url(#shadow)">
+    <!-- Wooden Plinth Base -->
+    <rect x="42" y="138" width="316" height="12" rx="3" fill="url(#baseWood)" />
+    <!-- Tapered Legs -->
+    <rect x="55" y="150" width="8" height="14" rx="2" fill="#423023" transform="skewX(-5)" />
+    <rect x="337" y="150" width="8" height="14" rx="2" fill="#423023" transform="skewX(5)" />
+    <rect x="196" y="150" width="8" height="14" rx="2" fill="#423023" />
+    
+    <!-- Main Backrest -->
+    <rect x="40" y="45" width="320" height="70" rx="16" fill="#C9BFAD" />
+    <rect x="44" y="48" width="312" height="64" rx="14" fill="url(#cushionGrad)" />
+    
+    <!-- Left Armrest -->
+    <rect x="36" y="65" width="36" height="75" rx="12" fill="#BFB39E" />
+    <rect x="38" y="67" width="32" height="71" rx="10" fill="url(#cushionGrad)" />
+    
+    <!-- Right Armrest -->
+    <rect x="328" y="65" width="36" height="75" rx="12" fill="#BFB39E" />
+    <rect x="330" y="67" width="32" height="71" rx="10" fill="url(#cushionGrad)" />
+    
+    <!-- Seat Cushions (3-Seater) -->
+    <!-- Cushion 1 -->
+    <rect x="74" y="85" width="82" height="52" rx="10" fill="#E2DDD2" stroke="#BFB39E" stroke-width="1.5" />
+    <!-- Cushion 2 -->
+    <rect x="159" y="85" width="82" height="52" rx="10" fill="#DFD8CC" stroke="#BFB39E" stroke-width="1.5" />
+    <!-- Cushion 3 -->
+    <rect x="244" y="85" width="82" height="52" rx="10" fill="#E2DDD2" stroke="#BFB39E" stroke-width="1.5" />
+    
+    <!-- Accent Pillows -->
+    <rect x="80" y="62" width="34" height="34" rx="6" fill="#8C7D6B" transform="rotate(-10 80 62)" opacity="0.9" />
+    <rect x="290" y="56" width="34" height="34" rx="6" fill="#4A5568" transform="rotate(12 290 56)" opacity="0.9" />
+  </g>
+</svg>

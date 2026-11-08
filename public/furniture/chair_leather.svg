@@ -1,0 +1,28 @@
+<svg width="240" height="250" viewBox="0 0 240 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="leatherShadow" x="0" y="0" width="240" height="250" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.25"/>
+    </filter>
+    <linearGradient id="cognacLeather" x1="120" y1="40" x2="120" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C26A32"/>
+      <stop offset="100%" stop-color="#87431B"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#leatherShadow)">
+    <!-- Brass Cross Legs -->
+    <line x1="60" y1="160" x2="48" y2="230" stroke="#C5A059" stroke-width="6" stroke-linecap="round"/>
+    <line x1="180" y1="160" x2="192" y2="230" stroke="#C5A059" stroke-width="6" stroke-linecap="round"/>
+    <line x1="48" y1="230" x2="192" y2="230" stroke="#C5A059" stroke-width="4"/>
+    <!-- Deep Back Shell -->
+    <rect x="45" y="40" width="150" height="110" rx="20" fill="url(#cognacLeather)"/>
+    <!-- Tufting Details -->
+    <circle cx="85" cy="80" r="4" fill="#5E2B0E"/>
+    <circle cx="120" cy="80" r="4" fill="#5E2B0E"/>
+    <circle cx="155" cy="80" r="4" fill="#5E2B0E"/>
+    <!-- Wrapped Leather Armrests -->
+    <rect x="36" y="85" width="24" height="60" rx="8" fill="#AD5A27"/>
+    <rect x="180" y="85" width="24" height="60" rx="8" fill="#AD5A27"/>
+    <!-- Plush Seat Pad -->
+    <rect x="42" y="125" width="156" height="45" rx="10" fill="#B35F2B" stroke="#7A3914" stroke-width="2"/>
+  </g>
+</svg>

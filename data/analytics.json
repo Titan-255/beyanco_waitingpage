@@ -1,0 +1,285 @@
+[
+  {
+    "eventName": "waitlist_form_submitted",
+    "sessionId": "server_recorded",
+    "path": "/waitlist",
+    "metadata": {
+      "role": "Real Estate Agent",
+      "country": "India",
+      "isExisting": false
+    },
+    "id": "evt_1794122159393_l2bxx",
+    "timestamp": "2026-11-08T07:15:59.393Z"
+  },
+  {
+    "eventName": "waitlist_form_submitted",
+    "sessionId": "server_recorded",
+    "path": "/waitlist",
+    "metadata": {
+      "role": "Broker",
+      "country": "India",
+      "isExisting": true
+    },
+    "id": "evt_1794122159397_zy6n2",
+    "timestamp": "2026-11-08T07:15:59.397Z"
+  },
+  {
+    "eventName": "feedback_submitted",
+    "sessionId": "server_recorded",
+    "path": "/feedback",
+    "metadata": {
+      "role": "Real estate agent / broker",
+      "purchaseIntent": "definitely",
+      "earlyAccess": "yes",
+      "interview": "yes"
+    },
+    "id": "evt_1794122159403_jk9yr",
+    "timestamp": "2026-11-08T07:15:59.403Z"
+  },
+  {
+    "eventName": "waitlist_cta_click",
+    "sessionId": "test_session_123",
+    "path": "/waitlist",
+    "metadata": {
+      "button": "hero_primary"
+    },
+    "id": "evt_1794122159406_e592k",
+    "timestamp": "2026-11-08T07:15:59.406Z"
+  },
+  {
+    "eventName": "waitlist_form_submitted",
+    "sessionId": "server_recorded",
+    "path": "/waitlist",
+    "metadata": {
+      "role": "Real Estate Agent",
+      "country": "India",
+      "isExisting": false
+    },
+    "id": "evt_1794122909408_o3sla",
+    "timestamp": "2026-11-08T07:28:29.408Z"
+  },
+  {
+    "eventName": "waitlist_form_submitted",
+    "sessionId": "server_recorded",
+    "path": "/waitlist",
+    "metadata": {
+      "role": "Broker",
+      "country": "India",
+      "isExisting": true
+    },
+    "id": "evt_1794122909412_6506i",
+    "timestamp": "2026-11-08T07:28:29.412Z"
+  },
+  {
+    "eventName": "feedback_submitted",
+    "sessionId": "server_recorded",
+    "path": "/feedback",
+    "metadata": {
+      "role": "Real estate agent / broker",
+      "purchaseIntent": "definitely",
+      "earlyAccess": "yes",
+      "interview": "yes"
+    },
+    "id": "evt_1794122909418_ub0we",
+    "timestamp": "2026-11-08T07:28:29.418Z"
+  },
+  {
+    "eventName": "waitlist_cta_click",
+    "sessionId": "test_session_123",
+    "path": "/waitlist",
+    "metadata": {
+      "button": "hero_primary"
+    },
+    "id": "evt_1794122909422_7gjbr",
+    "timestamp": "2026-11-08T07:28:29.422Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123175081_bt5wm9",
+    "path": "/",
+    "metadata": {
+      "timestamp": "2026-11-08T07:32:55.080Z",
+      "utm": {}
+    },
+    "id": "evt_1794123175104_7cpja",
+    "timestamp": "2026-11-08T07:32:55.104Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123199142_5m04uu",
+    "path": "/",
+    "metadata": {
+      "timestamp": "2026-11-08T07:33:19.141Z",
+      "utm": {}
+    },
+    "id": "evt_1794123199149_lsmsn",
+    "timestamp": "2026-11-08T07:33:19.149Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123199142_5m04uu",
+    "path": "/",
+    "metadata": {
+      "timestamp": "2026-11-08T07:33:20.314Z",
+      "utm": {}
+    },
+    "id": "evt_1794123200319_pw2e1",
+    "timestamp": "2026-11-08T07:33:20.319Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123239716_oo4m0b",
+    "path": "/",
+    "metadata": {
+      "timestamp": "2026-11-08T07:33:59.715Z",
+      "utm": {}
+    },
+    "id": "evt_1794123239724_ns8ma",
+    "timestamp": "2026-11-08T07:33:59.724Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123239716_oo4m0b",
+    "path": "/",
+    "metadata": {
+      "timestamp": "2026-11-08T07:34:00.916Z",
+      "utm": {}
+    },
+    "id": "evt_1794123240921_q78cv",
+    "timestamp": "2026-11-08T07:34:00.921Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123325279_tpu37z",
+    "path": "/",
+    "metadata": {
+      "timestamp": "2026-11-08T07:35:25.278Z",
+      "utm": {}
+    },
+    "id": "evt_1794123325310_xl4y7",
+    "timestamp": "2026-11-08T07:35:25.310Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123328983_jlh3j0",
+    "path": "/waitlist",
+    "metadata": {
+      "timestamp": "2026-11-08T07:35:28.982Z",
+      "utm": {}
+    },
+    "id": "evt_1794123328987_oiurv",
+    "timestamp": "2026-11-08T07:35:28.987Z"
+  },
+  {
+    "eventName": "feedback_page_view",
+    "sessionId": "ses_1794123332631_nexurh",
+    "path": "/feedback",
+    "metadata": {
+      "utm": {}
+    },
+    "id": "evt_1794123332634_ab5rc",
+    "timestamp": "2026-11-08T07:35:32.634Z"
+  },
+  {
+    "eventName": "feedback_thank_you_view",
+    "sessionId": "ses_1794123336387_xe4jwb",
+    "path": "/feedback/thank-you",
+    "metadata": {
+      "subId": "",
+      "utm": {}
+    },
+    "id": "evt_1794123336389_6f1mh",
+    "timestamp": "2026-11-08T07:35:36.389Z"
+  },
+  {
+    "eventName": "waitlist_form_submitted",
+    "sessionId": "server_recorded",
+    "path": "/waitlist",
+    "metadata": {
+      "role": "Real Estate Agent",
+      "country": "India",
+      "isExisting": false
+    },
+    "id": "evt_1794123353625_10li7",
+    "timestamp": "2026-11-08T07:35:53.625Z"
+  },
+  {
+    "eventName": "waitlist_form_submitted",
+    "sessionId": "server_recorded",
+    "path": "/waitlist",
+    "metadata": {
+      "role": "Broker",
+      "country": "India",
+      "isExisting": true
+    },
+    "id": "evt_1794123353628_ig10v",
+    "timestamp": "2026-11-08T07:35:53.628Z"
+  },
+  {
+    "eventName": "feedback_submitted",
+    "sessionId": "server_recorded",
+    "path": "/feedback",
+    "metadata": {
+      "role": "Real estate agent / broker",
+      "purchaseIntent": "definitely",
+      "earlyAccess": "yes",
+      "interview": "yes"
+    },
+    "id": "evt_1794123353634_aknfo",
+    "timestamp": "2026-11-08T07:35:53.634Z"
+  },
+  {
+    "eventName": "waitlist_cta_click",
+    "sessionId": "test_session_123",
+    "path": "/waitlist",
+    "metadata": {
+      "button": "hero_primary"
+    },
+    "id": "evt_1794123353637_9ci37",
+    "timestamp": "2026-11-08T07:35:53.637Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123371996_uppo96",
+    "path": "/",
+    "metadata": {
+      "timestamp": "2026-11-08T07:36:11.995Z",
+      "utm": {}
+    },
+    "id": "evt_1794123372000_9t1i4",
+    "timestamp": "2026-11-08T07:36:12.001Z"
+  },
+  {
+    "eventName": "waitlist_nav_click",
+    "sessionId": "ses_1794123371996_uppo96",
+    "path": "/",
+    "metadata": {
+      "target": "try_demo",
+      "utm": {}
+    },
+    "id": "evt_1794123384407_oevi0",
+    "timestamp": "2026-11-08T07:36:24.407Z"
+  },
+  {
+    "eventName": "waitlist_page_view",
+    "sessionId": "ses_1794123371996_uppo96",
+    "path": "/",
+    "metadata": {
+      "timestamp": "2026-11-08T07:36:27.632Z",
+      "utm": {}
+    },
+    "id": "evt_1794123387634_1ir3e",
+    "timestamp": "2026-11-08T07:36:27.635Z"
+  },
+  {
+    "eventName": "waitlist_nav_click",
+    "sessionId": "ses_1794123371996_uppo96",
+    "path": "/",
+    "metadata": {
+      "target": "join_waitlist_header",
+      "utm": {}
+    },
+    "id": "evt_1794136623327_uh1bv",
+    "timestamp": "2026-11-08T11:17:03.327Z"
+  }
+]
