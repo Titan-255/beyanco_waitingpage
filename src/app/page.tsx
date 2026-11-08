@@ -46,14 +46,6 @@ const SHOWCASE_ROOMS = [
     tags: ["Custom Low Seating", "Organic Oak Surfaces", "Fireplace Hearth Staged", "Natural Light Preservation"],
     hotspots: [
       {
-        id: "lr-sofa",
-        x: 70,
-        y: 64,
-        storeName: "Urban Ladder",
-        priceInr: "₹42,999",
-        storeUrl: "https://www.urbanladder.com/sofas",
-      },
-      {
         id: "lr-table",
         x: 52,
         y: 78,
@@ -563,17 +555,9 @@ export default function WaitlistLandingPage() {
                   <span className="text-[#626A75]">Ceiling Height</span>
                   <span className="font-semibold text-[#101827]">{activeRoom.ceilingHeight}</span>
                 </div>
-                <div className="pt-1 flex items-center justify-between">
-                  <span className="text-xs text-[#626A75] font-medium">Furniture Layout</span>
-                  <Link
-                    href={`/design/${activeRoom.designId}/edit?room=${activeRoom.id}`}
-                    className="group inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#101827] hover:bg-[#A98460] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] active:scale-95"
-                    title={`Open Furniture Editor for ${activeRoom.title}`}
-                  >
-                    <PenLine className="w-3.5 h-3.5 text-[#A98460] group-hover:text-white transition-transform duration-300 group-hover:rotate-12" />
-                    <span>Edit</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                  </Link>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-[#626A75]">Aesthetic Style</span>
+                  <span className="font-semibold text-[#A98460]">{activeRoom.styleName}</span>
                 </div>
               </div>
 

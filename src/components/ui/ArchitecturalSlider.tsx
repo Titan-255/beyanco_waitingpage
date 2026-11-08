@@ -220,11 +220,11 @@ export function ArchitecturalSlider({
                           : "top-full mt-2"
                       )}
                     >
-                      <div className="text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#626A75]">
-                        {spot.storeName}
-                      </div>
-                      <div className="text-xs sm:text-sm font-bold font-serif text-[#101827] mt-0.5">
+                      <div className="text-xs sm:text-sm font-bold font-serif text-[#101827]">
                         {spot.priceInr}
+                      </div>
+                      <div className="text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#626A75] mt-0.5">
+                        {spot.storeName}
                       </div>
                       <a
                         href={spot.storeUrl}
