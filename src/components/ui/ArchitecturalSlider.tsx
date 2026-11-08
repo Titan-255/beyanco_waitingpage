@@ -42,41 +42,13 @@ export function ArchitecturalSlider({
 }: ArchitecturalSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(initialSliderPosition);
   const [isDragging, setIsDragging] = useState(false);
-  const [activeHotspotId, setActiveHotspotId] = useState<string | null>(null);
+  const [collapsedHotspotIds, setCollapsedHotspotIds] = useState<Record<string, boolean>>({});
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Close active hotspot if category or images change
+  // Reset all hotspots to visible by default when room or images change
   useEffect(() => {
-    setActiveHotspotId(null);
+    setCollapsedHotspotIds({});
   }, [beforeImage, afterImage]);
-
-  // If the divider is dragged past the active hotspot, dismiss the popup
-  useEffect(() => {
-    if (activeHotspotId && hotspots) {
-      const activeSpot = hotspots.find((h) => h.id === activeHotspotId);
-      if (activeSpot && sliderPosition > activeSpot.x) {
-        setActiveHotspotId(null);
-      }
-    }
-  }, [sliderPosition, activeHotspotId, hotspots]);
-
-  // Close hotspot when clicking outside
-  useEffect(() => {
-    if (!activeHotspotId) return;
-    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (target && !target.closest("[data-furniture-hotspot]")) {
-        setActiveHotspotId(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
-    };
-  }, [activeHotspotId]);
 
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -194,13 +166,13 @@ export function ArchitecturalSlider({
           </div>
         </div>
 
-        {/* Furniture Shopping Hotspots Layer (Visible ONLY on the AFTER portion) */}
+        {/* Furniture Shopping Hotspots Layer (Visible BY DEFAULT on the AFTER portion) */}
         {hotspots && hotspots.length > 0 && (
           <div className="absolute inset-0 pointer-events-none z-25">
             {hotspots.map((spot) => {
               const isRevealed = spot.x >= sliderPosition;
               if (!isRevealed) return null;
-              const isActive = activeHotspotId === spot.id;
+              const isCollapsed = !!collapsedHotspotIds[spot.id];
 
               return (
                 <div
@@ -215,48 +187,43 @@ export function ArchitecturalSlider({
                   onMouseDown={(e) => e.stopPropagation()}
                   onTouchStart={(e) => e.stopPropagation()}
                 >
-                  {/* Hotspot Marker Button */}
+                  {/* Anchor Pin Dot (Visible with pulse; clickable to toggle) */}
                   <button
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setActiveHotspotId(isActive ? null : spot.id);
+                      setCollapsedHotspotIds((prev) => ({
+                        ...prev,
+                        [spot.id]: !prev[spot.id],
+                      }));
                     }}
-                    aria-expanded={isActive}
-                    aria-label={`View pricing from ${spot.storeName}`}
-                    className={cn(
-                      "relative flex items-center justify-center w-7 h-7 rounded-full shadow-lg backdrop-blur-md cursor-pointer transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#A98460]",
-                      isActive
-                        ? "bg-[#101827] text-white ring-2 ring-[#A98460] scale-110"
-                        : "bg-[#101827]/85 hover:bg-[#101827] text-white border border-white/50 hover:scale-110"
-                    )}
+                    aria-label={`Toggle tag for ${spot.storeName}`}
+                    className="relative flex items-center justify-center w-6 h-6 rounded-full cursor-pointer focus:outline-none group/pin transition-transform hover:scale-110 active:scale-95"
                   >
-                    {!isActive && (
-                      <span className="absolute inset-0 rounded-full border border-white/40 animate-ping pointer-events-none opacity-40" />
-                    )}
-                    <span className="w-2 h-2 rounded-full bg-white transition-transform" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#101827] ring-2 ring-white shadow-md z-10 transition-transform group-hover/pin:scale-125" />
+                    <span className="absolute inset-0 rounded-full border border-white/50 bg-[#A98460]/40 animate-ping pointer-events-none opacity-40" />
                   </button>
 
-                  {/* Compact Information Tag: Contains ONLY Store Name, Price in INR, and 'View Store' link */}
-                  {isActive && (
+                  {/* Compact Information Tag (Visible by Default: Contains ONLY Store Name, Price in INR, and 'View Store' link) */}
+                  {!isCollapsed && (
                     <div
                       onClick={(e) => e.stopPropagation()}
                       className={cn(
-                        "absolute z-30 min-w-[160px] max-w-[210px] p-3 rounded-xl bg-white/95 backdrop-blur-md border border-[#D8D5CF] shadow-[0_12px_28px_rgba(0,0,0,0.18)] text-left transition-all duration-200 animate-in fade-in zoom-in-95 select-text",
+                        "absolute z-30 min-w-[145px] sm:min-w-[160px] max-w-[210px] p-2.5 sm:p-3 rounded-xl bg-white/95 backdrop-blur-md border border-[#D8D5CF] shadow-[0_8px_24px_rgba(0,0,0,0.16)] text-left transition-all duration-200 select-text hover:shadow-2xl hover:scale-[1.02]",
                         spot.x > 75
                           ? "right-0"
                           : spot.x < 35
                           ? "left-0"
                           : "left-1/2 -translate-x-1/2",
                         spot.y > 60
-                          ? "bottom-full mb-2.5"
-                          : "top-full mt-2.5"
+                          ? "bottom-full mb-2"
+                          : "top-full mt-2"
                       )}
                     >
-                      <div className="text-[10px] font-semibold tracking-wider uppercase text-[#626A75]">
+                      <div className="text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#626A75]">
                         {spot.storeName}
                       </div>
-                      <div className="text-sm font-bold font-serif text-[#101827] mt-0.5">
+                      <div className="text-xs sm:text-sm font-bold font-serif text-[#101827] mt-0.5">
                         {spot.priceInr}
                       </div>
                       <a
@@ -264,7 +231,7 @@ export function ArchitecturalSlider({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1 mt-2 text-[11px] font-semibold text-[#A98460] hover:text-[#101827] transition-colors group/link"
+                        className="inline-flex items-center gap-1 mt-1.5 text-[10px] sm:text-[11px] font-semibold text-[#A98460] hover:text-[#101827] transition-colors group/link"
                       >
                         <span>View Store</span>
                         <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
