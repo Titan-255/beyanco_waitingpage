@@ -7,3 +7,5 @@ Fabric_Classification
 .env*.local
 
 tsconfig.tsbuildinfo
+
+.vercel

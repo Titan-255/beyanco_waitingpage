@@ -21,6 +21,7 @@ import {
   ShieldCheck,
   Eye,
   HelpCircle,
+  PenLine,
 } from "lucide-react";
 import { WaitlistNavbar } from "@/components/marketing/WaitlistNavbar";
 import { WaitlistFooter } from "@/components/marketing/WaitlistFooter";
@@ -31,6 +32,7 @@ import { WaitlistInlineForm } from "@/components/waitlist/WaitlistInlineForm";
 const SHOWCASE_ROOMS = [
   {
     id: "living-room",
+    designId: "gen_001",
     title: "Skyline Living Sanctuary",
     type: "Living Room",
     styleName: "Warm Contemporary Minimalist",
@@ -42,9 +44,44 @@ const SHOWCASE_ROOMS = [
     afterLabel: "STAGED WARM CONTEMPORARY MINIMALIST",
     narrative: "Vacant vaulted living room with a brick hearth fireplace and natural hardwood flooring transformed into an editorial contemporary lounge with an organic wood coffee table, low-profile seating, and woven lounge accents.",
     tags: ["Custom Low Seating", "Organic Oak Surfaces", "Fireplace Hearth Staged", "Natural Light Preservation"],
+    hotspots: [
+      {
+        id: "lr-sofa",
+        x: 68,
+        y: 72,
+        storeName: "Urban Ladder",
+        priceInr: "₹42,999",
+        storeUrl: "https://www.urbanladder.com/sofas",
+      },
+      {
+        id: "lr-table",
+        x: 48,
+        y: 76,
+        storeName: "WoodenStreet",
+        priceInr: "₹14,499",
+        storeUrl: "https://www.woodenstreet.com/coffee-tables",
+      },
+      {
+        id: "lr-side-table",
+        x: 54,
+        y: 86,
+        storeName: "IKEA India",
+        priceInr: "₹4,990",
+        storeUrl: "https://www.ikea.com/in/en/cat/coffee-side-tables-10705/",
+      },
+      {
+        id: "lr-planter",
+        x: 44,
+        y: 58,
+        storeName: "Home Centre",
+        priceInr: "₹2,499",
+        storeUrl: "https://www.homecentre.in/in/en/c/homedecor-potsandplanters",
+      },
+    ],
   },
   {
     id: "bedroom",
+    designId: "gen_003",
     title: "Belvedere Master Suite",
     type: "Master Bedroom",
     styleName: "Modern Luxury Retreat",
@@ -56,9 +93,44 @@ const SHOWCASE_ROOMS = [
     afterLabel: "STAGED MODERN LUXURY RETREAT",
     narrative: "Empty primary master bedroom featuring an architectural tray ceiling and bright dual windows, staged into a serene suite with an upholstered king platform bed, warm terracotta and linen bedding, bedside nightstands, and a cozy reading alcove.",
     tags: ["King Platform Bed", "Tactile Linen Bedding", "Bouclé Reading Chair", "Architectural Tray Ceiling"],
+    hotspots: [
+      {
+        id: "bed-bed",
+        x: 58,
+        y: 64,
+        storeName: "Wakefit",
+        priceInr: "₹24,890",
+        storeUrl: "https://www.wakefit.co/beds",
+      },
+      {
+        id: "bed-nightstand",
+        x: 76,
+        y: 68,
+        storeName: "Urban Ladder",
+        priceInr: "₹7,999",
+        storeUrl: "https://www.urbanladder.com/bedside-tables",
+      },
+      {
+        id: "bed-chair",
+        x: 35,
+        y: 74,
+        storeName: "Home Centre",
+        priceInr: "₹18,999",
+        storeUrl: "https://www.homecentre.in/in/en/c/furniture-livingroom-chairs",
+      },
+      {
+        id: "bed-rug",
+        x: 52,
+        y: 86,
+        storeName: "Pepperfry",
+        priceInr: "₹8,499",
+        storeUrl: "https://www.pepperfry.com/carpets-rugs.html",
+      },
+    ],
   },
   {
     id: "dining-room",
+    designId: "gen_004",
     title: "The Lumina Dining Atelier",
     type: "Dining Room",
     styleName: "Nordic White Oak & Stone",
@@ -70,9 +142,44 @@ const SHOWCASE_ROOMS = [
     afterLabel: "STAGED NORDIC WHITE OAK & STONE",
     narrative: "Sunlit vacant formal dining space with classic wainscoting paneling and bay windows staged into an intimate 6-person entertaining environment with a rich solid wood dining table, upholstered seating, and modern gallery art.",
     tags: ["Solid Walnut Table", "Wainscoting Preserved", "6-Person Place Settings", "Contemporary Wall Art"],
+    hotspots: [
+      {
+        id: "din-table",
+        x: 54,
+        y: 68,
+        storeName: "WoodenStreet",
+        priceInr: "₹36,999",
+        storeUrl: "https://www.woodenstreet.com/dining-table-sets",
+      },
+      {
+        id: "din-chairs",
+        x: 42,
+        y: 72,
+        storeName: "Urban Ladder",
+        priceInr: "₹11,499",
+        storeUrl: "https://www.urbanladder.com/dining-chairs",
+      },
+      {
+        id: "din-console",
+        x: 82,
+        y: 70,
+        storeName: "Pepperfry",
+        priceInr: "₹14,999",
+        storeUrl: "https://www.pepperfry.com/furniture-tables-console-tables.html",
+      },
+      {
+        id: "din-rug",
+        x: 56,
+        y: 88,
+        storeName: "IKEA India",
+        priceInr: "₹9,990",
+        storeUrl: "https://www.ikea.com/in/en/cat/rugs-10653/",
+      },
+    ],
   },
   {
     id: "kitchen",
+    designId: "gen_002",
     title: "Terrace Villa Culinary Space",
     type: "Kitchen & Island",
     styleName: "Japandi Culinary Atelier",
@@ -84,6 +191,40 @@ const SHOWCASE_ROOMS = [
     afterLabel: "STAGED JAPANDI CULINARY ATELIER",
     narrative: "Pristine empty kitchen and oversized quartz island staged for lived-in luxury with brushed metal counter barstools, fresh fruit styling, curated ceramic vessels with olive branches, and breakfast dining in the background.",
     tags: ["Island Counter Stools", "Marble Island Preserved", "Natural Greenery Styling", "Pendant Lighting Fixtures"],
+    hotspots: [
+      {
+        id: "kit-barstool-1",
+        x: 50,
+        y: 74,
+        storeName: "IKEA India",
+        priceInr: "₹8,490",
+        storeUrl: "https://www.ikea.com/in/en/cat/bar-stools-chairs-20864/",
+      },
+      {
+        id: "kit-barstool-2",
+        x: 64,
+        y: 76,
+        storeName: "Urban Ladder",
+        priceInr: "₹5,499",
+        storeUrl: "https://www.urbanladder.com/bar-stools",
+      },
+      {
+        id: "kit-vase",
+        x: 58,
+        y: 48,
+        storeName: "Home Centre",
+        priceInr: "₹2,299",
+        storeUrl: "https://www.homecentre.in/in/en/c/homedecor-potsandplanters",
+      },
+      {
+        id: "kit-breakfast",
+        x: 36,
+        y: 56,
+        storeName: "Wakefit",
+        priceInr: "₹18,299",
+        storeUrl: "https://www.wakefit.co/dining-sets",
+      },
+    ],
   },
 ];
 
@@ -396,6 +537,7 @@ export default function WaitlistLandingPage() {
                 dimensions={activeRoom.dimensions}
                 aspectRatio="aspect-[16/10]"
                 initialSliderPosition={50}
+                hotspots={activeRoom.hotspots}
               />
             </div>
 
@@ -421,9 +563,17 @@ export default function WaitlistLandingPage() {
                   <span className="text-[#626A75]">Ceiling Height</span>
                   <span className="font-semibold text-[#101827]">{activeRoom.ceilingHeight}</span>
                 </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#626A75]">Aesthetic Style</span>
-                  <span className="font-semibold text-[#A98460]">{activeRoom.styleName}</span>
+                <div className="pt-1 flex items-center justify-between">
+                  <span className="text-xs text-[#626A75] font-medium">Furniture Layout</span>
+                  <Link
+                    href={`/design/${activeRoom.designId}/edit?room=${activeRoom.id}`}
+                    className="group inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#101827] hover:bg-[#A98460] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] active:scale-95"
+                    title={`Open Furniture Editor for ${activeRoom.title}`}
+                  >
+                    <PenLine className="w-3.5 h-3.5 text-[#A98460] group-hover:text-white transition-transform duration-300 group-hover:rotate-12" />
+                    <span>Edit</span>
+                    <ArrowUpRight className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </Link>
                 </div>
               </div>
 

@@ -2,7 +2,16 @@
 
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { ChevronsLeftRight, Sparkles } from "lucide-react";
+import { ChevronsLeftRight, Sparkles, ArrowUpRight } from "lucide-react";
+
+export interface FurnitureHotspot {
+  id: string;
+  x: number; // percentage (0-100) from left
+  y: number; // percentage (0-100) from top
+  storeName: string;
+  priceInr: string;
+  storeUrl: string;
+}
 
 export interface ArchitecturalSliderProps {
   beforeImage: string;
@@ -15,6 +24,7 @@ export interface ArchitecturalSliderProps {
   aspectRatio?: string;
   className?: string;
   initialSliderPosition?: number;
+  hotspots?: FurnitureHotspot[];
 }
 
 export function ArchitecturalSlider({
@@ -28,10 +38,45 @@ export function ArchitecturalSlider({
   aspectRatio = "aspect-[16/10]",
   className,
   initialSliderPosition = 50,
+  hotspots = [],
 }: ArchitecturalSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(initialSliderPosition);
   const [isDragging, setIsDragging] = useState(false);
+  const [activeHotspotId, setActiveHotspotId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Close active hotspot if category or images change
+  useEffect(() => {
+    setActiveHotspotId(null);
+  }, [beforeImage, afterImage]);
+
+  // If the divider is dragged past the active hotspot, dismiss the popup
+  useEffect(() => {
+    if (activeHotspotId && hotspots) {
+      const activeSpot = hotspots.find((h) => h.id === activeHotspotId);
+      if (activeSpot && sliderPosition > activeSpot.x) {
+        setActiveHotspotId(null);
+      }
+    }
+  }, [sliderPosition, activeHotspotId, hotspots]);
+
+  // Close hotspot when clicking outside
+  useEffect(() => {
+    if (!activeHotspotId) return;
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && !target.closest("[data-furniture-hotspot]")) {
+        setActiveHotspotId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [activeHotspotId]);
 
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -148,6 +193,89 @@ export function ArchitecturalSlider({
             </div>
           </div>
         </div>
+
+        {/* Furniture Shopping Hotspots Layer (Visible ONLY on the AFTER portion) */}
+        {hotspots && hotspots.length > 0 && (
+          <div className="absolute inset-0 pointer-events-none z-25">
+            {hotspots.map((spot) => {
+              const isRevealed = spot.x >= sliderPosition;
+              if (!isRevealed) return null;
+              const isActive = activeHotspotId === spot.id;
+
+              return (
+                <div
+                  key={spot.id}
+                  data-furniture-hotspot
+                  className="absolute pointer-events-auto"
+                  style={{
+                    left: `${spot.x}%`,
+                    top: `${spot.y}%`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onTouchStart={(e) => e.stopPropagation()}
+                >
+                  {/* Hotspot Marker Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveHotspotId(isActive ? null : spot.id);
+                    }}
+                    aria-expanded={isActive}
+                    aria-label={`View pricing from ${spot.storeName}`}
+                    className={cn(
+                      "relative flex items-center justify-center w-7 h-7 rounded-full shadow-lg backdrop-blur-md cursor-pointer transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#A98460]",
+                      isActive
+                        ? "bg-[#101827] text-white ring-2 ring-[#A98460] scale-110"
+                        : "bg-[#101827]/85 hover:bg-[#101827] text-white border border-white/50 hover:scale-110"
+                    )}
+                  >
+                    {!isActive && (
+                      <span className="absolute inset-0 rounded-full border border-white/40 animate-ping pointer-events-none opacity-40" />
+                    )}
+                    <span className="w-2 h-2 rounded-full bg-white transition-transform" />
+                  </button>
+
+                  {/* Compact Information Tag: Contains ONLY Store Name, Price in INR, and 'View Store' link */}
+                  {isActive && (
+                    <div
+                      onClick={(e) => e.stopPropagation()}
+                      className={cn(
+                        "absolute z-30 min-w-[160px] max-w-[210px] p-3 rounded-xl bg-white/95 backdrop-blur-md border border-[#D8D5CF] shadow-[0_12px_28px_rgba(0,0,0,0.18)] text-left transition-all duration-200 animate-in fade-in zoom-in-95 select-text",
+                        spot.x > 75
+                          ? "right-0"
+                          : spot.x < 35
+                          ? "left-0"
+                          : "left-1/2 -translate-x-1/2",
+                        spot.y > 60
+                          ? "bottom-full mb-2.5"
+                          : "top-full mt-2.5"
+                      )}
+                    >
+                      <div className="text-[10px] font-semibold tracking-wider uppercase text-[#626A75]">
+                        {spot.storeName}
+                      </div>
+                      <div className="text-sm font-bold font-serif text-[#101827] mt-0.5">
+                        {spot.priceInr}
+                      </div>
+                      <a
+                        href={spot.storeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1 mt-2 text-[11px] font-semibold text-[#A98460] hover:text-[#101827] transition-colors group/link"
+                      >
+                        <span>View Store</span>
+                        <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                      </a>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* Vertical Divider Line with Premium Minimal Handle */}
         <div
