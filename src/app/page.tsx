@@ -26,6 +26,7 @@ import { WaitlistNavbar } from "@/components/marketing/WaitlistNavbar";
 import { WaitlistFooter } from "@/components/marketing/WaitlistFooter";
 import { ArchitecturalSlider } from "@/components/ui/ArchitecturalSlider";
 import { WaitlistInlineForm } from "@/components/waitlist/WaitlistInlineForm";
+import { FeedbackInvitationModal } from "@/components/feedback/FeedbackInvitationModal";
 
 // Conceptual Demonstration Showcase Rooms
 const SHOWCASE_ROOMS = [
@@ -419,8 +420,8 @@ export default function WaitlistLandingPage() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-serif font-bold text-[#101827] tracking-tight leading-[1.06]"
             >
-              Empty Rooms. <br />
-              <span className="italic font-normal text-[#A98460]">Endless Possibilities.</span>
+              Your Vision. <br />
+              <span className="italic font-normal text-[#A98460]">Intelligently Designed.</span>
             </motion.h1>
 
             {/* Supporting Text */}
@@ -1103,6 +1104,9 @@ export default function WaitlistLandingPage() {
           SECTION L: FOOTER
           ======================================================== */}
       <WaitlistFooter />
+
+      {/* 15-Second Customer Feedback Invitation Modal */}
+      <FeedbackInvitationModal />
     </div>
   );
 }

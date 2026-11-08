@@ -25,6 +25,15 @@ export default function FeedbackSurveyPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
 
+  // Mark feedback popup as shown so visitor is never interrupted
+  useEffect(() => {
+    try {
+      sessionStorage.setItem("beyanco_feedback_popup_shown", "true");
+    } catch {
+      // Ignore
+    }
+  }, []);
+
   // Step 1: About You
   const [role, setRole] = useState("Real Estate Agent / Broker");
   const [otherRole, setOtherRole] = useState("");
