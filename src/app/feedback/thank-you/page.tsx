@@ -59,7 +59,7 @@ export default function FeedbackThankYouPage() {
             <img
               src="/beyanco-logo.jpg"
               alt="Beyanco"
-              className="h-11 sm:h-12 w-auto object-contain"
+              className="h-11 sm:h-12 w-auto object-contain mix-blend-multiply"
             />
           </div>
 

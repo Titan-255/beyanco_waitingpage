@@ -9,12 +9,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-beyanco-blue text-white flex items-center justify-center font-bold text-lg">
-                <span className="font-serif">B</span>
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white">
-                BEYANCO <span className="text-beyanco-blue">AI</span>
+            <div className="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-xl shadow-xs">
+              <img
+                src="/beyanco-logo.jpg"
+                alt="Beyanco"
+                className="h-7 w-auto object-contain"
+              />
+              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-widest uppercase bg-[#101827]/5 text-[#101827] rounded border border-[#101827]/10">
+                AI
               </span>
             </div>
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">

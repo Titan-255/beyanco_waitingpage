@@ -96,23 +96,15 @@ export function Sidebar() {
     <aside className="w-64 bg-white border-r border-beyanco-border flex flex-col shrink-0 min-h-screen">
       {/* Brand Header */}
       <div className="p-6 border-b border-beyanco-border">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-beyanco-navy text-white flex items-center justify-center font-bold text-base shadow-sm group-hover:bg-beyanco-blue transition-colors">
-            <span className="font-serif">B</span>
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-1.5">
-              <span className="text-lg font-bold tracking-tight text-beyanco-navy">
-                BEYANCO
-              </span>
-              <span className="px-1.5 py-0.2 text-[9px] font-bold uppercase bg-beyanco-paleBlue text-beyanco-blue rounded">
-                AI
-              </span>
-            </div>
-            <span className="text-[10px] text-beyanco-muted font-medium uppercase tracking-wider">
-              Studio Workspace
-            </span>
-          </div>
+        <Link href="/" className="flex items-center gap-2 group">
+          <img
+            src="/beyanco-logo.jpg"
+            alt="Beyanco"
+            className="h-8 w-auto object-contain"
+          />
+          <span className="px-1.5 py-0.5 text-[9px] font-bold uppercase bg-beyanco-paleBlue text-beyanco-blue rounded">
+            AI
+          </span>
         </Link>
       </div>
 

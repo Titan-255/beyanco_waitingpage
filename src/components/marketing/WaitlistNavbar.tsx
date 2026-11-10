@@ -25,24 +25,16 @@ export function WaitlistNavbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo & Monogram */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-[#101827] text-[#F6F4EF] flex items-center justify-center font-serif text-xl font-bold shadow-sm group-hover:bg-[#A98460] transition-colors duration-200">
-            <span>B</span>
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight text-[#101827] font-serif">
-                BEYANCO
-              </span>
-              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-widest uppercase bg-[#101827]/5 text-[#101827] rounded border border-[#101827]/10">
-                AI
-              </span>
-            </div>
-            <span className="text-[10px] font-medium tracking-widest text-[#626A75] uppercase -mt-0.5">
-              Architectural Visualization
-            </span>
-          </div>
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <img
+            src="/beyanco-logo.jpg"
+            alt="Beyanco"
+            className="h-8 sm:h-9 w-auto object-contain mix-blend-multiply"
+          />
+          <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-widest uppercase bg-[#101827]/5 text-[#101827] rounded border border-[#101827]/10">
+            AI
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}

@@ -259,7 +259,7 @@ export default function FeedbackSurveyPage() {
               <img
                 src="/beyanco-logo.jpg"
                 alt="Beyanco"
-                className="h-10 sm:h-12 w-auto object-contain"
+                className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply"
               />
             </div>
 
@@ -874,7 +874,7 @@ export default function FeedbackSurveyPage() {
                     <img
                       src="/beyanco-logo.jpg"
                       alt="Beyanco"
-                      className="h-8 w-auto object-contain"
+                      className="h-8 w-auto object-contain mix-blend-multiply"
                     />
                     <div>
                       <h2 className="text-xl font-serif font-bold text-[#101827]">

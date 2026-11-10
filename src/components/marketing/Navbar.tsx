@@ -12,23 +12,15 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-white border-b border-beyanco-border shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-all">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-[68px] flex items-center justify-between">
         {/* Brand Logo & Name */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-11 h-11 rounded-xl bg-beyanco-navy text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:bg-beyanco-blue transition-colors">
-            <span className="font-serif tracking-tighter">B</span>
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-1.5">
-              <span className="text-[21px] font-bold tracking-tight text-beyanco-navy leading-none">
-                BEYANCO
-              </span>
-              <span className="px-1.5 py-0.5 text-[10px] font-bold tracking-wider uppercase bg-beyanco-paleBlue text-beyanco-blue rounded border border-blue-200/60 leading-none">
-                AI
-              </span>
-            </div>
-            <span className="text-[10px] font-medium tracking-wider text-beyanco-muted uppercase mt-0.5 leading-none">
-              Virtual Staging Studio
-            </span>
-          </div>
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <img
+            src="/beyanco-logo.jpg"
+            alt="Beyanco"
+            className="h-8 sm:h-9 w-auto object-contain"
+          />
+          <span className="px-1.5 py-0.5 text-[10px] font-bold tracking-wider uppercase bg-beyanco-paleBlue text-beyanco-blue rounded border border-blue-200/60 leading-none">
+            AI
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}

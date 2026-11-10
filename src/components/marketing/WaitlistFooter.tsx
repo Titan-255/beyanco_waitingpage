@@ -9,12 +9,14 @@ export function WaitlistFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-[#1E293B]">
           {/* Brand info */}
           <div className="lg:col-span-2 space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-[#F6F4EF] text-[#101827] flex items-center justify-center font-serif text-lg font-bold">
-                <span>B</span>
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white font-serif">
-                BEYANCO <span className="text-[#A98460] font-sans text-xs tracking-widest font-normal uppercase">AI</span>
+            <div className="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-xl shadow-xs">
+              <img
+                src="/beyanco-logo.jpg"
+                alt="Beyanco"
+                className="h-7 sm:h-8 w-auto object-contain"
+              />
+              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-widest uppercase bg-[#101827]/5 text-[#101827] rounded border border-[#101827]/10">
+                AI
               </span>
             </div>
             <p className="text-sm text-[#8E97A4] max-w-sm leading-relaxed">

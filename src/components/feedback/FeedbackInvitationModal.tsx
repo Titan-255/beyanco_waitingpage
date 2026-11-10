@@ -167,7 +167,7 @@ export function FeedbackInvitationModal() {
               <img
                 src="/beyanco-logo.jpg"
                 alt="Beyanco"
-                className="h-9 sm:h-10 w-auto object-contain"
+                className="h-9 sm:h-10 w-auto object-contain mix-blend-multiply"
               />
             </div>
 
