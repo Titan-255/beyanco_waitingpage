@@ -26,13 +26,13 @@ export function WaitlistNavbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <img
             src="/beyanco-logo.jpg"
             alt="Beyanco"
-            className="h-8 sm:h-9 w-auto object-contain mix-blend-multiply"
+            className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply"
           />
-          <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-widest uppercase bg-[#101827]/5 text-[#101827] rounded border border-[#101827]/10">
+          <span className="px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase bg-[#101827]/5 text-[#101827] rounded border border-[#101827]/10">
             AI
           </span>
         </Link>

@@ -48,18 +48,18 @@ export default function FeedbackThankYouPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F6F4EF] text-[#101827]">
+    <div className="flex flex-col min-h-screen bg-[#F6F4EF] text-[#101827] overflow-x-hidden">
       <WaitlistNavbar />
 
-      <main className="flex-1 py-16 md:py-24 flex items-center justify-center">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <main className="flex-1 py-10 sm:py-16 md:py-24 flex items-center justify-center">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5 sm:space-y-6">
 
           {/* Official Beyanco Logo */}
           <div className="flex justify-center mb-6">
             <img
               src="/beyanco-logo.jpg"
               alt="Beyanco"
-              className="h-11 sm:h-12 w-auto object-contain mix-blend-multiply"
+              className="h-12 sm:h-16 w-auto object-contain mix-blend-multiply"
             />
           </div>
 

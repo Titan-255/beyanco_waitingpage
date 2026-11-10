@@ -77,10 +77,11 @@ export function saveWaitlistEntry(entryData: Omit<WaitlistEntry, "id" | "created
   const now = new Date().toISOString();
 
   if (existingIndex >= 0) {
-    // Update existing record
+    // Update existing record safely without wiping out previously populated values
     const updatedEntry: WaitlistEntry = {
       ...list[existingIndex],
       name: entryData.name || list[existingIndex].name,
+      mobile_number: entryData.mobile_number || list[existingIndex].mobile_number,
       professionalRole: entryData.professionalRole || list[existingIndex].professionalRole,
       company: entryData.company || list[existingIndex].company,
       country: entryData.country || list[existingIndex].country,
@@ -106,6 +107,26 @@ export function saveWaitlistEntry(entryData: Omit<WaitlistEntry, "id" | "created
   return { entry: newEntry, isDuplicate: false };
 }
 
+export function updateWaitlistEmailStatus(
+  id: string,
+  statuses: {
+    email_notification_status?: WaitlistEntry["email_notification_status"];
+    user_confirmation_status?: WaitlistEntry["user_confirmation_status"];
+  }
+): void {
+  ensureDirectoryExists();
+  const list = readWaitlist();
+  const idx = list.findIndex((w) => w.id === id);
+  if (idx >= 0) {
+    list[idx] = {
+      ...list[idx],
+      ...statuses,
+      updatedAt: new Date().toISOString(),
+    };
+    fs.writeFileSync(WAITLIST_FILE, JSON.stringify(list, null, 2), "utf-8");
+  }
+}
+
 export function readFeedback(): FeedbackEntry[] {
   ensureDirectoryExists();
   if (!fs.existsSync(FEEDBACK_FILE)) {
@@ -127,6 +148,7 @@ export function saveFeedbackEntry(entryData: Omit<FeedbackEntry, "id" | "created
   const id = `fb_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
   const newEntry: FeedbackEntry = {
     ...entryData,
+    submission_id: entryData.submission_id || id,
     contactEmail: entryData.contactEmail ? entryData.contactEmail.trim().toLowerCase() : undefined,
     id,
     createdAt: new Date().toISOString(),
@@ -135,6 +157,25 @@ export function saveFeedbackEntry(entryData: Omit<FeedbackEntry, "id" | "created
   list.unshift(newEntry);
   fs.writeFileSync(FEEDBACK_FILE, JSON.stringify(list, null, 2), "utf-8");
   return newEntry;
+}
+
+export function updateFeedbackEmailStatus(
+  id: string,
+  statuses: {
+    notification_email_status?: FeedbackEntry["notification_email_status"];
+    respondent_confirmation_status?: FeedbackEntry["respondent_confirmation_status"];
+  }
+): void {
+  ensureDirectoryExists();
+  const list = readFeedback();
+  const idx = list.findIndex((f) => f.id === id);
+  if (idx >= 0) {
+    list[idx] = {
+      ...list[idx],
+      ...statuses,
+    };
+    fs.writeFileSync(FEEDBACK_FILE, JSON.stringify(list, null, 2), "utf-8");
+  }
 }
 
 export function getValidationMetrics() {

@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   saveWaitlistEntry,
+  updateWaitlistEmailStatus,
   readWaitlist,
   checkRateLimit,
 } from "@/lib/waitlist-storage";
+import {
+  sendWaitlistAdminNotification,
+  sendWaitlistUserConfirmation,
+} from "@/lib/email-service";
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,7 +27,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true, message: "Registered successfully." }, { status: 200 });
     }
 
-    const { name, email, professionalRole, company, country, city, marketingConsent, source, utm } = body;
+    const {
+      name,
+      email,
+      phone,
+      mobile,
+      mobile_number,
+      professionalRole,
+      company,
+      country,
+      city,
+      marketingConsent,
+      source,
+      utm,
+    } = body;
 
     // Validation
     if (!email || typeof email !== "string" || !email.includes("@") || !email.includes(".")) {
@@ -39,9 +57,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Sanitize mobile/phone if provided
+    const rawMobile = mobile_number || mobile || phone;
+    const sanitizedMobile = rawMobile && typeof rawMobile === "string"
+      ? rawMobile.replace(/[^\d+ -]/g, "").trim()
+      : undefined;
+
+    // 1. SAVE TO DATABASE FIRST (Persistence must never fail due to email)
     const { entry, isDuplicate } = saveWaitlistEntry({
       name: name.trim(),
-      email: email.trim(),
+      email: email.trim().toLowerCase(),
+      mobile_number: sanitizedMobile,
       professionalRole: professionalRole || "Interested Professional",
       company: company ? company.trim() : undefined,
       country: country ? country.trim() : undefined,
@@ -49,7 +75,41 @@ export async function POST(req: NextRequest) {
       marketingConsent: Boolean(marketingConsent),
       source: source || "landing_page",
       utm: utm || {},
+      email_notification_status: "pending",
+      user_confirmation_status: "pending",
     });
+
+    // 2. TRIGGER EMAIL NOTIFICATIONS SAFELY
+    let adminEmailStatus: "sent" | "failed" | "queued" | "pending" = "pending";
+    let userEmailStatus: "sent" | "failed" | "queued" | "pending" = "pending";
+
+    try {
+      // Trigger internal administrator notification to akash@beyanco.com
+      const adminRes = await sendWaitlistAdminNotification(entry);
+      adminEmailStatus = adminRes.status;
+    } catch (adminErr) {
+      console.error("Waitlist admin email error:", adminErr);
+      adminEmailStatus = "failed";
+    }
+
+    try {
+      // Trigger confirmation email to registered user
+      const userRes = await sendWaitlistUserConfirmation(entry);
+      userEmailStatus = userRes.status;
+    } catch (userErr) {
+      console.error("Waitlist user confirmation email error:", userErr);
+      userEmailStatus = "failed";
+    }
+
+    // 3. UPDATE DATABASE WITH EMAIL STATUSES
+    try {
+      updateWaitlistEmailStatus(entry.id, {
+        email_notification_status: adminEmailStatus,
+        user_confirmation_status: userEmailStatus,
+      });
+    } catch (updateErr) {
+      console.error("Failed to update waitlist email status:", updateErr);
+    }
 
     return NextResponse.json(
       {
@@ -59,6 +119,10 @@ export async function POST(req: NextRequest) {
           : "You're on the Beyanco waitlist! We'll be in touch as early access unlocks.",
         id: entry.id,
         isDuplicate,
+        email_status: {
+          admin: adminEmailStatus,
+          user: userEmailStatus,
+        },
       },
       { status: 201 }
     );

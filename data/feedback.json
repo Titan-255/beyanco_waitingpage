@@ -2,6 +2,68 @@
   {
     "q1_user_type": "Renter",
     "q6_usefulness_rating": 4,
+    "q10_one_thing_perfect": "Real-time 3D furniture placement directly in smartphone camera.",
+    "role": "Renter",
+    "currentWorkflow": [],
+    "painPoints": [],
+    "currency": "INR",
+    "featurePreferences": [],
+    "topThreeFeatures": [],
+    "marketingConsent": false,
+    "utm": {},
+    "notification_email_status": "queued",
+    "respondent_confirmation_status": "skipped",
+    "submission_id": "fb_1794328841370_ljb73",
+    "id": "fb_1794328841370_ljb73",
+    "createdAt": "2026-11-10T16:40:41.370Z"
+  },
+  {
+    "contactName": "Priya Verma",
+    "contactEmail": "priya.feedback@example.com",
+    "contactPhone": "+91 9988776655",
+    "q1_user_type": "Homeowner",
+    "q2_buying_timeline": "Yes, actively looking",
+    "q3_where_buy": [
+      "IKEA",
+      "Pepperfry",
+      "Brand websites"
+    ],
+    "q4_hardest_part": [
+      "Not knowing whether furniture will fit my room.",
+      "Difficulty imagining how products will look together."
+    ],
+    "q5_regret_experience": "The coffee table looked much bigger and darker in person than in the catalog photos.",
+    "q6_usefulness_rating": 5,
+    "q7_ranked_features": [
+      "Realistic furniture visualization in my own room.",
+      "Accurate furniture dimensions and room-fit guidance.",
+      "Buying furniture directly through Beyanco."
+    ],
+    "q8_comfort_factors": [
+      "Verified furniture sellers.",
+      "Accurate room visualization.",
+      "Easy returns and refunds."
+    ],
+    "q9_budget_spend": "₹50,000–₹99,999",
+    "q10_one_thing_perfect": "Allow me to accurately see how standard sofas from IKEA or Pepperfry scale and fit in my exact living room dimensions.",
+    "role": "Homeowner",
+    "currentWorkflow": [],
+    "painPoints": [],
+    "currency": "INR",
+    "featurePreferences": [],
+    "topThreeFeatures": [],
+    "interviewInterest": "Yes, happy to chat",
+    "marketingConsent": true,
+    "utm": {},
+    "notification_email_status": "queued",
+    "respondent_confirmation_status": "queued",
+    "submission_id": "fb_1794328699270_vmga9",
+    "id": "fb_1794328699270_vmga9",
+    "createdAt": "2026-11-10T16:38:19.270Z"
+  },
+  {
+    "q1_user_type": "Renter",
+    "q6_usefulness_rating": 4,
     "q10_one_thing_perfect": "Accurate dimensional measurements for small rooms",
     "role": "Renter",
     "currentWorkflow": [],

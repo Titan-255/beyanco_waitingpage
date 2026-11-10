@@ -12,13 +12,13 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-white border-b border-beyanco-border shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-all">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-[68px] flex items-center justify-between">
         {/* Brand Logo & Name */}
-        <Link href="/" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <img
             src="/beyanco-logo.jpg"
             alt="Beyanco"
-            className="h-8 sm:h-9 w-auto object-contain"
+            className="h-10 sm:h-12 w-auto object-contain"
           />
-          <span className="px-1.5 py-0.5 text-[10px] font-bold tracking-wider uppercase bg-beyanco-paleBlue text-beyanco-blue rounded border border-blue-200/60 leading-none">
+          <span className="px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase bg-beyanco-paleBlue text-beyanco-blue rounded border border-blue-200/60 leading-none">
             AI
           </span>
         </Link>

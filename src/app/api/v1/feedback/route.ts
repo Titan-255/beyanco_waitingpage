@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   saveFeedbackEntry,
+  updateFeedbackEmailStatus,
   readFeedback,
   checkRateLimit,
 } from "@/lib/waitlist-storage";
+import {
+  sendFeedbackAdminNotification,
+  sendFeedbackUserThankYou,
+} from "@/lib/email-service";
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,7 +36,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (body.q6_usefulness_rating !== undefined) {
+    if (body.q6_usefulness_rating !== undefined && body.q6_usefulness_rating !== null) {
       const rating = Number(body.q6_usefulness_rating);
       if (isNaN(rating) || rating < 1 || rating > 5) {
         return NextResponse.json(
@@ -39,9 +44,14 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
       }
+    } else {
+      return NextResponse.json(
+        { success: false, error: "Please answer Question 6 (How useful would it be to see actual furniture products arranged in your room?)." },
+        { status: 400 }
+      );
     }
 
-    if (body.q10_one_thing_perfect !== undefined && !body.q10_one_thing_perfect.trim()) {
+    if (!body.q10_one_thing_perfect || !body.q10_one_thing_perfect.trim()) {
       return NextResponse.json(
         { success: false, error: "Please provide a response for Question 10." },
         { status: 400 }
@@ -52,10 +62,10 @@ export async function POST(req: NextRequest) {
     let normalizedPhone: string | undefined = undefined;
     if (body.contactPhone || body.mobile || body.phone) {
       const rawPhone = (body.contactPhone || body.mobile || body.phone).trim();
-      // Remove any unwanted characters except +, digits, spaces, and hyphens
       normalizedPhone = rawPhone.replace(/[^\d+ -]/g, "");
     }
 
+    // 1. SAVE TO DATABASE FIRST (Persistence must never fail due to email)
     const entry = saveFeedbackEntry({
       waitlistId: body.waitlistId,
       contactName: body.contactName ? body.contactName.trim() : body.name?.trim(),
@@ -68,11 +78,11 @@ export async function POST(req: NextRequest) {
       q3_where_buy: Array.isArray(body.q3_where_buy) ? body.q3_where_buy : undefined,
       q4_hardest_part: Array.isArray(body.q4_hardest_part) ? body.q4_hardest_part : undefined,
       q5_regret_experience: body.q5_regret_experience ? body.q5_regret_experience.trim() : undefined,
-      q6_usefulness_rating: body.q6_usefulness_rating ? Number(body.q6_usefulness_rating) : undefined,
+      q6_usefulness_rating: Number(body.q6_usefulness_rating),
       q7_ranked_features: Array.isArray(body.q7_ranked_features) ? body.q7_ranked_features : undefined,
       q8_comfort_factors: Array.isArray(body.q8_comfort_factors) ? body.q8_comfort_factors : undefined,
       q9_budget_spend: body.q9_budget_spend || undefined,
-      q10_one_thing_perfect: body.q10_one_thing_perfect ? body.q10_one_thing_perfect.trim() : undefined,
+      q10_one_thing_perfect: body.q10_one_thing_perfect.trim(),
 
       // Backward compatibility fields
       role: userType.trim(),
@@ -97,13 +107,54 @@ export async function POST(req: NextRequest) {
       interviewInterest: body.interviewInterest || undefined,
       marketingConsent: Boolean(body.marketingConsent),
       utm: body.utm || {},
+
+      notification_email_status: "pending",
+      respondent_confirmation_status: body.contactEmail ? "pending" : "skipped",
     });
+
+    // 2. TRIGGER EMAIL NOTIFICATIONS SAFELY
+    let adminEmailStatus: "sent" | "failed" | "queued" | "pending" = "pending";
+    let respondentEmailStatus: "sent" | "failed" | "queued" | "skipped" | "pending" = body.contactEmail ? "pending" : "skipped";
+
+    try {
+      // Trigger internal administrator notification to akash@beyanco.com
+      const adminRes = await sendFeedbackAdminNotification(entry);
+      adminEmailStatus = adminRes.status;
+    } catch (adminErr) {
+      console.error("Feedback admin email error:", adminErr);
+      adminEmailStatus = "failed";
+    }
+
+    if (entry.contactEmail && entry.contactEmail.includes("@")) {
+      try {
+        // Trigger thank-you email to respondent
+        const respRes = await sendFeedbackUserThankYou(entry);
+        respondentEmailStatus = respRes.status;
+      } catch (userErr) {
+        console.error("Feedback user thank you email error:", userErr);
+        respondentEmailStatus = "failed";
+      }
+    }
+
+    // 3. UPDATE DATABASE WITH EMAIL STATUSES
+    try {
+      updateFeedbackEmailStatus(entry.id, {
+        notification_email_status: adminEmailStatus,
+        respondent_confirmation_status: respondentEmailStatus,
+      });
+    } catch (updateErr) {
+      console.error("Failed to update feedback email status:", updateErr);
+    }
 
     return NextResponse.json(
       {
         success: true,
         message: "Thank you for helping shape Beyanco! Your feedback has been securely received.",
         id: entry.id,
+        email_status: {
+          admin: adminEmailStatus,
+          respondent: respondentEmailStatus,
+        },
       },
       { status: 201 }
     );

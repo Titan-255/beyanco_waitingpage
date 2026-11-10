@@ -18,17 +18,30 @@ import {
   User,
   Sparkles,
   HelpCircle,
-  GripVertical,
+  RotateCcw,
 } from "lucide-react";
 import { WaitlistNavbar } from "@/components/marketing/WaitlistNavbar";
 import { WaitlistFooter } from "@/components/marketing/WaitlistFooter";
 
 const STAGES = [
   { id: 1, name: "About You", questions: [1, 2] },
-  { id: 2, name: "How You Shop Today", questions: [3, 4, 5] },
-  { id: 3, name: "Your Reaction to Beyanco", questions: [6, 7] },
-  { id: 4, name: "Trust and Buying", questions: [8, 9] },
+  { id: 2, name: "Shopping Behaviour", questions: [3, 4, 5] },
+  { id: 3, name: "Value of Beyanco", questions: [6, 7] },
+  { id: 4, name: "Trust & Decisions", questions: [8, 9] },
   { id: 5, name: "Open Feedback", questions: [10] },
+];
+
+const Q7_ALL_FEATURES = [
+  "Realistic furniture visualization in my own room.",
+  "AI-powered interior design recommendations.",
+  "Accurate furniture dimensions and room-fit guidance.",
+  "Seeing real product prices and materials.",
+  "Comparing furniture across different stores.",
+  "Buying furniture directly through Beyanco.",
+  "Filtering by budget and delivery time.",
+  "Moving, removing and rearranging furniture.",
+  "Saving and sharing room designs.",
+  "Exploring different interior styles.",
 ];
 
 export default function FeedbackSurveyPage() {
@@ -38,7 +51,7 @@ export default function FeedbackSurveyPage() {
   const [currentScreen, setCurrentScreen] = useState(1);
   const totalQuestions = 10;
 
-  // Mark feedback popup as shown
+  // Mark feedback popup as shown so it doesn't interrupt while taking survey
   useEffect(() => {
     try {
       sessionStorage.setItem("beyanco_feedback_popup_shown", "true");
@@ -53,35 +66,28 @@ export default function FeedbackSurveyPage() {
   // Question 2: Are you planning to buy furniture in the next 6 months? (Optional)
   const [q2BuyingTimeline, setQ2BuyingTimeline] = useState<string>("");
 
-  // Question 3: Where do you usually buy furniture? (Optional, Multi-select)
+  // Question 3: Where do you usually discover or buy furniture? (Optional, Multi-select)
   const [q3WhereBuy, setQ3WhereBuy] = useState<string[]>([]);
 
-  // Question 4: What’s the hardest part of buying furniture online? (Optional, Multi-select)
+  // Question 4: What is the most frustrating part of buying furniture? (Optional, Multi-select)
   const [q4HardestPart, setQ4HardestPart] = useState<string[]>([]);
 
-  // Question 5: Have you ever bought furniture and regretted it? Why? (Optional text)
+  // Question 5: Have you ever purchased furniture that looked different from what you expected? (Optional text)
   const [q5RegretExperience, setQ5RegretExperience] = useState<string>("");
 
-  // Question 6: How useful would it be to see furniture in your own room before buying? (Required, 1-5)
+  // Question 6: How useful would it be to see actual furniture products arranged in your room? (Required, 1-5)
   const [q6UsefulnessRating, setQ6UsefulnessRating] = useState<number | null>(null);
 
-  // Question 7: Which features matter most to you? (Optional, interactive ranking)
-  const [q7RankedFeatures, setQ7RankedFeatures] = useState<string[]>([
-    "Realistic room preview",
-    "AI style suggestions",
-    "Accurate size and fit",
-    "Buying directly in the app",
-    "Saving and sharing designs",
-    "Budget filters",
-  ]);
+  // Question 7: Which Beyanco features would be most valuable to you? (Select & rank top 3 — Optional)
+  const [q7RankedFeatures, setQ7RankedFeatures] = useState<string[]>([]);
 
-  // Question 8: What would make you comfortable buying furniture through Beyanco? (Optional, Multi-select)
+  // Question 8: What would make you comfortable purchasing furniture through Beyanco? (Optional, Multi-select)
   const [q8ComfortFactors, setQ8ComfortFactors] = useState<string[]>([]);
 
-  // Question 9: What would you realistically spend on a main piece like a sofa or bed? (Optional)
+  // Question 9: What is your typical budget for a major furniture purchase, such as a sofa or bed? (Optional)
   const [q9BudgetSpend, setQ9BudgetSpend] = useState<string>("");
 
-  // Question 10: If Beyanco could do one thing perfectly, what should it be? (Required long text)
+  // Question 10: If Beyanco could solve ONE problem perfectly when buying furniture, what would you want it to solve? (Required long text)
   const [q10OneThingPerfect, setQ10OneThingPerfect] = useState<string>("");
 
   // Screen 11: Contact Details (All optional)
@@ -109,8 +115,22 @@ export default function FeedbackSurveyPage() {
     }
   };
 
-  // Move ranking items up / down
-  const moveRankItem = (index: number, direction: "up" | "down") => {
+  // Helper for Q7 ranking (Select & rank top 3 without drag-and-drop)
+  const toggleQ7Feature = (feat: string) => {
+    if (q7RankedFeatures.includes(feat)) {
+      // Remove from ranking and shift others
+      setQ7RankedFeatures(q7RankedFeatures.filter((f) => f !== feat));
+    } else {
+      if (q7RankedFeatures.length < 3) {
+        setQ7RankedFeatures([...q7RankedFeatures, feat]);
+      } else {
+        // Replace 3rd rank or notify
+        setValidationError("You have already selected your top 3. Tap a selected item to unselect or use the arrows to reorder.");
+      }
+    }
+  };
+
+  const moveQ7Item = (index: number, direction: "up" | "down") => {
     const targetIndex = direction === "up" ? index - 1 : index + 1;
     if (targetIndex < 0 || targetIndex >= q7RankedFeatures.length) return;
     const newItems = [...q7RankedFeatures];
@@ -205,7 +225,7 @@ export default function FeedbackSurveyPage() {
         q4_hardest_part: q4HardestPart.length > 0 ? q4HardestPart : null,
         q5_regret_experience: q5RegretExperience.trim() || null,
         q6_usefulness_rating: q6UsefulnessRating,
-        q7_ranked_features: q7RankedFeatures,
+        q7_ranked_features: q7RankedFeatures.length > 0 ? q7RankedFeatures : null,
         q8_comfort_factors: q8ComfortFactors.length > 0 ? q8ComfortFactors : null,
         q9_budget_spend: q9BudgetSpend || null,
         q10_one_thing_perfect: q10OneThingPerfect.trim(),
@@ -239,67 +259,67 @@ export default function FeedbackSurveyPage() {
 
   // Rating scale interpretations
   const ratingScaleLabels: Record<number, string> = {
-    1: "Not useful",
-    2: "Slightly useful",
-    3: "Moderately useful",
-    4: "Very useful",
-    5: "Extremely useful",
+    1: "1 — Not useful",
+    2: "2 — Slightly useful",
+    3: "3 — Moderately useful",
+    4: "4 — Very useful",
+    5: "5 — Extremely useful",
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F6F4EF] text-[#101827]">
+    <div className="flex flex-col min-h-screen bg-[#F6F4EF] text-[#101827] overflow-x-hidden">
       <WaitlistNavbar />
 
-      <main className="flex-1 py-12 md:py-20">
+      <main className="flex-1 py-8 sm:py-12 md:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Form Introduction & Brand Header */}
-          <div className="text-center mb-10 space-y-4">
-            <div className="flex justify-center mb-4">
+          <div className="text-center mb-8 sm:mb-10 space-y-3 sm:space-y-4">
+            <div className="flex justify-center mb-3 sm:mb-4">
               <img
                 src="/beyanco-logo.jpg"
                 alt="Beyanco"
-                className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply"
+                className="h-12 sm:h-16 w-auto object-contain mix-blend-multiply"
               />
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#101827] tracking-tight">
-              Help Us Build Beyanco Around What You Actually Need.
+            <h1 className="text-2xl sm:text-4xl font-serif font-bold text-[#101827] tracking-tight leading-snug">
+              Help Us Understand How People Shop for Furniture.
             </h1>
 
             <p className="text-sm sm:text-base text-[#626A75] max-w-xl mx-auto leading-relaxed">
-              Your feedback will help us understand how people currently shop for furniture, what challenges they face and how Beyanco can make the experience better.
+              Your honest feedback will help us decide what to build and how to improve the furniture-shopping experience.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101827]/5 border border-[#101827]/10 text-xs text-[#626A75] font-medium">
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#101827]/5 border border-[#101827]/10 text-xs text-[#626A75] font-medium">
               <span>Approximately 3 minutes to complete.</span>
             </div>
           </div>
 
           {/* Progress Tracker Card */}
-          <div className="bg-white rounded-[24px] border border-[#D8D5CF] p-6 sm:p-8 shadow-architectural">
+          <div className="bg-white rounded-[20px] sm:rounded-[24px] border border-[#D8D5CF] p-5 sm:p-8 shadow-architectural">
             
             {/* Top Indicator */}
             <div className="flex items-center justify-between mb-4 text-xs">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-[#A98460] uppercase tracking-wider">
+              <div className="flex items-center gap-2 truncate">
+                <span className="font-bold text-[#A98460] uppercase tracking-wider truncate">
                   {getActiveStageName(currentScreen)}
                 </span>
                 <span className="text-[#D8D5CF]">•</span>
-                <span className="text-[#626A75]">
+                <span className="text-[#626A75] shrink-0">
                   {currentScreen <= 10 ? `Question ${currentScreen} of ${totalQuestions}` : "Final Step"}
                 </span>
               </div>
 
               {currentScreen <= 10 && (
-                <span className="text-[#626A75] font-mono">
+                <span className="text-[#626A75] font-mono shrink-0 ml-2">
                   {Math.round((currentScreen / totalQuestions) * 100)}%
                 </span>
               )}
             </div>
 
             {/* Smooth Progress Bar */}
-            <div className="w-full h-2 bg-[#F6F4EF] rounded-full overflow-hidden mb-8">
+            <div className="w-full h-2 bg-[#F6F4EF] rounded-full overflow-hidden mb-6 sm:mb-8">
               <motion.div
                 className="h-full bg-[#101827]"
                 initial={{ width: "10%" }}
@@ -315,7 +335,7 @@ export default function FeedbackSurveyPage() {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2.5"
+                className="mb-6 p-3.5 sm:p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm flex items-center gap-2.5"
               >
                 <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
                 <span>{validationError}</span>
@@ -339,19 +359,21 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#A98460] uppercase tracking-wider">
-                      Required
+                      Single selection — Required
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      Which best describes you?
+                      1. Which best describes you?
                     </h2>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
                     {[
                       "Homeowner",
                       "Renter",
-                      "Designer or architect",
-                      "Furniture seller",
+                      "Planning to purchase or furnish a new home",
+                      "Interior Designer / Architect",
+                      "Furniture Seller / Retailer",
+                      "Real Estate Professional",
                       "Other",
                     ].map((opt) => (
                       <button
@@ -361,15 +383,15 @@ export default function FeedbackSurveyPage() {
                           setQ1UserType(opt);
                           setValidationError(null);
                         }}
-                        className={`p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group ${
+                        className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group min-h-[56px] ${
                           q1UserType === opt
                             ? "bg-[#101827] text-white border-[#101827] shadow-sm"
                             : "bg-[#FAF8F5] text-[#101827] border-[#D8D5CF] hover:border-[#101827] hover:bg-white"
                         }`}
                       >
-                        <span className="text-sm font-semibold tracking-wide">{opt}</span>
+                        <span className="text-sm font-semibold tracking-wide pr-2">{opt}</span>
                         <div
-                          className={`w-6 h-6 rounded-full flex items-center justify-center border transition-colors ${
+                          className={`w-6 h-6 rounded-full flex items-center justify-center border shrink-0 transition-colors ${
                             q1UserType === opt
                               ? "bg-[#A98460] border-[#A98460] text-white"
                               : "border-[#D8D5CF] text-transparent group-hover:border-[#101827]"
@@ -397,28 +419,34 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#626A75] uppercase tracking-wider">
-                      Optional
+                      Single selection — Optional
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      Are you planning to buy furniture in the next 6 months?
+                      2. Are you planning to buy furniture in the next 6 months?
                     </h2>
                   </div>
 
                   <div className="space-y-3">
-                    {["Yes, actively", "Maybe", "Not right now"].map((opt) => (
+                    {[
+                      "Yes, actively looking",
+                      "Yes, but still exploring",
+                      "Maybe",
+                      "Not right now",
+                      "Already purchased recently",
+                    ].map((opt) => (
                       <button
                         key={opt}
                         type="button"
                         onClick={() => setQ2BuyingTimeline(opt)}
-                        className={`w-full p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group ${
+                        className={`w-full p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group min-h-[56px] ${
                           q2BuyingTimeline === opt
                             ? "bg-[#101827] text-white border-[#101827] shadow-sm"
                             : "bg-[#FAF8F5] text-[#101827] border-[#D8D5CF] hover:border-[#101827] hover:bg-white"
                         }`}
                       >
-                        <span className="text-sm font-semibold tracking-wide">{opt}</span>
+                        <span className="text-sm font-semibold tracking-wide pr-2">{opt}</span>
                         <div
-                          className={`w-6 h-6 rounded-full flex items-center justify-center border transition-colors ${
+                          className={`w-6 h-6 rounded-full flex items-center justify-center border shrink-0 transition-colors ${
                             q2BuyingTimeline === opt
                               ? "bg-[#A98460] border-[#A98460] text-white"
                               : "border-[#D8D5CF] text-transparent group-hover:border-[#101827]"
@@ -433,7 +461,7 @@ export default function FeedbackSurveyPage() {
               )}
 
               {/* ========================================================
-                  QUESTION 3: Where do you usually buy furniture? (OPTIONAL)
+                  QUESTION 3: Where do you usually discover or buy furniture? (OPTIONAL)
                   ======================================================== */}
               {currentScreen === 3 && (
                 <motion.div
@@ -446,20 +474,23 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#626A75] uppercase tracking-wider">
-                      Optional • Select all that apply
+                      Multiple selection — Optional
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      Where do you usually buy furniture?
+                      3. Where do you usually discover or buy furniture?
                     </h2>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
                     {[
                       "IKEA",
                       "Amazon",
-                      "Local stores",
-                      "Pepperfry / Urban Ladder",
-                      "Designers",
+                      "Pepperfry",
+                      "Urban Ladder",
+                      "Local furniture stores",
+                      "Brand websites",
+                      "Interior designers",
+                      "Instagram / Pinterest",
                       "Other",
                     ].map((opt) => {
                       const isSelected = q3WhereBuy.includes(opt);
@@ -468,15 +499,15 @@ export default function FeedbackSurveyPage() {
                           key={opt}
                           type="button"
                           onClick={() => toggleMultiSelect(opt, q3WhereBuy, setQ3WhereBuy)}
-                          className={`p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group ${
+                          className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group min-h-[56px] ${
                             isSelected
                               ? "bg-[#101827] text-white border-[#101827] shadow-sm"
                               : "bg-[#FAF8F5] text-[#101827] border-[#D8D5CF] hover:border-[#101827] hover:bg-white"
                           }`}
                         >
-                          <span className="text-sm font-semibold tracking-wide">{opt}</span>
+                          <span className="text-sm font-semibold tracking-wide pr-2">{opt}</span>
                           <div
-                            className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-colors ${
+                            className={`w-6 h-6 rounded-lg flex items-center justify-center border shrink-0 transition-colors ${
                               isSelected
                                 ? "bg-[#A98460] border-[#A98460] text-white"
                                 : "border-[#D8D5CF] text-transparent group-hover:border-[#101827]"
@@ -492,7 +523,7 @@ export default function FeedbackSurveyPage() {
               )}
 
               {/* ========================================================
-                  QUESTION 4: Hardest part of buying online (OPTIONAL)
+                  QUESTION 4: Frustrating part of buying furniture (OPTIONAL)
                   ======================================================== */}
               {currentScreen === 4 && (
                 <motion.div
@@ -505,22 +536,25 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#626A75] uppercase tracking-wider">
-                      Optional • Select all that apply
+                      Multiple selection — Optional
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      What’s the hardest part of buying furniture online?
+                      4. What is the most frustrating part of buying furniture?
                     </h2>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  <div className="space-y-2.5 sm:space-y-3">
                     {[
-                      "Will it fit?",
-                      "Will it match my room?",
-                      "Quality uncertainty",
-                      "Returns",
-                      "Too many options",
-                      "Delivery",
-                      "Price",
+                      "Not knowing whether furniture will fit my room.",
+                      "Not knowing whether the furniture will match my interiors.",
+                      "Difficulty imagining how products will look together.",
+                      "Uncertainty about product quality.",
+                      "Difficulty comparing prices between stores.",
+                      "Too many choices and products.",
+                      "Unclear delivery timelines.",
+                      "Complicated returns and refunds.",
+                      "Difficulty finding furniture within my budget.",
+                      "Other.",
                     ].map((opt) => {
                       const isSelected = q4HardestPart.includes(opt);
                       return (
@@ -528,15 +562,15 @@ export default function FeedbackSurveyPage() {
                           key={opt}
                           type="button"
                           onClick={() => toggleMultiSelect(opt, q4HardestPart, setQ4HardestPart)}
-                          className={`p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group ${
+                          className={`w-full p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group min-h-[56px] ${
                             isSelected
                               ? "bg-[#101827] text-white border-[#101827] shadow-sm"
                               : "bg-[#FAF8F5] text-[#101827] border-[#D8D5CF] hover:border-[#101827] hover:bg-white"
                           }`}
                         >
-                          <span className="text-sm font-semibold tracking-wide">{opt}</span>
+                          <span className="text-sm font-semibold tracking-wide pr-3 leading-relaxed">{opt}</span>
                           <div
-                            className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-colors ${
+                            className={`w-6 h-6 rounded-lg flex items-center justify-center border shrink-0 transition-colors ${
                               isSelected
                                 ? "bg-[#A98460] border-[#A98460] text-white"
                                 : "border-[#D8D5CF] text-transparent group-hover:border-[#101827]"
@@ -565,10 +599,10 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#626A75] uppercase tracking-wider">
-                      Optional
+                      Short written response — Optional
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      Have you ever bought furniture and regretted it? Why?
+                      5. Have you ever purchased furniture that looked different from what you expected?
                     </h2>
                   </div>
 
@@ -577,8 +611,8 @@ export default function FeedbackSurveyPage() {
                       rows={5}
                       value={q5RegretExperience}
                       onChange={(e) => setQ5RegretExperience(e.target.value)}
-                      placeholder="Tell us briefly about your experience..."
-                      className="w-full p-4 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all leading-relaxed"
+                      placeholder="Tell us what happened. Was it the size, colour, material, quality or something else?"
+                      className="w-full p-4 sm:p-5 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all leading-relaxed"
                     />
                   </div>
                 </motion.div>
@@ -598,15 +632,21 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#A98460] uppercase tracking-wider">
-                      Required
+                      Rating from 1 to 5 — Required
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      How useful would it be to see furniture in your own room before buying?
+                      6. How useful would it be to see actual furniture products arranged in your own room before purchasing them?
                     </h2>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 pt-2">
-                    {[1, 2, 3, 4, 5].map((val) => (
+                    {[
+                      { val: 1, label: "Not useful" },
+                      { val: 2, label: "Slightly useful" },
+                      { val: 3, label: "Moderately useful" },
+                      { val: 4, label: "Very useful" },
+                      { val: 5, label: "Extremely useful" },
+                    ].map(({ val, label }) => (
                       <button
                         key={val}
                         type="button"
@@ -614,15 +654,15 @@ export default function FeedbackSurveyPage() {
                           setQ6UsefulnessRating(val);
                           setValidationError(null);
                         }}
-                        className={`p-4 sm:p-5 rounded-2xl text-center border transition-all duration-200 flex flex-col items-center justify-center gap-2 ${
+                        className={`p-4 sm:p-5 rounded-2xl text-center border transition-all duration-200 flex sm:flex-col items-center justify-between sm:justify-center gap-2 min-h-[56px] sm:min-h-[110px] ${
                           q6UsefulnessRating === val
-                            ? "bg-[#101827] text-white border-[#101827] shadow-md scale-[1.02]"
+                            ? "bg-[#101827] text-white border-[#101827] shadow-md scale-[1.01]"
                             : "bg-[#FAF8F5] text-[#101827] border-[#D8D5CF] hover:border-[#101827] hover:bg-white"
                         }`}
                       >
-                        <span className="font-serif text-2xl font-bold">{val}</span>
+                        <span className="font-serif text-xl sm:text-2xl font-bold">{val}</span>
                         <span className="text-xs font-medium opacity-90 leading-tight">
-                          {ratingScaleLabels[val]}
+                          {label}
                         </span>
                       </button>
                     ))}
@@ -630,14 +670,14 @@ export default function FeedbackSurveyPage() {
 
                   {q6UsefulnessRating && (
                     <div className="text-center text-xs text-[#A98460] font-medium pt-1">
-                      Selected: {q6UsefulnessRating} — {ratingScaleLabels[q6UsefulnessRating]}
+                      Selected: {ratingScaleLabels[q6UsefulnessRating]}
                     </div>
                   )}
                 </motion.div>
               )}
 
               {/* ========================================================
-                  QUESTION 7: Interactive Ranking (OPTIONAL)
+                  QUESTION 7: Select & Rank Top Three Features (OPTIONAL)
                   ======================================================== */}
               {currentScreen === 7 && (
                 <motion.div
@@ -650,59 +690,105 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#626A75] uppercase tracking-wider">
-                      Optional • Interactive Ranking
+                      Select and rank your top three — Optional
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      Which features matter most to you?
+                      7. Which Beyanco features would be most valuable to you?
                     </h2>
-                    <p className="text-xs text-[#626A75] mt-1">
-                      Reorder the features below into your preferred order (1 = highest priority). Use the arrow buttons on mobile or desktop.
+                    <p className="text-xs text-[#626A75] mt-1 leading-relaxed">
+                      Tap up to 3 features below to choose your top priorities (#1, #2, #3). You can use the up/down arrows to adjust the ranking or tap an item again to unselect it.
                     </p>
                   </div>
 
-                  <div className="space-y-2.5">
-                    {q7RankedFeatures.map((feat, idx) => (
-                      <div
-                        key={feat}
-                        className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] flex items-center justify-between gap-4 transition-all hover:bg-white"
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="w-7 h-7 rounded-full bg-[#101827] text-white font-mono text-xs flex items-center justify-center font-bold">
-                            {idx + 1}
-                          </span>
-                          <span className="text-sm font-semibold text-[#101827]">
-                            {feat}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-1.5 shrink-0">
-                          <button
-                            type="button"
-                            disabled={idx === 0}
-                            onClick={() => moveRankItem(idx, "up")}
-                            className="p-2 rounded-lg bg-white border border-[#D8D5CF] text-[#101827] hover:bg-[#101827] hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
-                            aria-label={`Move ${feat} up`}
-                          >
-                            <ChevronUp className="w-4 h-4" />
-                          </button>
-                          <button
-                            type="button"
-                            disabled={idx === q7RankedFeatures.length - 1}
-                            onClick={() => moveRankItem(idx, "down")}
-                            className="p-2 rounded-lg bg-white border border-[#D8D5CF] text-[#101827] hover:bg-[#101827] hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
-                            aria-label={`Move ${feat} down`}
-                          >
-                            <ChevronDown className="w-4 h-4" />
-                          </button>
-                        </div>
+                  {/* Active Top 3 Ranked Box */}
+                  {q7RankedFeatures.length > 0 && (
+                    <div className="p-4 sm:p-5 rounded-2xl bg-[#FAF8F5] border-2 border-[#101827] space-y-2.5">
+                      <div className="flex items-center justify-between text-xs font-bold text-[#101827] uppercase tracking-wider mb-1">
+                        <span>Your Top {q7RankedFeatures.length} {q7RankedFeatures.length === 1 ? "Priority" : "Priorities"}:</span>
+                        <button
+                          type="button"
+                          onClick={() => setQ7RankedFeatures([])}
+                          className="text-[11px] text-[#626A75] hover:text-[#101827] underline flex items-center gap-1"
+                        >
+                          <RotateCcw className="w-3 h-3" />
+                          <span>Reset ranking</span>
+                        </button>
                       </div>
-                    ))}
+
+                      {q7RankedFeatures.map((feat, idx) => (
+                        <div
+                          key={feat}
+                          className="p-3 sm:p-3.5 rounded-xl bg-white border border-[#D8D5CF] flex items-center justify-between gap-3 shadow-xs"
+                        >
+                          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                            <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#101827] text-white font-mono text-xs flex items-center justify-center font-bold shrink-0">
+                              #{idx + 1}
+                            </span>
+                            <span className="text-xs sm:text-sm font-semibold text-[#101827] truncate">
+                              {feat}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-1 shrink-0">
+                            <button
+                              type="button"
+                              disabled={idx === 0}
+                              onClick={() => moveQ7Item(idx, "up")}
+                              className="p-1.5 sm:p-2 rounded-lg bg-[#F6F4EF] text-[#101827] hover:bg-[#101827] hover:text-white disabled:opacity-20 disabled:pointer-events-none transition-colors"
+                              aria-label={`Move rank up`}
+                            >
+                              <ChevronUp className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              type="button"
+                              disabled={idx === q7RankedFeatures.length - 1}
+                              onClick={() => moveQ7Item(idx, "down")}
+                              className="p-1.5 sm:p-2 rounded-lg bg-[#F6F4EF] text-[#101827] hover:bg-[#101827] hover:text-white disabled:opacity-20 disabled:pointer-events-none transition-colors"
+                              aria-label={`Move rank down`}
+                            >
+                              <ChevronDown className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* All 10 Features List for Selection */}
+                  <div className="space-y-2">
+                    {Q7_ALL_FEATURES.map((feat) => {
+                      const rankIndex = q7RankedFeatures.indexOf(feat);
+                      const isRanked = rankIndex !== -1;
+                      return (
+                        <button
+                          key={feat}
+                          type="button"
+                          onClick={() => toggleQ7Feature(feat)}
+                          className={`w-full p-3.5 sm:p-4 rounded-xl text-left border transition-all duration-200 flex items-center justify-between group min-h-[50px] ${
+                            isRanked
+                              ? "bg-[#101827] text-white border-[#101827] shadow-sm"
+                              : "bg-[#FAF8F5] text-[#101827] border-[#D8D5CF] hover:border-[#101827] hover:bg-white"
+                          }`}
+                        >
+                          <span className="text-xs sm:text-sm font-medium pr-3 leading-snug">{feat}</span>
+                          <div
+                            className={`w-6 h-6 rounded-full flex items-center justify-center font-mono text-xs font-bold shrink-0 transition-colors ${
+                              isRanked
+                                ? "bg-[#A98460] text-white"
+                                : "border border-[#D8D5CF] text-[#94A3B8] group-hover:border-[#101827]"
+                            }`}
+                          >
+                            {isRanked ? `#${rankIndex + 1}` : "+"}
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
 
               {/* ========================================================
-                  QUESTION 8: Trust & Buying Factors (OPTIONAL)
+                  QUESTION 8: Trust and Purchase Decisions (OPTIONAL)
                   ======================================================== */}
               {currentScreen === 8 && (
                 <motion.div
@@ -715,21 +801,25 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#626A75] uppercase tracking-wider">
-                      Optional • Select all that apply
+                      Multiple selection — Optional
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      What would make you comfortable buying furniture through Beyanco?
+                      8. What would make you comfortable purchasing furniture through Beyanco?
                     </h2>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
                     {[
-                      "Easy returns",
-                      "Verified sellers",
-                      "Reviews",
-                      "Price match",
-                      "Delivery tracking",
-                      "AR accuracy",
+                      "Verified furniture sellers.",
+                      "Genuine customer reviews and photographs.",
+                      "Accurate dimensions and product descriptions.",
+                      "Easy returns and refunds.",
+                      "Secure payment options.",
+                      "Transparent delivery charges and timelines.",
+                      "Price comparison across stores.",
+                      "Reliable customer support.",
+                      "Accurate room visualization.",
+                      "Other.",
                     ].map((opt) => {
                       const isSelected = q8ComfortFactors.includes(opt);
                       return (
@@ -737,15 +827,15 @@ export default function FeedbackSurveyPage() {
                           key={opt}
                           type="button"
                           onClick={() => toggleMultiSelect(opt, q8ComfortFactors, setQ8ComfortFactors)}
-                          className={`p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group ${
+                          className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group min-h-[56px] ${
                             isSelected
                               ? "bg-[#101827] text-white border-[#101827] shadow-sm"
                               : "bg-[#FAF8F5] text-[#101827] border-[#D8D5CF] hover:border-[#101827] hover:bg-white"
                           }`}
                         >
-                          <span className="text-sm font-semibold tracking-wide">{opt}</span>
+                          <span className="text-sm font-semibold tracking-wide pr-2">{opt}</span>
                           <div
-                            className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-colors ${
+                            className={`w-6 h-6 rounded-lg flex items-center justify-center border shrink-0 transition-colors ${
                               isSelected
                                 ? "bg-[#A98460] border-[#A98460] text-white"
                                 : "border-[#D8D5CF] text-transparent group-hover:border-[#101827]"
@@ -761,7 +851,7 @@ export default function FeedbackSurveyPage() {
               )}
 
               {/* ========================================================
-                  QUESTION 9: Realistic Price Range (OPTIONAL)
+                  QUESTION 9: Typical Budget (OPTIONAL)
                   ======================================================== */}
               {currentScreen === 9 && (
                 <motion.div
@@ -774,10 +864,10 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#626A75] uppercase tracking-wider">
-                      Optional
+                      Single selection — Optional
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      What would you realistically spend on a main piece like a sofa or bed?
+                      9. What is your typical budget for a major furniture purchase, such as a sofa or bed?
                     </h2>
                   </div>
 
@@ -788,22 +878,22 @@ export default function FeedbackSurveyPage() {
                       "₹25,000–₹49,999",
                       "₹50,000–₹99,999",
                       "₹1,00,000 or more",
-                      "Depends on quality and design",
+                      "Depends on the product and quality",
                       "Prefer not to say",
                     ].map((opt) => (
                       <button
                         key={opt}
                         type="button"
                         onClick={() => setQ9BudgetSpend(opt)}
-                        className={`w-full p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group ${
+                        className={`w-full p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex items-center justify-between group min-h-[56px] ${
                           q9BudgetSpend === opt
                             ? "bg-[#101827] text-white border-[#101827] shadow-sm"
                             : "bg-[#FAF8F5] text-[#101827] border-[#D8D5CF] hover:border-[#101827] hover:bg-white"
                         }`}
                       >
-                        <span className="text-sm font-semibold tracking-wide">{opt}</span>
+                        <span className="text-sm font-semibold tracking-wide pr-2">{opt}</span>
                         <div
-                          className={`w-6 h-6 rounded-full flex items-center justify-center border transition-colors ${
+                          className={`w-6 h-6 rounded-full flex items-center justify-center border shrink-0 transition-colors ${
                             q9BudgetSpend === opt
                               ? "bg-[#A98460] border-[#A98460] text-white"
                               : "border-[#D8D5CF] text-transparent group-hover:border-[#101827]"
@@ -818,7 +908,7 @@ export default function FeedbackSurveyPage() {
               )}
 
               {/* ========================================================
-                  QUESTION 10: One Thing Perfectly (REQUIRED)
+                  QUESTION 10: One Problem Perfectly (REQUIRED)
                   ======================================================== */}
               {currentScreen === 10 && (
                 <motion.div
@@ -831,13 +921,13 @@ export default function FeedbackSurveyPage() {
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#A98460] uppercase tracking-wider">
-                      Required • Open Feedback
+                      Long written response — Required
                     </span>
                     <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#101827] mt-1">
-                      If Beyanco could do one thing perfectly, what should it be?
+                      10. If Beyanco could solve ONE problem perfectly when buying furniture, what would you want it to solve?
                     </h2>
-                    <p className="text-xs text-[#626A75] mt-1">
-                      This is the most important question for our engineering and design team.
+                    <p className="text-xs text-[#626A75] mt-1 leading-relaxed">
+                      Discover ideas, problems and expectations that help us build a product you genuinely want to use.
                     </p>
                   </div>
 
@@ -850,8 +940,8 @@ export default function FeedbackSurveyPage() {
                         setQ10OneThingPerfect(e.target.value);
                         setValidationError(null);
                       }}
-                      placeholder="Tell us what would make Beyanco genuinely useful to you..."
-                      className="w-full p-5 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all leading-relaxed"
+                      placeholder="Tell us what would make Beyanco a product you would genuinely want to use..."
+                      className="w-full p-4 sm:p-5 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all leading-relaxed"
                     />
                   </div>
                 </motion.div>
@@ -877,7 +967,7 @@ export default function FeedbackSurveyPage() {
                       className="h-8 w-auto object-contain mix-blend-multiply"
                     />
                     <div>
-                      <h2 className="text-xl font-serif font-bold text-[#101827]">
+                      <h2 className="text-lg sm:text-xl font-serif font-bold text-[#101827]">
                         YOUR DETAILS
                       </h2>
                       <p className="text-xs text-[#626A75]">
@@ -899,7 +989,7 @@ export default function FeedbackSurveyPage() {
                           value={contactName}
                           onChange={(e) => setContactName(e.target.value)}
                           placeholder="Enter your name"
-                          className="w-full h-12 pl-11 pr-4 rounded-xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all"
+                          className="w-full h-12 pl-11 pr-4 rounded-xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all"
                         />
                       </div>
                     </div>
@@ -909,7 +999,7 @@ export default function FeedbackSurveyPage() {
                       <label className="block text-xs font-semibold uppercase tracking-wider text-[#626A75] mb-1.5">
                         Mobile Number <span className="font-normal text-[#94A3B8]">(Optional)</span>
                       </label>
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         <select
                           value={countryCode}
                           onChange={(e) => setCountryCode(e.target.value)}
@@ -929,7 +1019,7 @@ export default function FeedbackSurveyPage() {
                             value={contactMobile}
                             onChange={(e) => setContactMobile(e.target.value)}
                             placeholder="Enter your mobile number"
-                            className="w-full h-12 pl-11 pr-4 rounded-xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all font-mono"
+                            className="w-full h-12 pl-11 pr-4 rounded-xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all font-mono"
                           />
                         </div>
                       </div>
@@ -947,13 +1037,13 @@ export default function FeedbackSurveyPage() {
                           value={contactEmail}
                           onChange={(e) => setContactEmail(e.target.value)}
                           placeholder="Enter your email address"
-                          className="w-full h-12 pl-11 pr-4 rounded-xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all"
+                          className="w-full h-12 pl-11 pr-4 rounded-xl bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all"
                         />
                       </div>
                     </div>
 
                     {/* Early Access Checkbox (Unchecked by default) */}
-                    <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] flex items-start gap-3 mt-2">
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] flex items-start gap-3 mt-2">
                       <input
                         type="checkbox"
                         id="early-access-updates"
@@ -970,7 +1060,7 @@ export default function FeedbackSurveyPage() {
                     </div>
 
                     {/* 15-Minute Call Question */}
-                    <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] space-y-2">
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF8F5] border border-[#D8D5CF] space-y-2">
                       <label className="block text-xs font-semibold text-[#101827]">
                         Would you be open to a 15-minute call with our team?
                       </label>
@@ -995,8 +1085,9 @@ export default function FeedbackSurveyPage() {
                     {/* Direct Team Contact Notice */}
                     <div className="pt-2 text-xs text-[#626A75] leading-relaxed border-t border-[#D8D5CF]/50">
                       Have questions or wish to share your thoughts directly? You can reach our founding team:
-                      <div className="mt-1 font-medium text-[#101827]">
-                        Akash: <span className="font-mono text-[#A98460]">+91 8189833313</span> &nbsp;|&nbsp; Tarun: <span className="font-mono text-[#A98460]">+91 6380644305</span>
+                      <div className="mt-1 font-medium text-[#101827] flex flex-col sm:flex-row sm:gap-4">
+                        <span>Akash: <span className="font-mono text-[#A98460]">+91 8189833313</span></span>
+                        <span>Tarun: <span className="font-mono text-[#A98460]">+91 6380644305</span></span>
                       </div>
                     </div>
                   </div>
@@ -1006,14 +1097,14 @@ export default function FeedbackSurveyPage() {
             </AnimatePresence>
 
             {/* Navigation Controls: Back, Skip, Next / Submit */}
-            <div className="mt-10 pt-6 border-t border-[#D8D5CF]/60 flex items-center justify-between gap-4">
+            <div className="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-[#D8D5CF]/60 flex items-center justify-between gap-3">
               
               {/* Back Button */}
               {currentScreen > 1 ? (
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-[#D8D5CF] text-[#101827] text-xs font-semibold uppercase tracking-wider hover:border-[#101827] hover:bg-[#FAF8F5] transition-colors"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[#D8D5CF] text-[#101827] text-xs font-semibold uppercase tracking-wider hover:border-[#101827] hover:bg-[#FAF8F5] transition-colors"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span>Back</span>
@@ -1023,13 +1114,13 @@ export default function FeedbackSurveyPage() {
               )}
 
               {/* Right actions: Skip (if optional) & Next / Submit */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 {/* Skip button for optional questions */}
                 {currentScreen <= 10 && currentScreen !== 1 && currentScreen !== 6 && currentScreen !== 10 && (
                   <button
                     type="button"
                     onClick={handleSkip}
-                    className="px-4 py-3 rounded-full text-xs text-[#626A75] hover:text-[#101827] font-semibold uppercase tracking-wider transition-colors"
+                    className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-full text-xs text-[#626A75] hover:text-[#101827] font-semibold uppercase tracking-wider transition-colors"
                   >
                     Skip
                   </button>
@@ -1040,7 +1131,7 @@ export default function FeedbackSurveyPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#101827] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#A98460] shadow-md hover:shadow-lg transition-all duration-200"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#101827] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#A98460] shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     <span>Next</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -1050,16 +1141,16 @@ export default function FeedbackSurveyPage() {
                     type="button"
                     disabled={isSubmitting}
                     onClick={handleSubmit}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#101827] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#A98460] disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg transition-all duration-200"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 px-5 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#101827] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#A98460] disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Submitting Feedback...</span>
+                        <span>Submitting...</span>
                       </>
                     ) : (
                       <>
-                        <span>Submit My Feedback</span>
+                        <span>Submit Feedback</span>
                         <Check className="w-4 h-4" />
                       </>
                     )}

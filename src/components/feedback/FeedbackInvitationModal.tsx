@@ -150,31 +150,31 @@ export function FeedbackInvitationModal() {
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg bg-[#FAF8F5] rounded-[28px] border border-[#D8D5CF] p-7 sm:p-9 md:p-10 shadow-[0_25px_60px_-15px_rgba(16,24,39,0.3)] text-center my-auto z-10 focus:outline-none"
+            className="relative w-full max-w-lg max-h-[92vh] overflow-y-auto bg-[#FAF8F5] rounded-[24px] sm:rounded-[28px] border border-[#D8D5CF] p-5 sm:p-8 md:p-10 shadow-[0_25px_60px_-15px_rgba(16,24,39,0.3)] text-center my-auto z-10 focus:outline-none"
           >
             {/* Top-Right Dismiss Icon (X) */}
             <button
               type="button"
               onClick={dismissModal}
               aria-label="Close feedback modal"
-              className="absolute top-5 right-5 w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 text-[#101827] flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#A98460]"
+              className="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 text-[#101827] flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#A98460]"
             >
               <X className="w-4 h-4" />
             </button>
 
             {/* Official Beyanco Logo */}
-            <div className="flex justify-center mb-5">
+            <div className="flex justify-center mb-4 sm:mb-5">
               <img
                 src="/beyanco-logo.jpg"
                 alt="Beyanco"
-                className="h-9 sm:h-10 w-auto object-contain mix-blend-multiply"
+                className="h-11 sm:h-14 w-auto object-contain mix-blend-multiply"
               />
             </div>
 
             {/* Pill / Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101827]/5 border border-[#101827]/10 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#101827]/5 border border-[#101827]/10 mb-3 sm:mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#A98460]" />
-              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest text-[#101827]">
+              <span className="text-[9px] sm:text-[11px] font-semibold uppercase tracking-widest text-[#101827]">
                 A QUICK NOTE FROM BEYANCO
               </span>
             </div>
@@ -182,7 +182,7 @@ export function FeedbackInvitationModal() {
             {/* Headline */}
             <h2
               id="feedback-dialog-title"
-              className="text-2xl sm:text-3xl font-serif font-bold text-[#101827] tracking-tight leading-snug mb-4"
+              className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-[#101827] tracking-tight leading-snug mb-3 sm:mb-4"
             >
               Help Us Change How the World Shops for Furniture.
             </h2>
@@ -190,7 +190,7 @@ export function FeedbackInvitationModal() {
             {/* Body */}
             <div
               id="feedback-dialog-description"
-              className="text-sm sm:text-[14.5px] text-[#626A75] leading-relaxed space-y-3 mb-6"
+              className="text-xs sm:text-[14px] md:text-[14.5px] text-[#626A75] leading-relaxed space-y-2.5 sm:space-y-3 mb-5 sm:mb-6"
             >
               <p>
                 At Beyanco, we&apos;re redefining what it means to shop for furniture. No more guessing if that sofa fits, or if the color works in your room. You see it in your space first, then buy it with confidence.
@@ -201,11 +201,11 @@ export function FeedbackInvitationModal() {
             </div>
 
             {/* Primary Button & Secondary Link */}
-            <div className="space-y-3 pt-1">
+            <div className="space-y-2.5 sm:space-y-3 pt-1">
               <button
                 type="button"
                 onClick={handleCtaClick}
-                className="group w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#101827] hover:bg-[#A98460] text-white text-xs font-semibold uppercase tracking-widest shadow-md hover:shadow-xl transition-all duration-300"
+                className="group w-full inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#101827] hover:bg-[#A98460] text-white text-xs font-semibold uppercase tracking-widest shadow-md hover:shadow-xl transition-all duration-300 min-h-[44px]"
               >
                 <span>SHARE YOUR OPINION &rarr;</span>
               </button>
@@ -222,7 +222,7 @@ export function FeedbackInvitationModal() {
             </div>
 
             {/* Popup Footer */}
-            <div className="mt-5 pt-4 border-t border-[#D8D5CF]/60 text-[11px] text-[#626A75]/70">
+            <div className="mt-4 sm:mt-5 pt-3.5 sm:pt-4 border-t border-[#D8D5CF]/60 text-[10px] sm:text-[11px] text-[#626A75]/70">
               Thank you for being part of Beyanco&apos;s journey.
             </div>
           </motion.div>

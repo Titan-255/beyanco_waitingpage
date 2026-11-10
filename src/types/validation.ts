@@ -11,6 +11,7 @@ export interface WaitlistEntry {
   id: string;
   name: string;
   email: string;
+  mobile_number?: string;
   professionalRole?: string;
   company?: string;
   country?: string;
@@ -18,12 +19,15 @@ export interface WaitlistEntry {
   marketingConsent: boolean;
   source: string;
   utm?: Record<string, string>;
+  email_notification_status?: 'pending' | 'sent' | 'failed' | 'queued';
+  user_confirmation_status?: 'pending' | 'sent' | 'failed' | 'queued';
   createdAt: string;
   updatedAt?: string;
 }
 
 export interface FeedbackEntry {
   id: string;
+  submission_id?: string;
   waitlistId?: string;
   contactName?: string;
   contactEmail?: string;
@@ -64,5 +68,10 @@ export interface FeedbackEntry {
   interviewInterest?: string;
   marketingConsent: boolean;
   utm?: Record<string, string>;
+
+  // Status tracking
+  notification_email_status?: 'pending' | 'sent' | 'failed' | 'queued';
+  respondent_confirmation_status?: 'pending' | 'sent' | 'failed' | 'queued' | 'skipped';
+
   createdAt: string;
 }

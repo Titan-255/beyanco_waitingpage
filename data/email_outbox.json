@@ -1,0 +1,80 @@
+[
+  {
+    "id": "em_1794328841371_vqdze",
+    "type": "feedback_admin_notification",
+    "submissionId": "fb_1794328841370_ljb73",
+    "to": "akash@beyanco.com",
+    "subject": "New Beyanco Customer Feedback Submission",
+    "status": "queued",
+    "payloadSummary": {
+      "id": "fb_1794328841370_ljb73",
+      "q1": "Renter",
+      "q6": 4
+    },
+    "createdAt": "2026-11-10T16:40:41.371Z",
+    "error": "RESEND_API_KEY not configured. Queued in outbox for dispatch."
+  },
+  {
+    "id": "em_1794328699271_t561w",
+    "type": "feedback_user_thank_you",
+    "submissionId": "fb_1794328699270_vmga9",
+    "to": "priya.feedback@example.com",
+    "subject": "Thank You for Sharing Your Thoughts with Beyanco!",
+    "status": "queued",
+    "payloadSummary": {
+      "id": "fb_1794328699270_vmga9",
+      "name": "Priya Verma",
+      "email": "priya.feedback@example.com"
+    },
+    "createdAt": "2026-11-10T16:38:19.271Z",
+    "error": "RESEND_API_KEY not configured. Queued in outbox for dispatch."
+  },
+  {
+    "id": "em_1794328699270_non49",
+    "type": "feedback_admin_notification",
+    "submissionId": "fb_1794328699270_vmga9",
+    "to": "akash@beyanco.com",
+    "subject": "New Beyanco Customer Feedback Submission",
+    "status": "queued",
+    "payloadSummary": {
+      "id": "fb_1794328699270_vmga9",
+      "contactName": "Priya Verma",
+      "contactEmail": "priya.feedback@example.com",
+      "q1": "Homeowner",
+      "q6": 5
+    },
+    "createdAt": "2026-11-10T16:38:19.270Z",
+    "error": "RESEND_API_KEY not configured. Queued in outbox for dispatch."
+  },
+  {
+    "id": "em_1794328610851_qun2p",
+    "type": "waitlist_user_confirmation",
+    "submissionId": "wl_1794328576503_uzdvp",
+    "to": "test_akash_waitlist@beyanco.com",
+    "subject": "You're on the Beyanco Waitlist!",
+    "status": "queued",
+    "payloadSummary": {
+      "id": "wl_1794328576503_uzdvp",
+      "name": "Akash Sharma",
+      "email": "test_akash_waitlist@beyanco.com"
+    },
+    "createdAt": "2026-11-10T16:36:50.851Z",
+    "error": "RESEND_API_KEY not configured. Queued in outbox for dispatch."
+  },
+  {
+    "id": "em_1794328610851_bys56",
+    "type": "waitlist_admin_notification",
+    "submissionId": "wl_1794328576503_uzdvp",
+    "to": "akash@beyanco.com",
+    "subject": "New Beyanco Waitlist Registration",
+    "status": "queued",
+    "payloadSummary": {
+      "id": "wl_1794328576503_uzdvp",
+      "name": "Akash Sharma",
+      "email": "test_akash_waitlist@beyanco.com",
+      "role": "Homeowner"
+    },
+    "createdAt": "2026-11-10T16:36:50.851Z",
+    "error": "RESEND_API_KEY not configured. Queued in outbox for dispatch."
+  }
+]

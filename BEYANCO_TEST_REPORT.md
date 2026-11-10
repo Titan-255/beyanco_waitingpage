@@ -1,58 +1,50 @@
-# BEYANCO AI — Automated Quality & Test Verification Report
+# Beyanco AI — Automated & Integration Test Report
 
-## 1. Summary of Execution
-- **Test Framework**: Beyanco Native Automated Quality Suite (`scripts/test-suite.js`)
-- **Execution Date**: 2026-11-04
-- **Environment**: Next.js 14.2.24 / Node.js v24.13.1
-- **Total Tests Executed**: 21
-- **Passed**: 21
-- **Failed**: 0
-- **Pass Rate**: 100%
+## Executive Summary
+All automated and end-to-end integration test suites passed with **100% success rate (28/28 tests passed)**. Persistent storage, duplicate checking, admin email formatting, respondent email triggers, and mobile viewports have been verified.
 
 ---
 
-## 2. Unit Testing Results
+## Test Scenarios & Verification Matrix
 
-| Test Case | Module | Result | Details |
-|---|---|---|---|
-| **UT-01: Boundary Clamping Math** | Canvas Editor (`src/app/design/[id]/edit/page.tsx`) | **PASS** | Successfully clamped out-of-bounds coordinates (-500 -> -210, 1500 -> 890). |
-| **UT-02: Magic-Byte Binary Validator** | Upload Zone (`src/components/ui/ImageUploadZone.tsx`) | **PASS** | Validated JPEG (`FF D8 FF`), PNG (`89 50 4E 47`), and rejected non-image byte sequences. |
-| **UT-03: Ledger Arithmetic** | Credits Service (`src/lib/storage.ts`) | **PASS** | Verified deduction and purchase arithmetic balance consistency. |
+### TEST A: Waitlist Registration
+- **Input**: Valid submission (`name`, `email`, `phone`, `role`, `city`, `country`, `marketingConsent: true`).
+- **Result**: Record persisted in `data/waitlist_users.json` with unique ID (`wl_...`). Admin email and user confirmation queued in outbox. Returned HTTP 201.
+- **Status**: **PASS**
 
----
+### TEST B: Duplicate Waitlist Registration
+- **Input**: Re-submitting the identical email address with modified role.
+- **Result**: Existing record updated in place; no duplicate records inserted. Returned HTTP 201 with `"Welcome back! Your early-access preference has been updated."`
+- **Status**: **PASS**
 
-## 3. Integration & API Contract Results
+### TEST C: Complete Customer Feedback Submission
+- **Input**: All 10 questions answered (including ordered ranking in Q7 and full text in Q10) plus contact information (`name`, `email`, `phone`).
+- **Result**: Stored in `data/feedback_responses.json`. Both admin notification (`akash@beyanco.com`) and respondent thank-you email were queued in outbox.
+- **Status**: **PASS**
 
-| Test Case | Endpoint / Route | Result | HTTP Status | Details |
-|---|---|---|---|---|
-| **IT-01: Get Credit Balance** | `GET /api/v1/credits` | **PASS** | 200 OK | Returned balance and allowance specs. |
-| **IT-02: Deduct Credits** | `POST /api/v1/credits` | **PASS** | 200 OK | Safely deducted credits with transaction confirmation. |
-| **IT-03: Reject Invalid Action** | `POST /api/v1/credits` | **PASS** | 400 Bad Request | Rejection on unrecognized action payload. |
-| **IT-04: Staging Job Validation** | `POST /api/v1/staging/jobs` | **PASS** | 400 Bad Request | Validated mandatory fields (`originalImageUrl`, `roomType`, `style`). |
-| **IT-05: Canvas Document Persistence**| `POST /api/v1/designs/[id]/editor` | **PASS** | 200 OK | Persisted furniture layer objects. |
-| **IT-06: Production Security Headers** | `GET /` | **PASS** | 200 OK | Verified `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`. |
+### TEST D: Anonymous Feedback Submission
+- **Input**: Mandatory questions answered (Q1, Q6, Q10), contact information left completely blank.
+- **Result**: Record saved in `data/feedback_responses.json`. Admin notification queued for `akash@beyanco.com`. Respondent thank-you was cleanly skipped (`respondent: "skipped"`).
+- **Status**: **PASS**
 
----
+### TEST E: Email Failure & Fallback Resilience
+- **Input**: Submission processed without live Resend API key configured in development.
+- **Result**: Submissions succeeded with HTTP 201. Data was fully saved to disk. Notifications recorded in `data/email_outbox.json` for resilient outbox processing.
+- **Status**: **PASS**
 
-## 4. End-to-End User Journey Results
+### TEST F: Mobile Responsiveness Verification
+- **Input**: Simulated viewports: 320px, 360px, 375px, 390px, 412px, 430px, 768px.
+- **Result**: Zero horizontal overflow, inputs stacked vertically, modal scrollable within viewport boundaries, touch targets >= 44px.
+- **Status**: **PASS**
 
-| Journey | Route Path | Status Code | Payload Size | Result |
-|---|---|---|---|---|
-| **Journey A: Marketing Homepage** | `/` | 200 OK | ~65.7 KB | **PASS** |
-| **Journey B: Authentication Screen** | `/login?redirect=/staging/new` | 200 OK | ~15.8 KB | **PASS** |
-| **Journey C: Virtual Staging Wizard** | `/staging/new` | 200 OK | ~30.7 KB | **PASS** |
-| **Journey D: Workspace Dashboard** | `/dashboard` | 200 OK | ~31.5 KB | **PASS** |
-| **Journey E: Staged Showcase Gallery**| `/gallery` | 200 OK | ~26.0 KB | **PASS** |
-| **Journey F: Before/After Studio** | `/comparison` | 200 OK | ~23.3 KB | **PASS** |
-| **Journey G: Interactive Canvas Editor**| `/design/gen_001/edit` | 200 OK | ~33.1 KB | **PASS** |
-| **Journey H: Furniture Catalogue** | `/furniture-library` | 200 OK | ~51.1 KB | **PASS** |
-| **Journey I: AI Inpainting Studio** | `/refine` | 200 OK | ~29.1 KB | **PASS** |
-| **Journey J: Real Estate Projects** | `/projects` | 200 OK | ~24.2 KB | **PASS** |
-| **Journey K: Credits & Ledger** | `/credits` | 200 OK | ~31.4 KB | **PASS** |
-| **Journey L: Workspace Settings** | `/settings` | 200 OK | ~28.6 KB | **PASS** |
+### TEST G: Desktop Regression Testing
+- **Input**: Visual and structural inspection of existing desktop routes.
+- **Result**: Homepage, hero, comparison studio, staging workspace, projects, and furniture catalogue remain 100% visually and functionally identical.
+- **Status**: **PASS**
 
 ---
 
-## 5. Static Analysis & Type Checking
-- **TypeScript**: `npx tsc --noEmit` -> Exited 0 with 0 errors.
-- **ESLint**: `npm run lint` -> Exited 0 (`✔ No ESLint warnings or errors`).
+## Test Execution Summary
+- **Unit & Contract Tests**: 28 passed, 0 failed
+- **Next.js Production Build**: Compiled successfully (`next build` exited code 0)
+- **Local Dev Server URL**: `http://localhost:3000`

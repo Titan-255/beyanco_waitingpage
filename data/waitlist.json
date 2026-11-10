@@ -1,5 +1,21 @@
 [
   {
+    "name": "Akash Sharma",
+    "email": "test_akash_waitlist@beyanco.com",
+    "mobile_number": "+91 9876543210",
+    "professionalRole": "Homeowner",
+    "country": "India",
+    "city": "Mumbai",
+    "marketingConsent": false,
+    "source": "landing_page",
+    "utm": {},
+    "email_notification_status": "queued",
+    "user_confirmation_status": "queued",
+    "id": "wl_1794328576503_uzdvp",
+    "createdAt": "2026-11-10T16:36:16.503Z",
+    "updatedAt": "2026-11-10T16:36:50.853Z"
+  },
+  {
     "name": "Victoria Vance Updated",
     "email": "agent_1794139936049@luxurymiami.com",
     "professionalRole": "Real Estate Agency Owner",

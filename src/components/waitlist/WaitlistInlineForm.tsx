@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Loader2, Sparkles, AlertCircle } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2, Sparkles, AlertCircle, Phone } from "lucide-react";
 
 interface WaitlistInlineFormProps {
   source?: string;
@@ -17,7 +17,9 @@ export function WaitlistInlineForm({
 }: WaitlistInlineFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState("Real Estate Agent / Broker");
+  const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("+91");
+  const [role, setRole] = useState("Homeowner / Property Owner");
   const [honeypot, setHoneypot] = useState("");
   const [consent, setConsent] = useState(true);
 
@@ -53,12 +55,15 @@ export function WaitlistInlineForm({
         });
       }
 
+      const fullMobile = phone.trim() ? `${countryCode} ${phone.trim()}` : undefined;
+
       const res = await fetch("/api/v1/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),
+          mobile_number: fullMobile,
           professionalRole: role,
           marketingConsent: consent,
           source,
@@ -85,34 +90,34 @@ export function WaitlistInlineForm({
 
   if (isSuccess) {
     return (
-      <div className={`p-8 rounded-[20px] bg-white border border-[#D8D5CF] shadow-architectural text-left ${className}`}>
+      <div className={`p-6 sm:p-8 rounded-[20px] bg-white border border-[#D8D5CF] shadow-architectural text-left ${className}`}>
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center shrink-0">
-            <CheckCircle2 className="w-6 h-6" />
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center shrink-0">
+            <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
-          <div className="space-y-2">
-            <h3 className="text-xl font-bold font-serif text-[#101827]">
+          <div className="space-y-1.5 sm:space-y-2">
+            <h3 className="text-lg sm:text-xl font-bold font-serif text-[#101827]">
               {isDuplicate ? "Welcome back!" : "You're on the Beyanco Waitlist."}
             </h3>
-            <p className="text-sm text-[#626A75] leading-relaxed">
-              {message} We prioritize invites for professionals who help us evaluate product requirements.
+            <p className="text-xs sm:text-sm text-[#626A75] leading-relaxed">
+              {message} We prioritize invites for customers and professionals who help us evaluate product requirements.
             </p>
           </div>
         </div>
 
         {/* Opinion survey nudge */}
-        <div className="mt-6 pt-6 border-t border-[#D8D5CF]/60 bg-[#FAF8F5] -mx-8 -mb-8 p-6 rounded-b-[20px] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-6 pt-5 sm:pt-6 border-t border-[#D8D5CF]/60 bg-[#FAF8F5] -mx-6 -mb-6 sm:-mx-8 sm:-mb-8 p-5 sm:p-6 rounded-b-[20px] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#A98460]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#A98460]">
               Unlock Priority Access
             </span>
-            <p className="text-sm font-medium text-[#101827]">
-              Help shape which rooms, furniture and styles we build first.
+            <p className="text-xs sm:text-sm font-medium text-[#101827] mt-0.5">
+              Help shape which furniture and spatial features we build first.
             </p>
           </div>
           <Link
             href="/feedback"
-            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#101827] text-white hover:bg-[#A98460] transition-colors"
+            className="w-full sm:w-auto text-center shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#101827] text-white hover:bg-[#A98460] transition-colors"
           >
             <span>Share Your Opinion</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -125,7 +130,7 @@ export function WaitlistInlineForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`p-6 sm:p-8 rounded-[20px] bg-white border border-[#D8D5CF]/70 shadow-architectural text-left ${className}`}
+      className={`p-5 sm:p-8 rounded-[20px] bg-white border border-[#D8D5CF]/70 shadow-architectural text-left ${className}`}
       noValidate
     >
       {/* Honeypot for anti-spam */}
@@ -148,7 +153,7 @@ export function WaitlistInlineForm({
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-[#626A75] mb-1.5">
               Your Name
@@ -159,55 +164,84 @@ export function WaitlistInlineForm({
               placeholder="e.g. Elena Rostova"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full h-12 px-4 rounded-xl bg-[#F6F4EF] border border-[#D8D5CF] text-[#101827] text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all"
+              className="w-full h-12 px-4 rounded-xl bg-[#F6F4EF] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all"
             />
           </div>
 
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-[#626A75] mb-1.5">
-              Work / Business Email
+              Email Address
             </label>
             <input
               type="email"
               required
-              placeholder="elena@studioarchitects.com"
+              placeholder="elena@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-12 px-4 rounded-xl bg-[#F6F4EF] border border-[#D8D5CF] text-[#101827] text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all"
+              className="w-full h-12 px-4 rounded-xl bg-[#F6F4EF] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all"
             />
           </div>
         </div>
 
-        <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-[#626A75] mb-1.5">
-            Your Professional Role <span className="text-[#94A3B8] font-normal lowercase">(optional)</span>
-          </label>
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            className="w-full h-12 px-4 rounded-xl bg-[#F6F4EF] border border-[#D8D5CF] text-[#101827] text-sm focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all cursor-pointer"
-          >
-            <option value="Real Estate Agent / Broker">Real Estate Agent / Broker</option>
-            <option value="Real Estate Agency Owner">Real Estate Agency Owner</option>
-            <option value="Interior Designer">Interior Designer / Decorator</option>
-            <option value="Property Photographer">Property Photographer</option>
-            <option value="Builder / Developer">Builder / Property Developer</option>
-            <option value="Property Owner / Landlord">Property Owner / Landlord</option>
-            <option value="Other">Other Creative Professional</option>
-          </select>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-[#626A75] mb-1.5">
+              Mobile Number <span className="text-[#94A3B8] font-normal lowercase">(optional)</span>
+            </label>
+            <div className="flex gap-2">
+              <select
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
+                className="h-12 px-2 sm:px-3 rounded-xl bg-[#F6F4EF] border border-[#D8D5CF] text-[#101827] text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all cursor-pointer font-mono shrink-0"
+              >
+                <option value="+91">+91 (IN)</option>
+                <option value="+1">+1 (US)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+971">+971 (UAE)</option>
+                <option value="+65">+65 (SG)</option>
+                <option value="+61">+61 (AU)</option>
+              </select>
+              <input
+                type="tel"
+                placeholder="Phone number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full h-12 px-3 sm:px-4 rounded-xl bg-[#F6F4EF] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm placeholder:text-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all font-mono"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-[#626A75] mb-1.5">
+              Your Profile / Role <span className="text-[#94A3B8] font-normal lowercase">(optional)</span>
+            </label>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full h-12 px-4 rounded-xl bg-[#F6F4EF] border border-[#D8D5CF] text-[#101827] text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#A98460] focus:bg-white transition-all cursor-pointer"
+            >
+              <option value="Homeowner / Property Owner">Homeowner / Property Owner</option>
+              <option value="Renter">Renter</option>
+              <option value="Planning to purchase a home">Planning to purchase a home</option>
+              <option value="Interior Designer / Architect">Interior Designer / Architect</option>
+              <option value="Furniture Seller / Retailer">Furniture Seller / Retailer</option>
+              <option value="Real Estate Agent / Broker">Real Estate Agent / Broker</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2 pt-1">
+        <div className="flex items-start gap-2.5 pt-1">
           <input
             type="checkbox"
             id={`consent-${source}`}
             checked={consent}
             onChange={(e) => setConsent(e.target.checked)}
-            className="w-4 h-4 rounded border-[#D8D5CF] text-[#101827] focus:ring-[#A98460] cursor-pointer"
+            className="w-4 h-4 mt-0.5 rounded border-[#D8D5CF] text-[#101827] focus:ring-[#A98460] cursor-pointer shrink-0"
           />
           <label
             htmlFor={`consent-${source}`}
-            className="text-xs text-[#626A75] cursor-pointer select-none"
+            className="text-xs text-[#626A75] cursor-pointer select-none leading-relaxed"
           >
             Notify me with early access invitations and launch updates.
           </label>
@@ -217,7 +251,7 @@ export function WaitlistInlineForm({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-13 px-6 rounded-full bg-[#101827] text-white font-medium text-sm uppercase tracking-wider hover:bg-[#A98460] disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+            className="w-full h-12 sm:h-13 px-6 rounded-full bg-[#101827] text-white font-medium text-xs sm:text-sm uppercase tracking-wider hover:bg-[#A98460] disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
               <>
