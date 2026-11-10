@@ -209,7 +209,7 @@ export function WaitlistInlineForm({
             htmlFor={`consent-${source}`}
             className="text-xs text-[#626A75] cursor-pointer select-none"
           >
-            Notify me with private release invitations and product benchmarks.
+            Notify me with early access invitations and launch updates.
           </label>
         </div>
 

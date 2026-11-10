@@ -234,7 +234,7 @@ const AUDIENCES = [
     id: "agents",
     role: "Real Estate Agents",
     summary: "Sell the lifestyle before a single piece of furniture is moved.",
-    benefit: "Turn empty, cold property photos into emotive listings that generate 3x more viewing inquiries and faster buyer commitment.",
+    benefit: "Turn empty, cold property photos into emotive listings that generate faster buyer commitment.",
     icon: Home,
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop",
   },
@@ -284,50 +284,50 @@ const AUDIENCES = [
 const CAPABILITIES = [
   {
     number: "01",
-    title: "AI Virtual Staging",
-    description: "Populate vacant rooms with perspective-accurate, photorealistic furniture that aligns with natural room shadows and lighting angles.",
+    title: "Shoppable Interiors",
+    description: "Every item in the image is a real product you can buy.",
     image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
   },
   {
     number: "02",
-    title: "Complete AI Interior Design",
-    description: "Go beyond furniture placement. Reconceptualize wall finishes, flooring materials, ceiling details, and lighting vectors seamlessly.",
+    title: "Shop Near You",
+    description: "Find pieces from stores in your area and across online platforms.",
     image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
   },
   {
     number: "03",
-    title: "Multiple Interior Styles",
-    description: "Shift between Warm Minimalism, Japandi, Modern Luxury, Scandinavian, and Contemporary Eclectic with a single prompt direction.",
+    title: "Single-Store Shopping",
+    description: "Furnish the whole room from one store to simplify delivery.",
     image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=800&auto=format&fit=crop",
   },
   {
     number: "04",
-    title: "Furniture Customization",
-    description: "Specify intentional seating arrangements, organic curved sofas, stone coffee tables, and bespoke dining layouts tailored to each room.",
+    title: "Quick Delivery Filter",
+    description: "Get your room set up faster.",
     image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop",
   },
   {
     number: "05",
-    title: "Material & Colour Selection",
-    description: "Select tactile materials — honed travertine, bouclé fabric, smoked oak, brushed brass, and micro-cement plaster — with authentic texture reproduction.",
+    title: "Add or Remove Furniture",
+    description: "Search and choose exactly which pieces appear in your room.",
     image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop",
   },
   {
     number: "06",
-    title: "Room-Level Refinement",
-    description: "Preserve structural window mullions, outdoor vistas, molding details, and electrical fixtures while reimagining the interior aesthetic.",
+    title: "Drag and Rearrange",
+    description: "Move furniture anywhere in the room until it feels right.",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
   },
   {
     number: "07",
-    title: "Before-and-After Studio",
-    description: "Export high-resolution MLS-compliant split comparisons and marketing collateral for listings, proposals, and social reels.",
+    title: "3D Arrangement",
+    description: "See your layout from different angles before you buy.",
     image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=800&auto=format&fit=crop",
   },
   {
     number: "08",
-    title: "Multi-Room Property Projects",
-    description: "Maintain a cohesive architectural language across living rooms, bedrooms, and dining spaces within the same property listing.",
+    title: "Multiple Styles",
+    description: "Switch themes and compare looks in seconds.",
     image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
   },
 ];
@@ -346,35 +346,19 @@ const PROPERTY_ROOMS = [
 const FAQS = [
   {
     q: "What is Beyanco AI?",
-    a: "Beyanco AI is an architectural visualization platform designed to transform ordinary property photographs into photorealistic, professionally designed interiors. It blends spatial AI intelligence with real architectural principles so real estate agents, designers, and developers can showcase potential spaces with refined authenticity.",
+    a: "Beyanco AI turns a photo of your empty room into a furnished design made of real, buyable furniture. Click any piece to see its details and add it to your cart.",
   },
   {
-    q: "Who is Beyanco designed for?",
-    a: "Beyanco is specifically crafted for real estate agents and brokerages seeking higher listing conversion, interior designers who need rapid concept ideation, property photographers expanding their service offerings, and developers pre-selling off-plan properties.",
+    q: "Can I buy the furniture?",
+    a: "Yes, that's the idea. Each item links to a real product from stores near you or online.",
   },
   {
-    q: "What is AI virtual staging?",
-    a: "AI virtual staging takes a digital photograph of a vacant or unfurnished room and realistically places 3D furniture, area rugs, lighting, and art into the scene. Unlike physical staging which costs thousands and takes days of moving heavy furniture, virtual staging takes seconds and allows you to test multiple styles.",
+    q: "Can I change the furniture?",
+    a: "Yes. Add or remove pieces using the search bar, and drag items around your room.",
   },
   {
-    q: "How is interior design different from virtual staging?",
-    a: "Virtual staging typically places furniture inside an existing room while keeping all wall paints, flooring, and finishes untouched. Beyanco's AI Interior Design capability goes deeper: it can reimagine the entire material palette — from replacing outdated linoleum with herringbone oak to resurfacing walls with lime-wash plaster and reconfiguring lighting fixtures.",
-  },
-  {
-    q: "Can I customize the furniture, styles, and materials?",
-    a: "Yes. Our core product vision is intentional control. Rather than giving you a random generic AI picture, Beyanco allows you to specify design styles (e.g. Warm Minimalism, Japandi, Contemporary), request specific seating arrangements, choose material textures (travertine, bouclé, walnut), and define what to keep versus replace.",
-  },
-  {
-    q: "Can Beyanco be used for multiple rooms under one property?",
-    a: "Yes. Beyanco is built around a Property-First architecture. You can organize an entire listing (Living Room, Kitchen, Master Bedroom, Balcony) under a single property project, ensuring all generated rooms share a coordinated architectural direction, lighting mood, and design language.",
-  },
-  {
-    q: "Is Beyanco available right now?",
-    a: "We are currently in private pre-launch development. This website is part of our product validation phase to gather direct requirements, feedback, and willingness-to-pay insights from real estate professionals and interior designers before our public release.",
-  },
-  {
-    q: "How can I get early access?",
-    a: "You can secure an invitation by submitting your email on our waitlist below. Completing our 3-minute Customer Opinion Questionnaire grants you priority access and an opportunity to participate in our closed beta cohort.",
+    q: "Is it available now?",
+    a: "Not yet. We're building it, and waitlist members get early access.",
   },
 ];
 
@@ -409,7 +393,7 @@ export default function WaitlistLandingPage() {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#A98460] animate-pulse" />
               <span className="text-[11px] font-semibold tracking-widest uppercase text-[#101827]">
-                Architectural AI Visualization • Pre-Launch
+                Pre-launch • Join the waitlist
               </span>
             </motion.div>
 
@@ -420,8 +404,8 @@ export default function WaitlistLandingPage() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-serif font-bold text-[#101827] tracking-tight leading-[1.06]"
             >
-              Your Vision. <br />
-              <span className="italic font-normal text-[#A98460]">Intelligently Designed.</span>
+              Redesign your space in seconds. <br />
+              <span className="italic font-normal text-[#A98460]">Buy exactly what you see.</span>
             </motion.h1>
 
             {/* Supporting Text */}
@@ -431,8 +415,7 @@ export default function WaitlistLandingPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg sm:text-xl text-[#626A75] max-w-2xl mx-auto leading-relaxed"
             >
-              Transform ordinary property photographs into beautifully designed interiors.
-              Explore styles, visualize furniture and reimagine spaces with Beyanco AI.
+              Upload a photo of your empty room and Beyanco AI furnishes it with real furniture you can actually buy. Click any piece to see its price, size and material, then add it to your cart.
             </motion.p>
 
             {/* CTAs */}
@@ -478,10 +461,8 @@ export default function WaitlistLandingPage() {
                 initialSliderPosition={50}
               />
             </div>
-            <div className="mt-4 flex items-center justify-between px-2 text-xs text-[#626A75]">
-              <span>Vacant space captured on standard smartphone photo</span>
-              <span className="font-serif italic text-[#A98460]">Interactive architectural comparison</span>
-              <span>Rendered with spatial fidelity and true window lighting</span>
+            <div className="mt-4 flex items-center justify-center px-2 text-xs text-[#626A75]">
+              <span>Every piece in this room is real, in stock and one click from your cart.</span>
             </div>
           </motion.div>
         </div>
@@ -498,11 +479,11 @@ export default function WaitlistLandingPage() {
                 Interactive Exploration
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#101827] mt-2">
-                See the Possibilities in Every Space.
+                Click any piece. Know everything. Buy it.
               </h2>
             </div>
             <p className="text-sm text-[#626A75] max-w-md">
-              Switch across different room environments to experience how our architectural models balance room boundaries, natural sunlight, and curated materiality.
+              Tap a sofa, a lamp or a rug in the generated image to see its colour, size, material, price and the store selling it.
             </p>
           </div>
 
@@ -609,7 +590,7 @@ export default function WaitlistLandingPage() {
               The Workflow
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#101827]">
-              From an Ordinary Photograph to a Designed Space.
+              From an empty room to a furnished home in 4 steps.
             </h2>
             <p className="text-sm text-[#626A75]">
               Designed around how real estate professionals and architects actually work. Four simple steps to transform vacant property images into finished listing visuals.
@@ -622,10 +603,10 @@ export default function WaitlistLandingPage() {
               <div>
                 <span className="font-serif text-3xl font-bold text-[#A98460]">01</span>
                 <h3 className="text-lg font-serif font-bold text-[#101827] mt-3">
-                  Upload Your Space
+                  Upload your space
                 </h3>
                 <p className="text-xs text-[#626A75] leading-relaxed mt-2">
-                  Start with an existing photo of a vacant room or outdated interior taken on a smartphone or DSLR. No LiDAR or special 3D scanner required.
+                  Add a photo of your empty room along with its dimensions.
                 </p>
               </div>
               <div className="pt-4 border-t border-[#D8D5CF]/50 text-[11px] text-[#A98460] font-medium uppercase tracking-wider">
@@ -638,10 +619,10 @@ export default function WaitlistLandingPage() {
               <div>
                 <span className="font-serif text-3xl font-bold text-[#A98460]">02</span>
                 <h3 className="text-lg font-serif font-bold text-[#101827] mt-3">
-                  Choose Your Vision
+                  Pick your style
                 </h3>
                 <p className="text-xs text-[#626A75] leading-relaxed mt-2">
-                  Select your intended aesthetic direction — Warm Minimalism, Scandinavian, Modern Luxury, or Contemporary. Define target demographic and room purpose.
+                  Choose a room type and a design theme, then hit Generate.
                 </p>
               </div>
               <div className="pt-4 border-t border-[#D8D5CF]/50 text-[11px] text-[#A98460] font-medium uppercase tracking-wider">
@@ -654,10 +635,10 @@ export default function WaitlistLandingPage() {
               <div>
                 <span className="font-serif text-3xl font-bold text-[#A98460]">03</span>
                 <h3 className="text-lg font-serif font-bold text-[#101827] mt-3">
-                  Personalize the Design
+                  Click to shop
                 </h3>
                 <p className="text-xs text-[#626A75] leading-relaxed mt-2">
-                  Give room-specific instructions: preserve window views, specify low-profile bouclé sofas, or swap flooring to wide-plank European oak.
+                  Tap any furniture in the image to see its colour, price, size and material. Add what you love to your cart.
                 </p>
               </div>
               <div className="pt-4 border-t border-[#D8D5CF]/50 text-[11px] text-[#A98460] font-medium uppercase tracking-wider">
@@ -670,10 +651,10 @@ export default function WaitlistLandingPage() {
               <div>
                 <span className="font-serif text-3xl font-bold text-[#A98460]">04</span>
                 <h3 className="text-lg font-serif font-bold text-[#101827] mt-3">
-                  Visualize Your Space
+                  Fine-tune with filters
                 </h3>
                 <p className="text-xs text-[#626A75] leading-relaxed mt-2">
-                  Receive photorealistic, full-resolution interior photographs calibrated for MLS listings, investor pitch decks, and high-end marketing collateral.
+                  Use the search bar to add or remove specific furniture. Filter by stores near you, a single store, quick delivery and more.
                 </p>
               </div>
               <div className="pt-4 border-t border-[#D8D5CF]/50 text-[11px] text-[#A98460] font-medium uppercase tracking-wider">
@@ -924,7 +905,7 @@ export default function WaitlistLandingPage() {
               Architectural Differentiation
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#101827]">
-              Why Beyanco?
+              Not just inspiration. A room you can actually buy.
             </h2>
             <p className="text-sm text-[#626A75]">
               We don&apos;t build generic AI filters that distort room architecture. We build an interior visualization system anchored in spatial realism.
@@ -937,10 +918,10 @@ export default function WaitlistLandingPage() {
                 <ShieldCheck className="w-5 h-5 text-[#A98460]" />
               </div>
               <h3 className="text-xl font-serif font-bold text-[#101827]">
-                Architectural Integrity
+                Real furniture, not fantasy
               </h3>
               <p className="text-xs text-[#626A75] leading-relaxed">
-                Existing AI tools frequently distort door frames, bend windows, and invent impossible room geometries. Beyanco preserves load-bearing walls, ceiling cornices, and window views.
+                Other AI tools show you pretty pictures you can&apos;t buy. Everything in a Beyanco image is a real product.
               </p>
             </div>
 
@@ -949,10 +930,10 @@ export default function WaitlistLandingPage() {
                 <Sliders className="w-5 h-5 text-[#A98460]" />
               </div>
               <h3 className="text-xl font-serif font-bold text-[#101827]">
-                Fine Material Control
+                Fit your space
               </h3>
               <p className="text-xs text-[#626A75] leading-relaxed">
-                Rather than accepting random furniture generations, choose specific materials: honed travertine, fluted oak, bouclé linen, and brushed bronze that match real-world design specifications.
+                Your room&apos;s dimensions guide what gets placed.
               </p>
             </div>
 
@@ -961,10 +942,10 @@ export default function WaitlistLandingPage() {
                 <Layers className="w-5 h-5 text-[#A98460]" />
               </div>
               <h3 className="text-xl font-serif font-bold text-[#101827]">
-                Property-First Organization
+                Shop your way
               </h3>
               <p className="text-xs text-[#626A75] leading-relaxed">
-                Organize all staging assets under unified property projects. Export synchronized marketing brochures, high-res MLS photographs, and interactive before/after sliders for client presentations.
+                Filter by location, store, delivery speed and more.
               </p>
             </div>
           </div>
@@ -1076,11 +1057,11 @@ export default function WaitlistLandingPage() {
           </span>
 
           <h2 className="text-4xl sm:text-5xl font-serif font-bold text-[#101827]">
-            Your Next Great Space Starts Here.
+            Your next great space starts here.
           </h2>
 
           <p className="text-base text-[#626A75] max-w-xl mx-auto leading-relaxed">
-            Be among the first to explore a new way of visualizing interiors. Enter your details below to reserve early access.
+            Join the waitlist and be among the first to furnish your room with real furniture in seconds.
           </p>
 
           <div className="pt-4">

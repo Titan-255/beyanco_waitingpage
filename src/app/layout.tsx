@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Beyanco AI — Architectural Interior Transformation & Virtual Staging",
   description:
-    "Transform ordinary property photographs into beautifully designed interiors. Explore styles, visualize furniture and reimagine spaces with Beyanco AI.",
+    "Upload an empty room, get it furnished by AI, and buy the exact furniture you see. Join the Beyanco AI waitlist.",
   keywords: [
     "virtual staging",
     "architectural visualization",
