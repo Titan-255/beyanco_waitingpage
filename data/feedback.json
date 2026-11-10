@@ -1,5 +1,58 @@
 [
   {
+    "q1_user_type": "Renter",
+    "q6_usefulness_rating": 4,
+    "q10_one_thing_perfect": "Accurate dimensional measurements for small rooms",
+    "role": "Renter",
+    "currentWorkflow": [],
+    "painPoints": [],
+    "currency": "INR",
+    "featurePreferences": [],
+    "topThreeFeatures": [],
+    "marketingConsent": false,
+    "utm": {},
+    "id": "fb_1794310205848_khd1w",
+    "createdAt": "2026-11-10T11:30:05.848Z"
+  },
+  {
+    "contactName": "Akash",
+    "contactEmail": "akash@example.com",
+    "contactPhone": "+91 8189833313",
+    "q1_user_type": "Homeowner",
+    "q2_buying_timeline": "Yes, actively",
+    "q3_where_buy": [
+      "IKEA",
+      "Local stores"
+    ],
+    "q4_hardest_part": [
+      "Will it fit?",
+      "Will it match my room?"
+    ],
+    "q5_regret_experience": "Bought a sofa that was too deep for the hallway",
+    "q6_usefulness_rating": 5,
+    "q7_ranked_features": [
+      "Accurate size and fit",
+      "Realistic room preview"
+    ],
+    "q8_comfort_factors": [
+      "Easy returns",
+      "Verified sellers"
+    ],
+    "q9_budget_spend": "₹50,000–₹99,999",
+    "q10_one_thing_perfect": "Show true-to-scale fit and real fabric textures under warm room lighting",
+    "role": "Homeowner",
+    "currentWorkflow": [],
+    "painPoints": [],
+    "currency": "INR",
+    "featurePreferences": [],
+    "topThreeFeatures": [],
+    "interviewInterest": "Yes",
+    "marketingConsent": true,
+    "utm": {},
+    "id": "fb_1794310189627_gfr40",
+    "createdAt": "2026-11-10T11:29:49.627Z"
+  },
+  {
     "waitlistId": "wl_1794139936066_67ke9",
     "contactName": "Kavita Chawla",
     "contactEmail": "kavita_1794139936075@atelieroak.in",

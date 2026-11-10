@@ -162,49 +162,53 @@ export function FeedbackInvitationModal() {
               <X className="w-4 h-4" />
             </button>
 
-            {/* TOP: Eyebrow label with subtle architectural accent */}
+            {/* Official Beyanco Logo */}
+            <div className="flex justify-center mb-5">
+              <img
+                src="/beyanco-logo.jpg"
+                alt="Beyanco"
+                className="h-9 sm:h-10 w-auto object-contain"
+              />
+            </div>
+
+            {/* Pill / Eyebrow */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101827]/5 border border-[#101827]/10 mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#A98460]" />
               <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest text-[#101827]">
-                A Quick Note From Beyanco
+                A QUICK NOTE FROM BEYANCO
               </span>
             </div>
 
-            {/* MIDDLE: Editorial Serif Heading */}
+            {/* Headline */}
             <h2
               id="feedback-dialog-title"
               className="text-2xl sm:text-3xl font-serif font-bold text-[#101827] tracking-tight leading-snug mb-4"
             >
-              Your Opinion Means a Lot to Us.
+              Help Us Change How the World Shops for Furniture.
             </h2>
 
-            {/* Supporting Paragraph */}
+            {/* Body */}
             <div
               id="feedback-dialog-description"
               className="text-sm sm:text-[14.5px] text-[#626A75] leading-relaxed space-y-3 mb-6"
             >
               <p>
-                We&apos;re building Beyanco to rethink how people visualize and design spaces. But the best ideas come from the people who might actually use it.
+                At Beyanco, we&apos;re redefining what it means to shop for furniture. No more guessing if that sofa fits, or if the color works in your room. You see it in your space first, then buy it with confidence.
               </p>
               <p>
-                Take a moment to tell us what you think, what you&apos;d love to see and what would make Beyanco valuable to you.
+                But we can&apos;t do it alone. Tell us what frustrates you, what you&apos;d love to see, and what would make Beyanco worth using. Your opinion will directly shape what we build.
               </p>
             </div>
 
-            {/* BOTTOM: Primary CTA & Secondary Guidance */}
+            {/* Primary Button & Secondary Link */}
             <div className="space-y-3 pt-1">
               <button
                 type="button"
                 onClick={handleCtaClick}
                 className="group w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#101827] hover:bg-[#A98460] text-white text-xs font-semibold uppercase tracking-widest shadow-md hover:shadow-xl transition-all duration-300"
               >
-                <span>Share Your Opinion</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                <span>SHARE YOUR OPINION &rarr;</span>
               </button>
-
-              <p className="text-[11.5px] text-[#626A75] leading-normal px-2">
-                It only takes a few minutes. Your feedback will help shape what comes next.
-              </p>
 
               <div>
                 <button
@@ -217,7 +221,7 @@ export function FeedbackInvitationModal() {
               </div>
             </div>
 
-            {/* Closing Thank You */}
+            {/* Popup Footer */}
             <div className="mt-5 pt-4 border-t border-[#D8D5CF]/60 text-[11px] text-[#626A75]/70">
               Thank you for being part of Beyanco&apos;s journey.
             </div>
