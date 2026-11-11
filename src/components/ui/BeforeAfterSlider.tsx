@@ -113,8 +113,8 @@ export function BeforeAfterSlider({
       />
 
       {/* After Tag (Top Right) */}
-      <div className="absolute top-3.5 right-3.5 z-10 pointer-events-none">
-        <span className="px-3 py-1.5 text-[11px] font-bold tracking-wider uppercase bg-slate-900/80 text-white backdrop-blur-md rounded-full shadow-sm border border-white/20">
+      <div className="absolute top-2 sm:top-3.5 right-2 sm:right-3.5 z-10 pointer-events-none">
+        <span className="px-2 sm:px-3 py-0.5 sm:py-1.5 text-[8px] sm:text-[11px] font-bold tracking-wider uppercase bg-slate-900/80 text-white backdrop-blur-md rounded-full shadow-sm border border-white/20">
           {afterLabel}
         </span>
       </div>
@@ -132,8 +132,8 @@ export function BeforeAfterSlider({
         />
 
         {/* Before Tag (Top Left) */}
-        <div className="absolute top-3.5 left-3.5 z-10 pointer-events-none">
-          <span className="px-3 py-1.5 text-[11px] font-bold tracking-wider uppercase bg-slate-900/80 text-white backdrop-blur-md rounded-full shadow-sm border border-white/20">
+        <div className="absolute top-2 sm:top-3.5 left-2 sm:left-3.5 z-10 pointer-events-none">
+          <span className="px-2 sm:px-3 py-0.5 sm:py-1.5 text-[8px] sm:text-[11px] font-bold tracking-wider uppercase bg-slate-900/80 text-white backdrop-blur-md rounded-full shadow-sm border border-white/20">
             {beforeLabel}
           </span>
         </div>

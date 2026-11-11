@@ -625,7 +625,7 @@ export default function WaitlistLandingPage() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#101827] via-transparent to-transparent opacity-90" />
-                  <span className="absolute top-3 left-3 text-xs font-serif font-bold text-[#A98460] px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
+                  <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 text-[10px] sm:text-xs font-serif font-bold text-[#A98460] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
                     {cap.number}
                   </span>
                 </div>
