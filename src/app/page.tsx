@@ -31,55 +31,6 @@ import { FeedbackInvitationModal } from "@/components/feedback/FeedbackInvitatio
 // Conceptual Demonstration Showcase Rooms
 const SHOWCASE_ROOMS = [
   {
-    id: "living-room",
-    designId: "gen_001",
-    title: "Skyline Living Sanctuary",
-    type: "Living Room",
-    styleName: "Warm Contemporary Minimalist",
-    dimensions: "6.4m × 5.1m",
-    ceilingHeight: "3.4m Vaulted Ceiling",
-    beforeImage: "/showcase/living-before.jpg",
-    afterImage: "/showcase/living-after.jpg",
-    beforeLabel: "ORIGINAL LIVING ROOM",
-    afterLabel: "STAGED WARM CONTEMPORARY MINIMALIST",
-    narrative: "Vacant vaulted living room with a brick hearth fireplace and natural hardwood flooring transformed into an editorial contemporary lounge with an organic wood coffee table, low-profile seating, and woven lounge accents.",
-    tags: ["Custom Low Seating", "Organic Oak Surfaces", "Fireplace Hearth Staged", "Natural Light Preservation"],
-    hotspots: [
-      {
-        id: "lr-sofa",
-        x: 74,
-        y: 52,
-        storeName: "Pepperfry",
-        priceInr: "₹42,999",
-        storeUrl: "https://www.pepperfry.com/furniture-sofas.html",
-      },
-      {
-        id: "lr-table",
-        x: 52,
-        y: 78,
-        storeName: "WoodenStreet",
-        priceInr: "₹14,499",
-        storeUrl: "https://www.woodenstreet.com/coffee-tables",
-      },
-      {
-        id: "lr-side-table",
-        x: 84,
-        y: 84,
-        storeName: "IKEA India",
-        priceInr: "₹4,990",
-        storeUrl: "https://www.ikea.com/in/en/cat/coffee-side-tables-10705/",
-      },
-      {
-        id: "lr-planter",
-        x: 36,
-        y: 55,
-        storeName: "Home Centre",
-        priceInr: "₹2,499",
-        storeUrl: "https://www.homecentre.in/in/en/c/homedecor-potsandplanters",
-      },
-    ],
-  },
-  {
     id: "bedroom",
     designId: "gen_003",
     title: "Belvedere Master Suite",
@@ -450,15 +401,49 @@ export default function WaitlistLandingPage() {
           >
             <div className="relative p-2 md:p-3 rounded-[24px] bg-white border border-[#D8D5CF]/70 shadow-architectural-lg">
               <ArchitecturalSlider
-                beforeImage={SHOWCASE_ROOMS[0].beforeImage}
-                afterImage={SHOWCASE_ROOMS[0].afterImage}
-                beforeLabel="ORIGINAL PHOTOGRAPH"
-                afterLabel="BEYANCO DESIGNED INTERIOR"
-                roomTitle="Skyline Waterfront Penthouse"
-                styleName="Warm Contemporary Lounge"
+                beforeImage="/showcase/living-before.jpg"
+                afterImage="/showcase/living-after.jpg"
+                beforeLabel="ORIGINAL LIVING ROOM"
+                afterLabel="STAGED WARM CONTEMPORARY MINIMALIST"
+                roomTitle="Skyline Living Sanctuary"
+                styleName="Warm Contemporary Minimalist"
                 dimensions="6.4m × 5.1m"
                 aspectRatio="aspect-[16/10]"
                 initialSliderPosition={50}
+                hotspots={[
+                  {
+                    id: "lr-sofa",
+                    x: 74,
+                    y: 52,
+                    storeName: "Pepperfry",
+                    priceInr: "₹42,999",
+                    storeUrl: "https://www.pepperfry.com/furniture-sofas.html",
+                  },
+                  {
+                    id: "lr-table",
+                    x: 52,
+                    y: 78,
+                    storeName: "WoodenStreet",
+                    priceInr: "₹14,499",
+                    storeUrl: "https://www.woodenstreet.com/coffee-tables",
+                  },
+                  {
+                    id: "lr-side-table",
+                    x: 84,
+                    y: 84,
+                    storeName: "IKEA India",
+                    priceInr: "₹4,990",
+                    storeUrl: "https://www.ikea.com/in/en/cat/coffee-side-tables-10705/",
+                  },
+                  {
+                    id: "lr-planter",
+                    x: 36,
+                    y: 55,
+                    storeName: "Home Centre",
+                    priceInr: "₹2,499",
+                    storeUrl: "https://www.homecentre.in/in/en/c/homedecor-potsandplanters",
+                  },
+                ]}
               />
             </div>
             <div className="mt-4 flex items-center justify-center px-2 text-xs text-[#626A75]">
