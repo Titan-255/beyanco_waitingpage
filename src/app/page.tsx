@@ -195,7 +195,7 @@ const CAPABILITIES = [
   },
   {
     number: "03",
-    title: "Single-Store Shopping",
+    title: "Shop All Your Furniture in One Place",
     description: "Furnish the whole room from one store to simplify delivery.",
     image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=800&auto=format&fit=crop",
   },
