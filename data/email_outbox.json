@@ -1,5 +1,83 @@
 [
   {
+    "id": "em_1794383411246_qx6wb",
+    "type": "feedback_admin_notification",
+    "submissionId": "fb_1794383411246_agy59",
+    "to": "akash@beyanco.com",
+    "subject": "New Beyanco Customer Feedback Submission",
+    "status": "sent",
+    "sentAt": "2026-11-11T07:50:11.246Z",
+    "payloadSummary": {
+      "id": "fb_1794383411246_agy59",
+      "q1": "Renter",
+      "q6": 4
+    },
+    "createdAt": "2026-11-11T07:50:11.246Z"
+  },
+  {
+    "id": "em_1794383400965_u61l8",
+    "type": "feedback_user_thank_you",
+    "submissionId": "fb_1794383400713_qtsrr",
+    "to": "akash@beyanco.com",
+    "subject": "Thank You for Sharing Your Thoughts with Beyanco!",
+    "status": "sent",
+    "sentAt": "2026-11-11T07:50:00.965Z",
+    "payloadSummary": {
+      "id": "fb_1794383400713_qtsrr",
+      "name": "Akash Feedback Tester",
+      "email": "akash@beyanco.com"
+    },
+    "createdAt": "2026-11-11T07:50:00.965Z"
+  },
+  {
+    "id": "em_1794383400714_uomr6",
+    "type": "feedback_admin_notification",
+    "submissionId": "fb_1794383400713_qtsrr",
+    "to": "akash@beyanco.com",
+    "subject": "New Beyanco Customer Feedback Submission",
+    "status": "sent",
+    "sentAt": "2026-11-11T07:50:00.714Z",
+    "payloadSummary": {
+      "id": "fb_1794383400713_qtsrr",
+      "contactName": "Akash Feedback Tester",
+      "contactEmail": "akash@beyanco.com",
+      "q1": "Homeowner",
+      "q6": 5
+    },
+    "createdAt": "2026-11-11T07:50:00.714Z"
+  },
+  {
+    "id": "em_1794383391544_mmpd3",
+    "type": "waitlist_user_confirmation",
+    "submissionId": "wl_1794383391318_ku6fw",
+    "to": "akash@beyanco.com",
+    "subject": "You're on the Beyanco Waitlist!",
+    "status": "sent",
+    "sentAt": "2026-11-11T07:49:51.544Z",
+    "payloadSummary": {
+      "id": "wl_1794383391318_ku6fw",
+      "name": "Akash Test Registrant",
+      "email": "akash@beyanco.com"
+    },
+    "createdAt": "2026-11-11T07:49:51.544Z"
+  },
+  {
+    "id": "em_1794383391319_5fn3o",
+    "type": "waitlist_admin_notification",
+    "submissionId": "wl_1794383391318_ku6fw",
+    "to": "akash@beyanco.com",
+    "subject": "New Beyanco Waitlist Registration",
+    "status": "sent",
+    "sentAt": "2026-11-11T07:49:51.319Z",
+    "payloadSummary": {
+      "id": "wl_1794383391318_ku6fw",
+      "name": "Akash Test Registrant",
+      "email": "akash@beyanco.com",
+      "role": "Interior Designer / Architect"
+    },
+    "createdAt": "2026-11-11T07:49:51.319Z"
+  },
+  {
     "id": "em_1794328841371_vqdze",
     "type": "feedback_admin_notification",
     "submissionId": "fb_1794328841370_ljb73",

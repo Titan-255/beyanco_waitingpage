@@ -2,6 +2,68 @@
   {
     "q1_user_type": "Renter",
     "q6_usefulness_rating": 4,
+    "q10_one_thing_perfect": "Simple photo upload and furniture removal.",
+    "role": "Renter",
+    "currentWorkflow": [],
+    "painPoints": [],
+    "currency": "INR",
+    "featurePreferences": [],
+    "topThreeFeatures": [],
+    "marketingConsent": false,
+    "utm": {},
+    "notification_email_status": "sent",
+    "respondent_confirmation_status": "skipped",
+    "submission_id": "fb_1794383411246_agy59",
+    "id": "fb_1794383411246_agy59",
+    "createdAt": "2026-11-11T07:50:11.246Z"
+  },
+  {
+    "contactName": "Akash Feedback Tester",
+    "contactEmail": "akash@beyanco.com",
+    "contactPhone": "+91 9876543210",
+    "q1_user_type": "Homeowner",
+    "q2_buying_timeline": "Yes, actively looking",
+    "q3_where_buy": [
+      "IKEA",
+      "Pepperfry",
+      "Local furniture stores"
+    ],
+    "q4_hardest_part": [
+      "Not knowing whether furniture will fit my room.",
+      "Difficulty imagining how products will look together."
+    ],
+    "q5_regret_experience": "The dining table was too large for our breakfast nook.",
+    "q6_usefulness_rating": 5,
+    "q7_ranked_features": [
+      "Realistic furniture visualization in my own room.",
+      "Accurate furniture dimensions and room-fit guidance.",
+      "Buying furniture directly through Beyanco."
+    ],
+    "q8_comfort_factors": [
+      "Verified furniture sellers.",
+      "Accurate room visualization.",
+      "Easy returns and refunds."
+    ],
+    "q9_budget_spend": "₹50,000–₹99,999",
+    "q10_one_thing_perfect": "Perfect measurement calibration and direct augmented placement with actual brands.",
+    "role": "Homeowner",
+    "currentWorkflow": [],
+    "painPoints": [],
+    "currency": "INR",
+    "featurePreferences": [],
+    "topThreeFeatures": [],
+    "interviewInterest": "Yes, happy to participate",
+    "marketingConsent": true,
+    "utm": {},
+    "notification_email_status": "sent",
+    "respondent_confirmation_status": "sent",
+    "submission_id": "fb_1794383400713_qtsrr",
+    "id": "fb_1794383400713_qtsrr",
+    "createdAt": "2026-11-11T07:50:00.713Z"
+  },
+  {
+    "q1_user_type": "Renter",
+    "q6_usefulness_rating": 4,
     "q10_one_thing_perfect": "Real-time 3D furniture placement directly in smartphone camera.",
     "role": "Renter",
     "currentWorkflow": [],

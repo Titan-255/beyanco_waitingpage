@@ -1,5 +1,21 @@
 [
   {
+    "name": "Akash Test Registrant",
+    "email": "akash@beyanco.com",
+    "mobile_number": "+91 9876543210",
+    "professionalRole": "Interior Designer / Architect",
+    "country": "India",
+    "city": "Bangalore",
+    "marketingConsent": true,
+    "source": "landing_page",
+    "utm": {},
+    "email_notification_status": "sent",
+    "user_confirmation_status": "sent",
+    "id": "wl_1794383391318_ku6fw",
+    "createdAt": "2026-11-11T07:49:51.318Z",
+    "updatedAt": "2026-11-11T07:49:51.760Z"
+  },
+  {
     "name": "Akash Sharma",
     "email": "test_akash_waitlist@beyanco.com",
     "mobile_number": "+91 9876543210",

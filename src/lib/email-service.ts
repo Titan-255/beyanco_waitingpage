@@ -65,25 +65,74 @@ export function recordOutboxEmail(record: OutboxEmailRecord): void {
 
 // Config getters
 export function getEmailConfig() {
-  const apiKey = process.env.RESEND_API_KEY || "";
-  const fromEmail =
-    process.env.FROM_EMAIL || "Beyanco <notifications@beyanco.com>";
+  const hostingerToken =
+    process.env.HOSTINGER_MAIL_API_TOKEN ||
+    "ee46c951d315ef096ed0fe196d65e8bc6a134b563348e32a4b1171d13756dfbc";
+  const hostingerMailbox =
+    process.env.HOSTINGER_MAILBOX || "akash@beyanco.com";
+  const hostingerMailboxResourceId =
+    process.env.HOSTINGER_MAILBOX_RESOURCE_ID || "AC834394107983f7f9e8f2d64ded2c";
   const adminEmail =
     process.env.ADMIN_NOTIFICATION_EMAIL || "akash@beyanco.com";
   const appUrl =
     process.env.NEXT_PUBLIC_APP_URL || "https://beyanco-waitingpage.vercel.app";
 
   return {
-    apiKey,
-    fromEmail,
+    hostingerToken,
+    hostingerMailbox,
+    hostingerMailboxResourceId,
     adminEmail,
     appUrl,
-    hasApiKey: Boolean(apiKey && apiKey.trim().length > 0),
+    hasToken: Boolean(hostingerToken && hostingerToken.trim().length > 0),
   };
 }
 
+// Cached mailbox resource ID in memory for efficiency
+let cachedMailboxResourceId: string | null = null;
+
+async function getMailboxResourceId(token: string, mailboxAddress: string): Promise<string> {
+  if (cachedMailboxResourceId) return cachedMailboxResourceId;
+
+  const envId = process.env.HOSTINGER_MAILBOX_RESOURCE_ID;
+  if (envId && envId.trim().length > 0) {
+    cachedMailboxResourceId = envId.trim();
+    return cachedMailboxResourceId;
+  }
+
+  // Fetch from official Hostinger Mail API /api/v1/me
+  try {
+    const res = await fetch("https://api.mail.hostinger.com/api/v1/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token.trim()}`,
+        Accept: "application/json",
+      },
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const mailboxes = data?.data?.mailboxes || [];
+      const match = mailboxes.find((m: any) => m.address?.toLowerCase() === mailboxAddress.toLowerCase());
+      if (match?.resourceId) {
+        cachedMailboxResourceId = match.resourceId;
+        return match.resourceId;
+      }
+      if (mailboxes[0]?.resourceId) {
+        cachedMailboxResourceId = mailboxes[0].resourceId;
+        return mailboxes[0].resourceId;
+      }
+    }
+  } catch (err) {
+    console.error("Error resolving Hostinger mailbox resource ID:", err);
+  }
+
+  // Fallback to known discovered resource ID for akash@beyanco.com
+  cachedMailboxResourceId = "AC834394107983f7f9e8f2d64ded2c";
+  return cachedMailboxResourceId;
+}
+
 /**
- * Dispatch an email via Resend API with graceful fallback to outbox recording.
+ * Dispatch an email via the Official Hostinger Mail API with graceful fallback to outbox recording.
  * Never throws an error that interrupts the user or aborts database storage.
  */
 async function dispatchEmail(params: {
@@ -95,12 +144,12 @@ async function dispatchEmail(params: {
   text: string;
   payloadSummary: Record<string, any>;
 }): Promise<{ success: boolean; status: "sent" | "failed" | "queued"; error?: string }> {
-  const { apiKey, fromEmail } = getEmailConfig();
+  const { hostingerToken, hostingerMailbox } = getEmailConfig();
   const recordId = `em_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
   const now = new Date().toISOString();
 
-  // If no API key configured, record in outbox as queued
-  if (!apiKey) {
+  // If no Mail API token configured, record in outbox as queued
+  if (!hostingerToken) {
     const record: OutboxEmailRecord = {
       id: recordId,
       type: params.type,
@@ -110,45 +159,59 @@ async function dispatchEmail(params: {
       status: "queued",
       payloadSummary: params.payloadSummary,
       createdAt: now,
-      error: "RESEND_API_KEY not configured. Queued in outbox for dispatch.",
+      error: "HOSTINGER_MAIL_API_TOKEN not configured. Queued in outbox for dispatch.",
     };
     recordOutboxEmail(record);
     return { success: false, status: "queued", error: record.error };
   }
 
   try {
-    const res = await fetch("https://api.resend.com/emails", {
+    const mailboxResourceId = await getMailboxResourceId(hostingerToken, hostingerMailbox);
+
+    const endpoint = `https://api.mail.hostinger.com/api/v1/mailboxes/${mailboxResourceId}/send`;
+
+    const sendPayload = {
+      to: [params.to],
+      displayName: "Beyanco AI",
+      subject: params.subject,
+      text: params.text,
+      html: params.html,
+    };
+
+    const res = await fetch(endpoint, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey.trim()}`,
+        Authorization: `Bearer ${hostingerToken.trim()}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [params.to],
-        subject: params.subject,
-        html: params.html,
-        text: params.text,
-      }),
+      body: JSON.stringify(sendPayload),
     });
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      const errMsg = data.message || `Resend API returned status ${res.status}`;
+    // Hostinger Mail API returns HTTP 204 No Content upon successful delivery
+    if (res.status === 204 || res.ok) {
       const record: OutboxEmailRecord = {
         id: recordId,
         type: params.type,
         submissionId: params.submissionId,
         to: params.to,
         subject: params.subject,
-        status: "failed",
-        error: errMsg,
+        status: "sent",
+        sentAt: now,
         payloadSummary: params.payloadSummary,
         createdAt: now,
       };
       recordOutboxEmail(record);
-      return { success: false, status: "failed", error: errMsg };
+      return { success: true, status: "sent" };
+    }
+
+    let errorDetail = `Hostinger Mail API returned status ${res.status}`;
+    try {
+      const data = await res.json();
+      if (data?.message) {
+        errorDetail = `${data.message} (HTTP ${res.status})`;
+      }
+    } catch {
+      // Body may be empty or non-JSON
     }
 
     const record: OutboxEmailRecord = {
@@ -157,15 +220,15 @@ async function dispatchEmail(params: {
       submissionId: params.submissionId,
       to: params.to,
       subject: params.subject,
-      status: "sent",
-      sentAt: now,
+      status: "failed",
+      error: errorDetail,
       payloadSummary: params.payloadSummary,
       createdAt: now,
     };
     recordOutboxEmail(record);
-    return { success: true, status: "sent" };
+    return { success: false, status: "failed", error: errorDetail };
   } catch (err: any) {
-    const errMsg = err?.message || "Network exception during email dispatch";
+    const errMsg = err?.message || "Network exception during Hostinger Mail API dispatch";
     const record: OutboxEmailRecord = {
       id: recordId,
       type: params.type,
