@@ -179,58 +179,6 @@ const SHOWCASE_ROOMS = [
   },
 ];
 
-// Audiences
-const AUDIENCES = [
-  {
-    id: "agents",
-    role: "Real Estate Agents",
-    summary: "Sell the lifestyle before a single piece of furniture is moved.",
-    benefit: "Turn empty, cold property photos into emotive listings that generate faster buyer commitment.",
-    icon: Home,
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: "agencies",
-    role: "Real Estate Agencies",
-    summary: "Establish an unmistakable, premium visual standard across all listings.",
-    benefit: "Arm entire brokerages with brand-aligned interior visualization that outperforms competitor portals without expensive physical staging.",
-    icon: Building,
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: "designers",
-    role: "Interior Designers",
-    summary: "Iterate aesthetic concepts in minutes instead of weeks of 3D modeling.",
-    benefit: "Explore layouts, timber finishes, marble choices, and bespoke furniture combinations with clients before committing to procurement.",
-    icon: Palette,
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: "photographers",
-    role: "Property Photographers",
-    summary: "Expand your service tier from basic photography to full virtual staging.",
-    benefit: "Deliver both RAW/HDR architecture photography and ready-to-list furnished interiors to your agent clients as a high-margin add-on.",
-    icon: Camera,
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: "builders",
-    role: "Builders & Developers",
-    summary: "Pre-sell off-plan and newly constructed residences at peak value.",
-    benefit: "Help prospective buyers visualize how raw drywall and open floorplans feel when designed into an aspirational architectural home.",
-    icon: Compass,
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: "owners",
-    role: "Property Owners & Landlords",
-    summary: "Reimagine your space and maximize rental returns with clear visuals.",
-    benefit: "Experiment with renovation concepts or attract premium tenants without the heavy upfront cost of physical staging.",
-    icon: Maximize2,
-    image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
-  },
-];
-
 // Capabilities
 const CAPABILITIES = [
   {
@@ -283,16 +231,6 @@ const CAPABILITIES = [
   },
 ];
 
-// Coordinated Property Showcase
-const PROPERTY_ROOMS = [
-  { name: "Living Sanctuary", tag: "Warm Bouclé & Travertine", img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop" },
-  { name: "Master Suite", tag: "Tactile Linen & Ribbed Oak", img: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop" },
-  { name: "Guest Bedroom", tag: "Neutral Wool & Soft Plaster", img: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=800&auto=format&fit=crop" },
-  { name: "Culinary Island", tag: "Honed Limestone & Bronze", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" },
-  { name: "Dining Alcove", tag: "Curved Oak & Minimalist Ceramics", img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=800&auto=format&fit=crop" },
-  { name: "Sunset Terrace", tag: "Teak Millwork & Linear Planters", img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop" },
-];
-
 // Product FAQs
 const FAQS = [
   {
@@ -315,11 +253,9 @@ const FAQS = [
 
 export default function WaitlistLandingPage() {
   const [selectedRoomIndex, setSelectedRoomIndex] = useState(0);
-  const [selectedAudienceIndex, setSelectedAudienceIndex] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const activeRoom = SHOWCASE_ROOMS[selectedRoomIndex];
-  const activeAudience = AUDIENCES[selectedAudienceIndex];
 
   return (
     <div className="flex flex-col min-h-screen bg-[#F6F4EF] text-[#101827]">
@@ -722,158 +658,6 @@ export default function WaitlistLandingPage() {
               className="shrink-0 px-6 py-3 rounded-full bg-[#A98460] text-white hover:bg-[#C4A482] text-xs font-semibold uppercase tracking-wider transition-colors inline-flex items-center gap-2"
             >
               <span>Rank Your Top Features</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          SECTION F: WHO IS BEYANCO FOR?
-          ======================================================== */}
-      <section className="py-24 bg-[#F6F4EF]" id="for-professionals">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#A98460]">
-              Audience Solutions
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#101827]">
-              Designed Around the People Who Shape Spaces.
-            </h2>
-            <p className="text-sm text-[#626A75]">
-              Tailored visual workflows built for every stakeholder in real estate marketing, architecture, and interior styling.
-            </p>
-          </div>
-
-          {/* Audience Tabs */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
-            {AUDIENCES.map((aud, idx) => {
-              const Icon = aud.icon;
-              return (
-                <button
-                  key={aud.id}
-                  onClick={() => setSelectedAudienceIndex(idx)}
-                  className={`p-4 rounded-2xl text-left border transition-all duration-200 flex flex-col justify-between ${
-                    selectedAudienceIndex === idx
-                      ? "bg-[#101827] text-white border-[#101827] shadow-sm"
-                      : "bg-white text-[#626A75] border-[#D8D5CF] hover:border-[#101827]"
-                  }`}
-                >
-                  <Icon className={`w-5 h-5 mb-3 ${selectedAudienceIndex === idx ? "text-[#A98460]" : "text-[#626A75]"}`} />
-                  <span className="text-xs font-semibold tracking-wide">
-                    {aud.role}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Audience Feature Showcase */}
-          <div className="p-8 md:p-12 rounded-[28px] bg-white border border-[#D8D5CF] shadow-architectural grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#A98460]/10 text-[#A98460] text-xs font-semibold uppercase tracking-wider">
-                <span>Tailored for {activeAudience.role}</span>
-              </div>
-              <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#101827] leading-tight">
-                {activeAudience.summary}
-              </h3>
-              <p className="text-base text-[#626A75] leading-relaxed">
-                {activeAudience.benefit}
-              </p>
-              <div className="pt-4 flex flex-wrap gap-4">
-                <a
-                  href="#waitlist"
-                  className="px-6 py-3 rounded-full bg-[#101827] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#A98460] transition-colors"
-                >
-                  Join as {activeAudience.role}
-                </a>
-                <Link
-                  href="/feedback"
-                  className="px-6 py-3 rounded-full bg-[#FAF8F5] border border-[#D8D5CF] text-[#101827] text-xs font-semibold uppercase tracking-wider hover:border-[#101827] transition-colors inline-flex items-center gap-1.5"
-                >
-                  <span>Share Your Use Case</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#A98460]" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <div className="relative rounded-[20px] overflow-hidden aspect-[4/3] shadow-md border border-[#D8D5CF]/60">
-                <img
-                  src={activeAudience.image}
-                  alt={activeAudience.role}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 text-white text-xs">
-                  <span className="font-serif font-bold text-base block">{activeAudience.role} Workflow</span>
-                  <span className="text-white/80">Photorealistic staging tailored for rapid client turnaround</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================
-          SECTION G: PROPERTY-LEVEL VISION
-          ======================================================== */}
-      <section className="py-24 bg-[#FAF8F5] border-t border-[#D8D5CF]/60" id="property-vision">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#A98460]">
-                Property-Level Cohesion
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#101827] mt-2">
-                Imagine Designing an Entire Property.
-              </h2>
-            </div>
-            <p className="text-sm text-[#626A75] max-w-md">
-              Most tools stage one disconnected room at a time. Beyanco synchronizes styles, finishes, and palettes across living, sleeping, and culinary spaces into a unified listing.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROPERTY_ROOMS.map((room, idx) => (
-              <div
-                key={room.name}
-                className="group rounded-[22px] overflow-hidden bg-white border border-[#D8D5CF] shadow-subtle hover:shadow-card transition-all"
-              >
-                <div className="aspect-[16/10] overflow-hidden relative">
-                  <img
-                    src={room.img}
-                    alt={room.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-mono">
-                    Room 0{idx + 1}
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-serif font-bold text-base text-[#101827]">
-                    {room.name}
-                  </h3>
-                  <span className="text-xs text-[#A98460] font-medium block mt-1">
-                    {room.tag}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 p-6 rounded-2xl bg-white border border-[#D8D5CF] flex items-center justify-between text-xs text-[#626A75]">
-            <div className="flex items-center gap-3">
-              <Grid3X3 className="w-5 h-5 text-[#A98460]" />
-              <span>Coordinated architectural language: Consistent travertine, oak joinery, and natural diffused light.</span>
-            </div>
-            <Link
-              href="/feedback"
-              className="text-[#101827] font-semibold uppercase tracking-wider hover:text-[#A98460] inline-flex items-center gap-1"
-            >
-              <span>Feedback on Multi-room staging</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

@@ -51,11 +51,6 @@ export function WaitlistFooter() {
                 </a>
               </li>
               <li>
-                <a href="#for-professionals" className="hover:text-white transition-colors">
-                  For Professionals
-                </a>
-              </li>
-              <li>
                 <a href="#faq" className="hover:text-white transition-colors">
                   Product FAQ
                 </a>

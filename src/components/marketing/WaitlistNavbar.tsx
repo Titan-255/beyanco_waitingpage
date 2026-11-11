@@ -52,12 +52,6 @@ export function WaitlistNavbar() {
             How It Works
           </Link>
           <Link
-            href="#for-professionals"
-            className="hover:text-[#101827] transition-colors py-1"
-          >
-            For Professionals
-          </Link>
-          <Link
             href="#capabilities"
             className="hover:text-[#101827] transition-colors py-1"
           >
@@ -116,13 +110,6 @@ export function WaitlistNavbar() {
               className="py-2 hover:text-[#101827]"
             >
               How It Works
-            </Link>
-            <Link
-              href="#for-professionals"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 hover:text-[#101827]"
-            >
-              For Professionals
             </Link>
             <Link
               href="#capabilities"
