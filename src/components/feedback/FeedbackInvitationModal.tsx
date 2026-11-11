@@ -150,24 +150,24 @@ export function FeedbackInvitationModal() {
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg max-h-[92vh] overflow-y-auto bg-[#FAF8F5] rounded-[24px] sm:rounded-[28px] border border-[#D8D5CF] p-5 sm:p-8 md:p-10 shadow-[0_25px_60px_-15px_rgba(16,24,39,0.3)] text-center my-auto z-10 focus:outline-none"
+            className="relative w-full max-w-lg max-h-[88vh] overflow-y-auto bg-[#FAF8F5] rounded-[24px] sm:rounded-[28px] border border-[#D8D5CF] p-4 sm:p-8 md:p-10 shadow-[0_25px_60px_-15px_rgba(16,24,39,0.3)] text-center my-auto z-10 focus:outline-none"
           >
             {/* Top-Right Dismiss Icon (X) */}
             <button
               type="button"
               onClick={dismissModal}
               aria-label="Close feedback modal"
-              className="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 text-[#101827] flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#A98460]"
+              className="absolute top-3 right-3 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 text-[#101827] flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#A98460]"
             >
               <X className="w-4 h-4" />
             </button>
 
             {/* Official Beyanco Logo */}
-            <div className="flex justify-center mb-4 sm:mb-5">
+            <div className="flex justify-center mb-3 sm:mb-5">
               <img
                 src="/beyanco-logo.jpg"
                 alt="Beyanco"
-                className="h-11 sm:h-14 w-auto object-contain mix-blend-multiply"
+                className="h-9 sm:h-14 w-auto object-contain mix-blend-multiply"
               />
             </div>
 

@@ -24,15 +24,15 @@ export function WaitlistNavbar() {
           : "bg-[#F6F4EF]/70 backdrop-blur-sm border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
           <img
             src="/beyanco-logo.jpg"
             alt="Beyanco"
-            className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply"
+            className="h-9 sm:h-12 w-auto object-contain mix-blend-multiply transition-all"
           />
-          <span className="px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase bg-[#101827]/5 text-[#101827] rounded border border-[#101827]/10">
+          <span className="px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase bg-[#101827]/5 text-[#101827] rounded border border-[#101827]/10">
             AI
           </span>
         </Link>
@@ -93,9 +93,9 @@ export function WaitlistNavbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with landscape max-height scrolling */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#F6F4EF] border-b border-[#D8D5CF] px-6 pt-4 pb-8 space-y-4 shadow-lg animate-in fade-in slide-in-from-top duration-200">
+        <div className="md:hidden bg-[#F6F4EF] border-b border-[#D8D5CF] px-6 pt-4 pb-8 space-y-4 shadow-lg animate-in fade-in slide-in-from-top duration-200 max-h-[calc(100vh-4rem)] overflow-y-auto">
           <nav className="flex flex-col space-y-3 text-sm font-medium tracking-wide uppercase text-[#626A75]">
             <Link
               href="#vision"

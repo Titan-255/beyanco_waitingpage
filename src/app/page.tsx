@@ -289,9 +289,9 @@ export default function WaitlistLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-serif font-bold text-[#101827] tracking-tight leading-[1.06]"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-[76px] font-serif font-bold text-[#101827] tracking-tight leading-[1.08] sm:leading-[1.06]"
             >
-              Redesign your space in seconds. <br />
+              Redesign your space in seconds. <br className="hidden sm:inline" />
               <span className="italic font-normal text-[#A98460]">Buy exactly what you see.</span>
             </motion.h1>
 
@@ -300,7 +300,7 @@ export default function WaitlistLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg sm:text-xl text-[#626A75] max-w-2xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-[#626A75] max-w-2xl mx-auto leading-relaxed"
             >
               Upload a photo of your empty room and Beyanco AI furnishes it with real furniture you can actually buy. Click any piece to see its price, size and material, then add it to your cart.
             </motion.p>

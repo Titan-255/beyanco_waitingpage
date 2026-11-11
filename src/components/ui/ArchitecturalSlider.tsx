@@ -209,21 +209,21 @@ export function ArchitecturalSlider({
                     <div
                       onClick={(e) => e.stopPropagation()}
                       className={cn(
-                        "absolute z-30 min-w-[145px] sm:min-w-[160px] max-w-[210px] p-2.5 sm:p-3 rounded-xl bg-white/95 backdrop-blur-md border border-[#D8D5CF] shadow-[0_8px_24px_rgba(0,0,0,0.16)] text-left transition-all duration-200 select-text hover:shadow-2xl hover:scale-[1.02]",
-                        spot.x > 75
+                        "absolute z-30 min-w-[125px] sm:min-w-[150px] max-w-[170px] sm:max-w-[210px] p-2 sm:p-3 rounded-xl bg-white/95 backdrop-blur-md border border-[#D8D5CF] shadow-[0_8px_24px_rgba(0,0,0,0.16)] text-left transition-all duration-200 select-text hover:shadow-2xl hover:scale-[1.02]",
+                        spot.x > 70
                           ? "right-0"
-                          : spot.x < 35
+                          : spot.x < 30
                           ? "left-0"
                           : "left-1/2 -translate-x-1/2",
                         spot.y > 50
-                          ? "bottom-full mb-2"
-                          : "top-full mt-2"
+                          ? "bottom-full mb-1.5 sm:mb-2"
+                          : "top-full mt-1.5 sm:mt-2"
                       )}
                     >
-                      <div className="text-xs sm:text-sm font-bold font-serif text-[#101827]">
+                      <div className="text-[11px] sm:text-sm font-bold font-serif text-[#101827] leading-none">
                         {spot.priceInr}
                       </div>
-                      <div className="text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#626A75] mt-0.5">
+                      <div className="text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#626A75] mt-1 sm:mt-0.5 truncate">
                         {spot.storeName}
                       </div>
                       <a
@@ -231,10 +231,10 @@ export function ArchitecturalSlider({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1 mt-1.5 text-[10px] sm:text-[11px] font-semibold text-[#A98460] hover:text-[#101827] transition-colors group/link"
+                        className="inline-flex items-center gap-0.5 sm:gap-1 mt-1 sm:mt-1.5 text-[9px] sm:text-[11px] font-semibold text-[#A98460] hover:text-[#101827] transition-colors group/link"
                       >
                         <span>View Store</span>
-                        <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                        <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                       </a>
                     </div>
                   )}
