@@ -118,8 +118,8 @@ export function ArchitecturalSlider({
         onKeyDown={handleKeyDown}
         style={{ touchAction: "pan-y" }}
         className={cn(
-          "relative overflow-hidden rounded-[20px] cursor-ew-resize focus:outline-none focus:ring-2 focus:ring-[#A98460] bg-[#101827] shadow-architectural border border-[#D8D5CF]/40",
-          aspectRatio
+          "relative overflow-hidden rounded-[16px] sm:rounded-[20px] cursor-ew-resize focus:outline-none focus:ring-2 focus:ring-[#A98460] bg-[#101827] shadow-architectural border border-[#D8D5CF]/40",
+          aspectRatio === "aspect-[16/10]" ? "aspect-[4/3] sm:aspect-[16/10]" : aspectRatio
         )}
         onMouseDown={(e) => {
           setIsDragging(true);
@@ -139,10 +139,11 @@ export function ArchitecturalSlider({
         />
 
         {/* After Tag (Top Right) */}
-        <div className="absolute top-4 right-4 z-10 pointer-events-none">
-          <div className="flex items-center gap-1.5 px-3.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase bg-[#101827]/85 text-[#F6F4EF] backdrop-blur-md rounded-full shadow-sm border border-white/15">
-            <Sparkles className="w-3 h-3 text-[#A98460]" />
-            <span>{afterLabel}</span>
+        <div className="absolute top-2.5 sm:top-4 right-2.5 sm:right-4 z-10 pointer-events-none max-w-[48%] sm:max-w-none">
+          <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[9px] sm:text-[11px] font-semibold tracking-wider uppercase bg-[#101827]/90 text-[#F6F4EF] backdrop-blur-md rounded-full shadow-sm border border-white/15">
+            <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#A98460] shrink-0" />
+            <span className="hidden sm:inline">{afterLabel}</span>
+            <span className="sm:hidden truncate">{afterLabel.includes("STAGED") ? "STAGED" : afterLabel}</span>
           </div>
         </div>
 
@@ -159,9 +160,10 @@ export function ArchitecturalSlider({
           />
 
           {/* Before Tag (Top Left) */}
-          <div className="absolute top-4 left-4 z-10 pointer-events-none">
-            <div className="flex items-center gap-1.5 px-3.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase bg-[#101827]/85 text-[#F6F4EF] backdrop-blur-md rounded-full shadow-sm border border-white/15">
-              <span>{beforeLabel}</span>
+          <div className="absolute top-2.5 sm:top-4 left-2.5 sm:left-4 z-10 pointer-events-none max-w-[48%] sm:max-w-none">
+            <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[9px] sm:text-[11px] font-semibold tracking-wider uppercase bg-[#101827]/90 text-[#F6F4EF] backdrop-blur-md rounded-full shadow-sm border border-white/15">
+              <span className="hidden sm:inline">{beforeLabel}</span>
+              <span className="sm:hidden truncate">{beforeLabel.includes("ORIGINAL") ? "ORIGINAL" : beforeLabel}</span>
             </div>
           </div>
         </div>
@@ -198,9 +200,9 @@ export function ArchitecturalSlider({
                       }));
                     }}
                     aria-label={`Toggle tag for ${spot.storeName}`}
-                    className="relative flex items-center justify-center w-6 h-6 rounded-full cursor-pointer focus:outline-none group/pin transition-transform hover:scale-110 active:scale-95"
+                    className="relative flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full cursor-pointer focus:outline-none group/pin transition-transform hover:scale-110 active:scale-95"
                   >
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#101827] ring-2 ring-white shadow-md z-10 transition-transform group-hover/pin:scale-125" />
+                    <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#101827] ring-2 ring-white shadow-md z-10 transition-transform group-hover/pin:scale-125" />
                     <span className="absolute inset-0 rounded-full border border-white/50 bg-[#A98460]/40 animate-ping pointer-events-none opacity-40" />
                   </button>
 
@@ -209,21 +211,21 @@ export function ArchitecturalSlider({
                     <div
                       onClick={(e) => e.stopPropagation()}
                       className={cn(
-                        "absolute z-30 min-w-[125px] sm:min-w-[150px] max-w-[170px] sm:max-w-[210px] p-2 sm:p-3 rounded-xl bg-white/95 backdrop-blur-md border border-[#D8D5CF] shadow-[0_8px_24px_rgba(0,0,0,0.16)] text-left transition-all duration-200 select-text hover:shadow-2xl hover:scale-[1.02]",
+                        "absolute z-30 min-w-[105px] sm:min-w-[150px] max-w-[140px] sm:max-w-[210px] p-1.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/95 backdrop-blur-md border border-[#D8D5CF] shadow-[0_6px_20px_rgba(0,0,0,0.18)] text-left transition-all duration-200 select-text hover:shadow-2xl hover:scale-[1.02]",
                         spot.x > 70
                           ? "right-0"
                           : spot.x < 30
                           ? "left-0"
                           : "left-1/2 -translate-x-1/2",
-                        spot.y > 50
-                          ? "bottom-full mb-1.5 sm:mb-2"
-                          : "top-full mt-1.5 sm:mt-2"
+                        spot.y > 60
+                          ? "bottom-full mb-1 sm:mb-2"
+                          : "top-full mt-1 sm:mt-2"
                       )}
                     >
-                      <div className="text-[11px] sm:text-sm font-bold font-serif text-[#101827] leading-none">
+                      <div className="text-[10px] sm:text-sm font-bold font-serif text-[#101827] leading-none">
                         {spot.priceInr}
                       </div>
-                      <div className="text-[8px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#626A75] mt-1 sm:mt-0.5 truncate">
+                      <div className="text-[7.5px] sm:text-[10px] font-semibold tracking-wider uppercase text-[#626A75] mt-0.5 truncate">
                         {spot.storeName}
                       </div>
                       <a
@@ -231,7 +233,7 @@ export function ArchitecturalSlider({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-0.5 sm:gap-1 mt-1 sm:mt-1.5 text-[9px] sm:text-[11px] font-semibold text-[#A98460] hover:text-[#101827] transition-colors group/link"
+                        className="inline-flex items-center gap-0.5 sm:gap-1 mt-0.5 sm:mt-1.5 text-[8.5px] sm:text-[11px] font-semibold text-[#A98460] hover:text-[#101827] transition-colors group/link"
                       >
                         <span>View Store</span>
                         <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -249,14 +251,14 @@ export function ArchitecturalSlider({
           className="absolute top-0 bottom-0 z-20 w-[2px] bg-white pointer-events-none shadow-[0_0_15px_rgba(0,0,0,0.6)]"
           style={{ left: `${sliderPosition}%` }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-[#101827] shadow-xl border border-[#D8D5CF] flex items-center justify-center transition-transform hover:scale-110 active:scale-95">
-            <ChevronsLeftRight className="w-4 h-4 text-[#101827]" />
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white text-[#101827] shadow-xl border border-[#D8D5CF] flex items-center justify-center transition-transform hover:scale-110 active:scale-95">
+            <ChevronsLeftRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#101827]" />
           </div>
         </div>
 
-        {/* Bottom Metadata Bar if provided */}
+        {/* Desktop Bottom Metadata Bar (Hidden on Mobile to prevent image/tag overlap) */}
         {(roomTitle || styleName || dimensions) && (
-          <div className="absolute bottom-4 left-4 right-4 z-10 pointer-events-none flex items-center justify-between">
+          <div className="hidden sm:flex absolute bottom-4 left-4 right-4 z-10 pointer-events-none items-center justify-between">
             <div className="px-4 py-2 rounded-xl bg-[#101827]/80 backdrop-blur-md border border-white/15 text-white flex items-center gap-3 text-xs">
               {roomTitle && <span className="font-medium text-white">{roomTitle}</span>}
               {styleName && (
@@ -278,6 +280,26 @@ export function ArchitecturalSlider({
           </div>
         )}
       </div>
+
+      {/* Mobile-Only Bottom Metadata Bar (Placed cleanly UNDER the image container: zero overlap with tags or slider) */}
+      {(roomTitle || styleName || dimensions) && (
+        <div className="mt-2.5 px-3 py-2 rounded-xl bg-[#101827] text-white flex sm:hidden items-center justify-between text-[11px] shadow-sm border border-[#1E293B]">
+          <div className="flex items-center gap-1.5 min-w-0">
+            {roomTitle && <span className="font-semibold text-white truncate">{roomTitle}</span>}
+            {styleName && (
+              <>
+                <span className="text-white/30 shrink-0">•</span>
+                <span className="text-[#A98460] font-medium truncate">{styleName}</span>
+              </>
+            )}
+          </div>
+          {dimensions && (
+            <span className="text-white/70 text-[10px] shrink-0 ml-2 font-mono whitespace-nowrap bg-white/10 px-2 py-0.5 rounded">
+              {dimensions}
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 }
