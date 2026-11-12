@@ -511,10 +511,10 @@ export default function WaitlistLandingPage() {
               The Workflow
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#101827]">
-              From an empty room to a furnished home in 4 steps.
+              Design your room with AI. Shop everything you see.
             </h2>
             <p className="text-sm text-[#626A75]">
-              Designed around how real estate professionals and architects actually work. Four simple steps to transform vacant property images into finished listing visuals.
+              Turn any empty room into a beautifully furnished space. Upload your room, choose your style, and let AI bring your vision to life with real furniture and decor you can actually shop.
             </p>
           </div>
 
